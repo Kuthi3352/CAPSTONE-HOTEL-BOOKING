@@ -3,6 +3,7 @@ import { PATH } from "constant";
 import { AuthLayout, MainLayout } from "components";
 import { Login, Register } from "pages";
 import { Account } from "pages/Account";
+import Home from "pages/Home";
 export const router: RouteObject[] = [
   {
     path: "/",
@@ -12,6 +13,10 @@ export const router: RouteObject[] = [
         path: PATH.account,
         element: <Account />,
       },
+      {
+        index:true,
+        element: <Home></Home>
+      }
     ],
   },
   {
