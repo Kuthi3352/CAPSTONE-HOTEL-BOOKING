@@ -1,45 +1,37 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useAuth } from "hooks";
+import { AccountSchema, AccountSchemaType } from "schemas";
+// import { useAppDispatch } from "store";
 import { Button, Input } from "components";
+import { useEffect } from "react";
 
-import { PATH } from "constant";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { RegisterSchemas, RegisterSchemasType } from "schemas";
-import { AuthServices } from "services";
-import { handleError } from "utils";
-
-export const RegisterTemplate = () => {
-  const navigate = useNavigate();
+export const AccountUser = () => {
+  //   const dispatch = useAppDispatch();
+  const { user } = useAuth();
   const {
-    handleSubmit,
+    reset,
     register,
+    handleSubmit,
     formState: { errors },
-  } = useForm<RegisterSchemasType>({
+  } = useForm<AccountSchemaType>({
     mode: "onChange",
-    resolver: zodResolver(RegisterSchemas),
+    resolver: zodResolver(AccountSchema),
   });
-
-  const onSubmit: SubmitHandler<RegisterSchemasType> = async (values) => {
-    try {
-      console.log({ values });
-      await AuthServices.register(values);
-      toast.success("Đăng kí thành công");
-      navigate(PATH.login);
-    } catch (err) {
-      console.log(err);
-      handleError(err);
-    }
+  const onSubmit: SubmitHandler<AccountSchemaType> = (value) => {
+    console.log("value", value);
   };
+  useEffect(() => {
+    reset({
+      ...user?.user,
+    });
+  }, [user, reset]);
 
   return (
     <form className="text-white" onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="font-600 text-30">Đăng ký</h2>
       <Input
         className="mt-16"
         label="Tên người dùng"
-        placeholder="Tên người dùng"
         id="name"
         name="name"
         error={errors?.name?.message}
@@ -48,7 +40,6 @@ export const RegisterTemplate = () => {
       <Input
         className="mt-16"
         label="Email"
-        placeholder="abcxyz@gmail.com"
         id="email"
         name="email"
         error={errors?.email?.message}
@@ -57,7 +48,6 @@ export const RegisterTemplate = () => {
       <Input
         className="mt-16"
         label="Mật Khẩu"
-        placeholder="Nhập Mật Khẩu"
         id="password"
         name="password"
         type="password"
@@ -67,7 +57,6 @@ export const RegisterTemplate = () => {
       <Input
         className="mt-16"
         label="Số Điện Thoại"
-        placeholder="Nhập Số Điện Thoại"
         id="phone"
         name="phone"
         error={errors?.phone?.message}
@@ -99,7 +88,7 @@ export const RegisterTemplate = () => {
         htmlType="submit"
         className="w-full !p-3 !bg-red-500 !text-white !mt-[25px] !rounded-10  !h-[48px] !font-bold"
       >
-        Đăng Ký
+        Cập Nhật
       </Button>
     </form>
   );

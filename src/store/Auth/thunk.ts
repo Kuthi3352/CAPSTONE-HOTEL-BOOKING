@@ -7,7 +7,8 @@ export const AuthLoginThunk = createAsyncThunk(
     async(payload:LoginSchemasType, {rejectWithValue}) => {
         try{
             const data = await AuthServices.login(payload)
-            console.log('data',data.data.content); 
+            console.log(data.data.content);
+            
             return data.data.content
         }catch(err){
             return rejectWithValue(err)

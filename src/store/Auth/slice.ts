@@ -4,8 +4,8 @@ import {  AuthType} from 'types/AuthType'
 import { getAccessToken } from 'utils'
 
 type AuthLoginInitialState = {
-    token?: string
-    AuthLogin?: AuthType
+    token?: string;
+    AuthLogin?: AuthType;
     
 }
 const initialState: AuthLoginInitialState = {
@@ -28,7 +28,7 @@ const AuthLoginSlice = createSlice({
         .addCase(AuthLoginThunk.fulfilled,(state,{payload}) => {
             console.log(payload);
             localStorage.setItem('ACCESSTOKEN', payload.token)
-            // state.token = payload
+           
             state.AuthLogin = payload
             
         })

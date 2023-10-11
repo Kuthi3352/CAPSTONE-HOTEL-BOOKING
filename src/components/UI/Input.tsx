@@ -12,6 +12,7 @@ type InputProps = {
   placeholder?: string;
   className?: string;
   name?: string;
+  value?: string;
 };
 
 export const Input = ({
@@ -23,6 +24,7 @@ export const Input = ({
   placeholder,
   className = "",
   name,
+  
 }: InputProps) => {
   return (
     <div className={className}>
