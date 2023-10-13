@@ -5,6 +5,7 @@ import { Login, Register } from "pages";
 import { Account } from "pages/Account";
 import Home from "pages/Home";
 import RoomDetail from "pages/RoomDetail";
+import RoomList from "pages/RoomList";
 export const router: RouteObject[] = [
   {
     path: "/",
@@ -21,6 +22,10 @@ export const router: RouteObject[] = [
       {
         path:PATH.roomDetail,
         element: <RoomDetail></RoomDetail>
+      },
+      {
+        path:PATH.roomList,
+        element: <RoomList></RoomList>
       }
     ],
   },
