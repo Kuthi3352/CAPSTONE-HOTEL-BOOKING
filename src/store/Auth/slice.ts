@@ -6,7 +6,6 @@ import { getAccessToken } from 'utils'
 type AuthLoginInitialState = {
     token?: string;
     AuthLogin?: AuthType;
-    
 }
 const initialState: AuthLoginInitialState = {
     token: getAccessToken(),
