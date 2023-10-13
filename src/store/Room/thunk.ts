@@ -21,9 +21,18 @@ export const getRoomPositionThunk = createAsyncThunk(
 
 export const getRoomDetailThunk = createAsyncThunk(
   "QuanLyPhong/chitiet",
-  async (query:string) => {
+  async (query: string) => {
     const data = await RoomService.getRoomDetail(query);
-    console.log(data.data.content);
+    // console.log(data.data.content);
     return data.data.content;
+  }
+);
+
+export const getRoomListByPositionThunk = createAsyncThunk(
+  "QuanLyPhong/phongtheovitri",
+  async (query: string) => {
+    // const data = await RoomService.getRoomListByPosition(query);
+    console.log(RoomService.getRoomListByPosition(query));
+    // return data.data.content;
   }
 );

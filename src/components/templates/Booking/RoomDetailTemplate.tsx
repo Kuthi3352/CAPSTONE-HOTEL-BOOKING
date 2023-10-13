@@ -8,12 +8,11 @@ const RoomDetailTemplate = () => {
   const dispatch = useAppDispatch()
   const { roomId } = useParams();
   const { currentRoom } = useSelector((state: RootState) => state.RoomReducer)
-  console.log(currentRoom);
-
 
   useEffect(() => {
     dispatch(getRoomDetailThunk(roomId))
   }, [dispatch, roomId])
+  
   return (
     <div className="container">
       <h1 className="text-3xl text-center font-bold mt-10">Thông tin phòng </h1>
