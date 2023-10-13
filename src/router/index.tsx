@@ -4,6 +4,7 @@ import { AuthLayout, MainLayout } from "components";
 import { Login, Register } from "pages";
 import { Account } from "pages/Account";
 import Home from "pages/Home";
+import RoomDetail from "pages/RoomDetail";
 export const router: RouteObject[] = [
   {
     path: "/",
@@ -16,6 +17,10 @@ export const router: RouteObject[] = [
       {
         index:true,
         element: <Home></Home>
+      },
+      {
+        path:PATH.roomDetail,
+        element: <RoomDetail></RoomDetail>
       }
     ],
   },
