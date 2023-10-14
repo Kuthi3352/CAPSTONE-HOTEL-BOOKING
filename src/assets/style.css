@@ -44,7 +44,12 @@ h1 {
 /* CSS ANIMATION */
 .hover {
   transition: 0.5s;
+  cursor: pointer;
   &:hover {
     transform: scale(1.07);
   }
 }
+
+
+
+

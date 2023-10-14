@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { RoomService } from "services";
+import { RoomListService, RoomService } from "services";
 
 export const getRoomThunk = createAsyncThunk(
   "QuanLyPhong/danhsach",
   async () => {
-    const data = await RoomService.getRoom();
+    const data = await RoomListService.getRoom();
     // console.log(data.data.content);
     return data.data.content;
   }
@@ -22,17 +22,17 @@ export const getRoomPositionThunk = createAsyncThunk(
 export const getRoomDetailThunk = createAsyncThunk(
   "QuanLyPhong/chitiet",
   async (query: string) => {
-    const data = await RoomService.getRoomDetail(query);
+    const data = await RoomListService.getRoomDetail(query);
     // console.log(data.data.content);
     return data.data.content;
   }
 );
 
 export const getRoomListByPositionThunk = createAsyncThunk(
-  "QuanLyPhong/phongtheovitri",
-  async (query: string) => {
-    // const data = await RoomService.getRoomListByPosition(query);
-    console.log(RoomService.getRoomListByPosition(query));
-    // return data.data.content;
+  "QuanLyPhong/phongvitri",
+  async (query:string) => {
+    const data = await RoomListService.getRoomListByPosition(query);
+    // console.log(data.data.content); 
+    return data.data.content
   }
 );
