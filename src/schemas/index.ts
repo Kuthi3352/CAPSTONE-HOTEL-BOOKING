@@ -1,3 +1,4 @@
-export * from './RegisterSchemas'
-export * from './LoginSchemas'
-export * from './AccountSchema'
+export * from "./RegisterSchemas";
+export * from "./LoginSchemas";
+export * from "./AccountSchema";
+export * from "./AdminSchema";
