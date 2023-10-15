@@ -1,6 +1,6 @@
 import { z } from "zod";
-export const AccountSchema = z.object({
-  //   id: z.string().nonempty("Vui lòng không bỏ trống"),
+
+export const AdminSchemas = z.object({
   id: z.number().default(0),
   name: z.string().nonempty("Vui lòng nhập tài khoản"),
   email: z
@@ -11,6 +11,7 @@ export const AccountSchema = z.object({
   phone: z.string().nonempty("Vui lòng nhập số điện thoại"),
   birthday: z.string().nonempty("Vui lòng chọn ngày sinh"),
   gender: z.boolean().default(true),
-  role: z.string().default("USER"),
+  role: z.string().nonempty("Vui lòng viết chữ hoa"),
 });
-export type AccountSchemaType = z.infer<typeof AccountSchema>;
+
+export type AdminSchemasType = z.infer<typeof AdminSchemas>;

@@ -13,6 +13,7 @@ type InputProps = {
   className?: string;
   name?: string;
   value?: string;
+  onChange?: any;
 };
 
 export const Input = ({
@@ -24,12 +25,12 @@ export const Input = ({
   placeholder,
   className = "",
   name,
-  
+  onChange,
 }: InputProps) => {
   return (
     <div className={className}>
       {!!label && (
-        <label className="text-white" htmlFor={id}>
+        <label className="text-black" htmlFor={id}>
           {label}
         </label>
       )}
@@ -37,7 +38,8 @@ export const Input = ({
         id={id}
         placeholder={placeholder}
         type={type}
-        className="p-10 mt-8 w-full text-white rounded-6 bg-[#333]"
+        onChange={onChange}
+        className="p-10 mt-8 w-full text-black rounded-6 bg-[#d1d0d0]"
         {...register?.(name)}
       />
       {!!error && <p className="text-red-500 text-14">{error}</p>}
