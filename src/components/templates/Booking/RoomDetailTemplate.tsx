@@ -12,7 +12,7 @@ const RoomDetailTemplate = () => {
   useEffect(() => {
     dispatch(getRoomDetailThunk(roomId))
   }, [dispatch, roomId])
-  
+
   return (
     <div className="container">
       <h1 className="text-3xl text-center font-bold mt-10">Thông tin phòng </h1>
@@ -21,7 +21,7 @@ const RoomDetailTemplate = () => {
           <img src={currentRoom?.hinhAnh} className="m-auto" alt="" />
           <div className="room-detail w-3/5 mt-5">
             <p className="italic">{currentRoom?.moTa}</p>
-
+            <button>Đặt phòng</button>
           </div>
         </div>
       </div>
@@ -30,5 +30,4 @@ const RoomDetailTemplate = () => {
 }
 
 export default RoomDetailTemplate
-
-
+ 

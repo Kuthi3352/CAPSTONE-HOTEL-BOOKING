@@ -32,7 +32,9 @@ const HomeTemplate = () => {
                 >
                     {
                         PositionList?.map(item => {
-                            return <SwiperSlide className="hover my-5 mx-5" key={item.id}>
+                            return <SwiperSlide className="hover my-5 mx-5" key={item.id} onClick={() => {
+                                navitage(`room-list/${item.id}`)
+                            }}>
                                 <img src={item.hinhAnh} alt="" className="swiper-img rounded-6" />
                                 <p className="text-center">{item.tenViTri} - {item.tinhThanh}</p>
                             </SwiperSlide>
