@@ -25,7 +25,7 @@ const HomeTemplate = () => {
     }, [dispatch]);
     return (
         <div className="container">
-            <div className="position-list">
+            <div className="position-list no-header">
                 <h1 >Địa điểm du lịch</h1>
                 <Swiper spaceBetween={50}
                     slidesPerView={4}

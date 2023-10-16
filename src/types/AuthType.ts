@@ -14,3 +14,9 @@ export type AuthType = {
     user?: UserType
     token?: string
 }
+
+
+export type LocalUser ={
+    id: string,
+    userName:string
+}

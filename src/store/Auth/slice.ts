@@ -1,37 +1,43 @@
-import {  PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { AuthLoginThunk } from '.'
-import {  AuthType} from 'types/AuthType'
-import { getAccessToken } from 'utils'
+import { createSlice } from "@reduxjs/toolkit";
+import { AuthLoginThunk } from ".";
+import { AuthType } from "types/AuthType";
+import { getAccessToken } from "utils";
 
 type AuthLoginInitialState = {
-    token?: string;
-    AuthLogin?: AuthType;
-}
+  token?: string;
+  AuthLogin?: AuthType;
+  isLogin?: boolean;
+};
 const initialState: AuthLoginInitialState = {
-    token: getAccessToken(),
-}
+  token: getAccessToken(),
+  isLogin:false
+};
 const AuthLoginSlice = createSlice({
-    name: 'AuthLogin',
-    initialState,
-    reducers: {
-        logOut: (state, action: PayloadAction<string>) => {
-            console.log(action);
-            
-            state.token = undefined
-            state.AuthLogin = undefined
-            localStorage.removeItem('ACCESSTOKEN')
-        },
+  name: "AuthLogin",
+  initialState,
+  reducers: {
+    logOut: (state) => {
+      state.token = undefined;
+      state.AuthLogin = undefined;
+      state.isLogin = false;
+      localStorage.removeItem("ACCESSTOKEN");
+      localStorage.removeItem("USER");
     },
-    extraReducers(builder){
-        builder
-        .addCase(AuthLoginThunk.fulfilled,(state,{payload}) => {
-            console.log(payload);
-            localStorage.setItem('ACCESSTOKEN', payload.token)
-           
-            state.AuthLogin = payload
-            
+  },
+  extraReducers(builder) {
+    builder.addCase(AuthLoginThunk.fulfilled, (state, { payload }) => {
+      localStorage.setItem(
+        "USER",
+        JSON.stringify({
+          id: payload.user.id,
+          userName: payload.user.name,
         })
-    },
-})
+      );
+      localStorage.setItem("ACCESSTOKEN", payload.token);
+      state.AuthLogin = payload;
+      state.isLogin = true;
+    });
+  },
+});
 export const { actions: AuthLoginActions, reducer: AuthLoginReducer } =
-AuthLoginSlice
+  AuthLoginSlice;
