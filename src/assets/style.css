@@ -40,6 +40,44 @@ h1 {
   text-align: center;
 }
 
+/* HEADER BAR */
+
+.header-bar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100px;
+  background-color: rgba(65, 147, 201, 0.426);
+}
+.no-header {
+  padding-top: 100px;
+}
+.header-content {
+  align-items: center;
+  vertical-align: middle;
+  .logo {
+    h1 {
+      font-size: 30px !important;
+    }
+    margin: 0 10px;
+  }
+  .auth {
+    .authBtn {
+      margin: 0 6px;
+      padding: 4px 10px;
+      outline: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.5s;
+      &:hover{
+        color: white;
+        background-color: rgb(97, 96, 96);
+      }
+    }
+  }
+}
+
 /* ----------------------- */
 /* CSS ANIMATION */
 .hover {
@@ -49,7 +87,3 @@ h1 {
     transform: scale(1.07);
   }
 }
-
-
-
-

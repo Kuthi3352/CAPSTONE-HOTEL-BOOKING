@@ -2,7 +2,6 @@ import { Button, Input } from "components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-// import { openModal } from "./CardListUser";
 import {
   DeleteUserThunk,
   EditUserThunk,
@@ -47,13 +46,6 @@ export const ListUser = () => {
         })
       )
     );
-
-    // const payload: updatePayload={
-    //     path: EditUser
-    // data = value
-    // }
-
-    console.log(value);
   };
 
   useEffect(() => {
