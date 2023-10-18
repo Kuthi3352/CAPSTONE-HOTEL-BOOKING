@@ -6,7 +6,7 @@ import { AccountSchemaType } from "schemas";
 
 type ListUserInitialState = {
   listUser?: ListUserType[];
-  EditUser?: AccountSchemaType;
+  EditUser?: ListUserType;
   chinhSuaUser?: ListUserType;
   updateUser?: AccountSchemaType;
   searchUser?: ListUserType[];

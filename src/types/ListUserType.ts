@@ -12,8 +12,7 @@ export type ListUserType = {
   role?: string;
 };
 
-
-export type updatePayload ={
-    path: string,
-    data:AccountSchemaType
-}
+export type updatePayload = {
+  path: string;
+  data: AccountSchemaType;
+};

@@ -7,6 +7,7 @@ import Home from "pages/Home";
 import RoomDetail from "pages/RoomDetail";
 import RoomList from "pages/RoomList";
 import Booking from "pages/Booking";
+import { Binhluan } from "pages/Binhluan";
 export const router: RouteObject[] = [
   {
     path: "/",
@@ -17,21 +18,25 @@ export const router: RouteObject[] = [
         element: <Account />,
       },
       {
-        index:true,
-        element: <Home></Home>
+        index: true,
+        element: <Home></Home>,
       },
       {
-        path:PATH.roomDetail,
-        element: <RoomDetail></RoomDetail>
+        path: PATH.roomDetail,
+        element: <RoomDetail></RoomDetail>,
       },
       {
-        path:PATH.roomList,
-        element: <RoomList></RoomList>
+        path: PATH.roomList,
+        element: <RoomList></RoomList>,
       },
       {
-        path:PATH.booking,
-        element:<Booking></Booking>
-      }
+        path: PATH.booking,
+        element: <Booking></Booking>,
+      },
+      {
+        path: PATH.binhLuan,
+        element: <Binhluan></Binhluan>,
+      },
     ],
   },
   {

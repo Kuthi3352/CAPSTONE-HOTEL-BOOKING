@@ -4,5 +4,6 @@ export const PATH = {
   account: "/account",
   roomDetail: "/room-detail/:roomId",
   roomList: "/room-list/:listId",
-  booking: "/booking/:roomId"
+  booking: "/booking/:roomId",
+  binhLuan: '/binhLuan'
 };

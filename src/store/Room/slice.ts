@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RoomPosition, RoomType } from "types/RoomType";
 import {
+  EditRoomThunk,
   getRoomDetailThunk,
   getRoomListByPositionThunk,
   getRoomPositionThunk,
@@ -12,6 +13,7 @@ type initialStateType = {
   roomPosition?: RoomPosition[];
   currentRoom?: RoomType;
   roomListByPosition?: RoomType[];
+  EditRoom?: RoomType;
 };
 
 const initialState: initialStateType = {};
@@ -33,6 +35,9 @@ const RoomSlice = createSlice({
       })
       .addCase(getRoomListByPositionThunk.fulfilled, (state, { payload }) => {
         state.roomListByPosition = payload;
+      })
+      .addCase(EditRoomThunk.fulfilled, (state, { payload }) => {
+        state.EditRoom = payload;
       });
   },
 });
