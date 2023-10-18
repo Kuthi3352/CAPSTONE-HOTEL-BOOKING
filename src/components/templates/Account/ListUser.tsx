@@ -1,5 +1,5 @@
 import { Button, Input } from "components";
-import { useForm, SubmitHandler } from "react-hook-form";
+
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -7,54 +7,25 @@ import {
   EditUserThunk,
   ListUserActions,
   ListUserThunk,
-  UpdateUserThunk,
 } from "store/DanhSachThanhVien";
 import { RootState, useAppDispatch } from "store";
-import { AccountSchema, AccountSchemaType } from "schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import styled from "styled-components";
-import { ListUserType } from "types/ListUserType";
+import { ChinhSuaUser } from "./ChinhSuaUser";
 
 export const ListUser = () => {
   const dispatch = useAppDispatch();
   const [nameValue, setnameValue] = useState<string>("");
-  const { listUser, EditUser, searchUser } = useSelector(
+  const { listUser, searchUser } = useSelector(
     (state: RootState) => state.ListReducer
   );
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AccountSchemaType>({
-    resolver: zodResolver(AccountSchema),
-    mode: "onChange",
-  });
-
-  const onSubmit: SubmitHandler<ListUserType> = (value) => {
-    dispatch(
-      UpdateUserThunk({
-        id: EditUser.id,
-        payload: value,
-      })
-    );
-    console.log(
-      dispatch(
-        UpdateUserThunk({
-          id: EditUser.id,
-          payload: value,
-        })
-      )
-    );
-  };
 
   useEffect(() => {
     dispatch(ListUserThunk());
-    reset(EditUser);
-  }, [dispatch, reset, EditUser]);
+  }, [dispatch]);
   return (
     <ListUsers>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
         <h1 className="text-3xl text-center mb-20 font-bold">
           Quản lý Thông Tin Người Dùng
         </h1>
@@ -112,107 +83,17 @@ export const ListUser = () => {
                       data-bs-target="#exampleModal"
                       onClick={() => {
                         dispatch(EditUserThunk(user?.id));
+                        // console.log("edit", dispatch(EditUserThunk(user?.id)));
                       }}
                     >
                       Edit
                     </Button>
-                    <div
-                      className="modal fade"
-                      id="exampleModal"
-                      tabIndex={-1}
-                      aria-labelledby="exampleModalLabel"
-                      aria-hidden="true"
-                    >
-                      <div className="modal-dialog modal-lg">
-                        <div className="modal-content">
-                          <div className="modal-header block">
-                            <h1
-                              className="modal-title !text-center"
-                              id="exampleModalLabel"
-                            >
-                              Thông tin khách hàng
-                            </h1>
-                            <button
-                              type="button"
-                              className="btn-close"
-                              data-bs-dismiss="modal"
-                              aria-label="Close"
-                            />
-                          </div>
-
-                          <div className="modal-body">
-                            <p className="font-bold text-orange-500 flex justify-start">
-                              Mã khách hàng
-                            </p>
-                            <Input
-                              id="id"
-                              name="id"
-                              error={errors?.id?.message}
-                              register={register}
-                            />
-
-                            <p className="font-bold text-orange-500  flex justify-start">
-                              Tên Người Dùng
-                            </p>
-                            <Input
-                              id="name"
-                              name="name"
-                              error={errors?.name?.message}
-                              register={register}
-                            />
-                            <p className="font-bold text-orange-500  flex justify-start">
-                              Email
-                            </p>
-                            <Input
-                              id="email"
-                              name="email"
-                              error={errors?.email?.message}
-                              register={register}
-                            />
-                            <p className="font-bold text-orange-500  flex justify-start">
-                              Role
-                            </p>
-                            <Input
-                              id="role"
-                              name="role"
-                              error={errors?.role?.message}
-                              register={register}
-                            />
-                          </div>
-                          <div className="modal-footer">
-                            <Button
-                              className="!bg-fuchsia-500 !text-white !font-500"
-                              data-bs-dismiss="modal"
-                            >
-                              Đóng
-                            </Button>
-                            <Button
-                              className="!bg-red-500 !text-white !font-500"
-                              htmlType="submit"
-                              onClick={(value) => {
-                                console.log(
-                                  "test",
-                                  dispatch(
-                                    UpdateUserThunk({
-                                      id: EditUser.id,
-                                      payload: value,
-                                    })
-                                  )
-                                );
-                              }}
-                            >
-                              Cập Nhật
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <ChinhSuaUser />
 
                     <Button
                       className="mr-[15px] !bg-sky-600 !text-white !font-500 "
                       onClick={() => {
-                        dispatch(DeleteUserThunk(user.id));
-                        //   openModal("success");
+                        dispatch(DeleteUserThunk(user?.id));
                       }}
                     >
                       Delete
@@ -223,7 +104,7 @@ export const ListUser = () => {
             })}
           </tbody>
         </table>
-      </form>
+      </div>
     </ListUsers>
   );
 };

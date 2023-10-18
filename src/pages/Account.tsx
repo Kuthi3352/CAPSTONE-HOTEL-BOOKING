@@ -1,5 +1,5 @@
-import { AccountTemplate } from "components/templates/Account";
+import { AdminTemplate } from "components";
 
 export const Account = () => {
-  return <AccountTemplate />;
+  return <AdminTemplate />;
 };

@@ -77,6 +77,19 @@ h1 {
     }
   }
 }
+.TableForm {
+  width: 80%;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  margin: 0 auto;
+}
+.AddLocation{
+  width: 30%;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  margin: 0 auto;
+}
+
 
 /* ----------------------- */
 /* CSS ANIMATION */

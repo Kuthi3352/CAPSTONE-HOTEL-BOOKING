@@ -1,19 +1,19 @@
 import { apiInstance } from "constant";
-import { AccountSchemaType, AdminSchemasType } from "schemas";
+import {  AdminSchemasType } from "schemas";
 import { ListUserType } from "types/ListUserType";
 
 const api = apiInstance({
   baseURL: import.meta.env.VITE_LIST_USER_API,
 });
 export const ListUserServices = {
-  listUser: () => api.get<ApiResponse<ListUserType[]>>(""),
+  listUser: () => api.get<ApiResponse<ListUserType[]>>("/users"),
   EditUser: (query: string) =>
-    api.get<ApiResponse<AccountSchemaType>>(`/${query}`),
+    api.get<ApiResponse<ListUserType>>(`/users/${query}`),
   DeleteUser: (query: string) => {
-    return api.delete<ApiResponse<ListUserType>>(`?id=${query}`);
+    return api.delete<ApiResponse<ListUserType>>(`/users?id=${query}`);
   },
-  UpdateUser: (path: string, data: AccountSchemaType) => {
-    return api.put<ApiResponse<AccountSchemaType>>(`/${path}`, data);
+  UpdateUser: (path: string, data: ListUserType) => {
+    return api.put<ApiResponse<ListUserType>>(`/users/${path}`, data);
   },
-  Admin: (data: AdminSchemasType) => api.post("", data),
+  Admin: (data: AdminSchemasType) => api.post("/users", data),
 };

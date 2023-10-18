@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RoomListService, RoomService } from "services";
+import { RoomType } from "types/RoomType";
 
 export const getRoomThunk = createAsyncThunk(
   "QuanLyPhong/danhsach",
@@ -30,9 +31,34 @@ export const getRoomDetailThunk = createAsyncThunk(
 
 export const getRoomListByPositionThunk = createAsyncThunk(
   "QuanLyPhong/phongvitri",
-  async (query:string) => {
+  async (query: string) => {
     const data = await RoomListService.getRoomListByPosition(query);
-    // console.log(data.data.content); 
-    return data.data.content
+    // console.log(data.data.content);
+    return data.data.content;
+  }
+);
+export const EditRoomThunk = createAsyncThunk(
+  "QuanLyPhong/EditRoom",
+  async (path: number) => {
+    const data = await RoomListService.EditRoom(path);
+    return data.data.content;
+  }
+);
+export const UpdateRoomThunk = createAsyncThunk(
+  "QuanLyPhong/UpdateRoom",
+  async (result: { path: number; payload: RoomType }, { dispatch }) => {
+    const path = result.path;
+    const payload = result.payload;
+    const data = await RoomListService.UpdateRoom(path, payload);
+    dispatch(getRoomThunk());
+    return data.data.content;
+  }
+);
+export const DeleteRoomThunk = createAsyncThunk(
+  "QuanLyPhong/DeleteRoom",
+  async (path: number, { dispatch }) => {
+    const data = await RoomListService.DeleteRoom(path);
+    dispatch(getRoomThunk());
+    return data.data.content;
   }
 );
