@@ -4,7 +4,10 @@ import { RoomListService } from "services";
 import { RoomType } from "types/RoomType";
 import { toast } from "react-toastify";
 import { handleError } from "utils";
+import { useAppDispatch } from "store";
+import { getRoomThunk } from "store/Room/thunk";
 export const AddRoom = () => {
+  const dispatch = useAppDispatch();
   const {
     handleSubmit,
     register,
@@ -19,6 +22,7 @@ export const AddRoom = () => {
     try {
       await RoomListService.AddRoom(value);
       toast.success("Thêm phòng thành công");
+      dispatch(getRoomThunk());
     } catch (err) {
       handleError(err);
     }

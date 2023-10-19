@@ -5,9 +5,12 @@ import { PositionService } from "services";
 import { toast } from "react-toastify";
 import { handleError } from "utils";
 import { AddLocationSchemaType } from "schemas";
+import { getPostionListThunk } from "store/Position/thunks";
+import { useAppDispatch } from "store";
 // import { zodResolver } from "@hookform/resolvers/zod";
 // import { PositionType } from "types/PositinonType";
 export const AddLocation = () => {
+  const dispatch = useAppDispatch();
   const {
     handleSubmit,
     register,
@@ -22,6 +25,7 @@ export const AddLocation = () => {
     try {
       await PositionService.AddLocation(value);
       toast.success("Thêm địa điểm thành công");
+      dispatch(getPostionListThunk());
     } catch (err) {
       handleError(err);
     }
