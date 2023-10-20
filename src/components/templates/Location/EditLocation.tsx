@@ -5,11 +5,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { PositionType } from "types/PositinonType";
 import { useEffect } from "react";
 import { UpdateLocationThunk } from "store/Position/thunks";
+
 export const EditLocation = () => {
   const dispatch = useAppDispatch();
   const { EditLocation } = useSelector(
     (state: RootState) => state.PositionReducer
   );
+
   const { reset, register, handleSubmit } = useForm<PositionType>({
     mode: "onChange",
   });

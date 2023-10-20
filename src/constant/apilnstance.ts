@@ -8,10 +8,13 @@ export const apiInstance = (config?: CreateAxiosDefaults) => {
   api.interceptors.request.use((config) => {
     return {
       ...config,
+
       headers: {
         TokenCybersoft,
+        FormData,
+
         token: getAccessToken(),
-        Authorization: "Bearer" + " " + getAccessToken() || "",
+        // Authorization: "Bearer" + " " + getAccessToken() || "",
       } as unknown as AxiosRequestHeaders,
     };
   });

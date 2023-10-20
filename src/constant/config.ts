@@ -1,9 +1,9 @@
 export const PATH = {
   login: "/login",
   register: "/register",
-  account: "/account",
+  ManagerAdmin: "/Admin",
   roomDetail: "/room-detail/:roomId",
   roomList: "/room-list/:listId",
   booking: "/booking/:roomId",
-  binhLuan: '/binhLuan'
+  binhLuan: "/binhLuan",
 };

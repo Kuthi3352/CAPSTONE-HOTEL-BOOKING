@@ -1,5 +1,5 @@
 import { AdminTemplate } from "components";
 
-export const Account = () => {
+export const ManagerAdmin = () => {
   return <AdminTemplate />;
 };
