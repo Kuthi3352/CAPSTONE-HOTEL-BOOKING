@@ -1,8 +1,8 @@
 import { RouteObject } from "react-router-dom";
 import { PATH } from "constant";
 import { AuthLayout, MainLayout } from "components";
-import { Login, Register } from "pages";
-import { Account } from "pages/Account";
+import { Login, ManagerAdmin, Register } from "pages";
+
 import Home from "pages/Home";
 import RoomDetail from "pages/RoomDetail";
 import RoomList from "pages/RoomList";
@@ -13,10 +13,6 @@ export const router: RouteObject[] = [
     path: "/",
     element: <MainLayout />,
     children: [
-      {
-        path: PATH.account,
-        element: <Account />,
-      },
       {
         index: true,
         element: <Home></Home>,
@@ -33,10 +29,6 @@ export const router: RouteObject[] = [
         path: PATH.booking,
         element: <Booking></Booking>,
       },
-      {
-        path: PATH.binhLuan,
-        element: <Binhluan></Binhluan>,
-      },
     ],
   },
   {
@@ -49,6 +41,19 @@ export const router: RouteObject[] = [
       {
         path: PATH.register,
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    children: [
+      {
+        path: PATH.ManagerAdmin,
+        element: <ManagerAdmin />,
+      },
+      {
+        path: PATH.binhLuan,
+        element: <Binhluan></Binhluan>,
       },
     ],
   },

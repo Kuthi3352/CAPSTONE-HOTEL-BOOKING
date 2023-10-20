@@ -11,6 +11,7 @@ import { useAppDispatch } from "store";
 // import { PositionType } from "types/PositinonType";
 export const AddLocation = () => {
   const dispatch = useAppDispatch();
+ 
   const {
     handleSubmit,
     register,

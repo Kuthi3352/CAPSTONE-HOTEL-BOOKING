@@ -8,12 +8,32 @@ import {
   getPostionListThunk,
 } from "store/Position/thunks";
 import { EditLocation } from "./EditLocation";
+import { PositionService } from "services";
+import { handleError } from "utils";
+import { error } from "console";
 
 export const LocationList = () => {
   const dispatch = useAppDispatch();
   const { PositionList } = useSelector(
     (state: RootState) => state.PositionReducer
   );
+  // const [upload, setUpload] = useState([]);
+  // const handleFileUpload = async (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("fileName", file.name);
+  //     console.log(formData.get("fileName"));
+  //     try {
+  //       await PositionService.UploadLocation("").then((response) => {
+  //         console.log("response", response);
+  //       });
+  //     } catch (err) {
+  //       return handleError(error);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     dispatch(getPostionListThunk());
@@ -41,7 +61,16 @@ export const LocationList = () => {
                 <td className="text-center border-[1px]">{item.tenViTri}</td>
                 <td className="text-center border-[1px]">{item.quocGia}</td>
                 <td className="text-center border-[1px]">
-                  <img src={item.hinhAnh} alt="" className="w-[50%]" />
+                  <form>
+                    {/* onSubmit={handleFileUpload} */}
+                    <img
+                      src={item.hinhAnh}
+                      alt=""
+                      className="w-[50%]"
+                      // onChange={handleFileUpload}
+                    />
+                    <button type="submit">them</button>
+                  </form>
                 </td>
                 <td className="text-center border-[1px]">
                   <Button
