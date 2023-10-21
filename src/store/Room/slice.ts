@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RoomPosition, RoomType } from "types/RoomType";
 import {
+  BookingThunk,
   EditRoomThunk,
   getRoomDetailThunk,
   getRoomListByPositionThunk,
@@ -38,6 +39,10 @@ const RoomSlice = createSlice({
       })
       .addCase(EditRoomThunk.fulfilled, (state, { payload }) => {
         state.EditRoom = payload;
+      })
+      .addCase(BookingThunk.fulfilled,()=>{
+        console.log('dat phong thanh cong');
+        
       });
   },
 });

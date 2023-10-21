@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RoomListService, RoomService } from "services";
-import { RoomType } from "types/RoomType";
+import { BookingRoom, RoomType } from "types/RoomType";
+import { handleError } from "utils";
 
 export const getRoomThunk = createAsyncThunk(
   "QuanLyPhong/danhsach",
@@ -60,5 +61,16 @@ export const DeleteRoomThunk = createAsyncThunk(
     const data = await RoomListService.DeleteRoom(path);
     dispatch(getRoomThunk());
     return data.data.content;
+  }
+);
+export const BookingThunk = createAsyncThunk(
+  "QuanLyPhong/booking",
+  async (payload: BookingRoom) => {
+    await RoomService.Booking(payload);
+    try {
+      alert("Đặt phòng thành công");
+    } catch (error) {
+      return handleError(error);
+    }
   }
 );

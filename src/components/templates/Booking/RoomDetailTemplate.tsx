@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { generatePath, useNavigate, useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { getRoomDetailThunk } from "store/Room/thunk";
 import { DanhGiaTemplate } from "../DanhGiaTemplate";
+import { wait } from "utils";
+import { PATH } from "constant";
 
 const RoomDetailTemplate = () => {
   const dispatch = useAppDispatch();
+  const navitage = useNavigate()
   const { roomId } = useParams();
   const { currentRoom } = useSelector((state: RootState) => state.RoomReducer);
 
@@ -15,8 +18,15 @@ const RoomDetailTemplate = () => {
   }, [dispatch, roomId]);
 
   return (
-    <div className="container w-[70%]">
+    <div className="container w-[70%] no-header">
       <h1 className="text-3xl text-center font-bold mt-10">Thông tin phòng </h1>
+      <button className="edit-btn" onClick={async () => {
+        const path = generatePath(PATH.booking, {
+          roomId: roomId,
+        })
+        await wait(1000);
+        navitage(path);
+      }}>Đặt phòng</button>
       <div className="flex gap-10 flex-col mt-5">
         <div className="w-full room-img">
           <p className="text-3xl font-700 mb-[5px]">{currentRoom?.tenPhong}</p>
