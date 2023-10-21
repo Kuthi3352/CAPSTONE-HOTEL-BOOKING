@@ -61,11 +61,11 @@ export const ListUser = () => {
         <table className="w-full ml-auto">
           <thead>
             <tr className="bg-red-500 text-white">
-              <th className="!p-[15px] border-[1px]">Mã người dùng</th>
-              <th className="border-[1px]">Tên người dùng</th>
-              <th className="border-[1px]">Email</th>
-              <th className="border-[1px]">Role</th>
-              <th className="!p-[15px] border-[1px]">Action</th>
+              <th className="!p-[15px] border-[1px] text-center">Mã người dùng</th>
+              <th className="border-[1px] text-center">Tên người dùng</th>
+              <th className="border-[1px] text-center">Email</th>
+              <th className="border-[1px] text-center">Role</th>
+              <th className="!p-[15px] border-[1px] text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -78,12 +78,11 @@ export const ListUser = () => {
                   <td className="text-center border-[1px]">{user.role}</td>
                   <td className="text-center border-[1px]">
                     <Button
-                      className="mr-[15px] !bg-yellow-400 !text-white !font-500 "
+                      className="mr-[15px] !bg-slate-500 !text-white !font-500 "
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                       onClick={() => {
                         dispatch(EditUserThunk(user?.id));
-                        // console.log("edit", dispatch(EditUserThunk(user?.id)));
                       }}
                     >
                       Edit
@@ -91,7 +90,7 @@ export const ListUser = () => {
                     <ChinhSuaUser />
 
                     <Button
-                      className="mr-[15px] !bg-sky-600 !text-white !font-500 "
+                      className="mr-[15px] !bg-red-600 !text-white !font-500 "
                       onClick={() => {
                         dispatch(DeleteUserThunk(user?.id));
                       }}

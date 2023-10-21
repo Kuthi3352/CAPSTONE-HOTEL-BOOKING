@@ -15,7 +15,7 @@ const BookingTemplate = () => {
   const { roomId } = useParams()
   const { currentRoom } = useSelector((state: RootState) => state.RoomReducer)
   const data = getUserInfoLocal()
-console.log(roomId);
+  console.log(roomId);
 
 
   const { register, handleSubmit, formState: { errors } } = useForm<BookingSchemasType>({
@@ -24,10 +24,8 @@ console.log(roomId);
   })
   const onSubmit: SubmitHandler<BookingSchemasType> = (value) => {
     const newvalue = newValue(value)
-    console.log(value);
-    
     console.log(newvalue);
-    
+
   }
 
   useEffect(() => {

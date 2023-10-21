@@ -34,11 +34,11 @@ export const LocationList = () => {
       <table className="w-full ml-auto">
         <thead>
           <tr className="bg-red-500 text-white">
-            <th className="!p-[15px] border-[1px] w-[10%]">Tỉnh Thành</th>
-            <th className="border-[1px] w-[10%]">Địa bàn</th>
-            <th className="border-[1px] w-[10%]">Địa điểm</th>
-            <th className="border-[1px] w-[10%]">Hình ảnh</th>
-            <th className="!p-[15px] border-[1px] w-[10%]">Action</th>
+            <th className="!p-[15px] border-[1px] w-[10%] text-center">Tỉnh Thành</th>
+            <th className="border-[1px] w-[10%] text-center">Địa bàn</th>
+            <th className="border-[1px] w-[10%] text-center">Địa điểm</th>
+            <th className="border-[1px] w-[10%] text-center">Hình ảnh</th>
+            <th className="!p-[15px] border-[1px] w-[10%] text-center">Action</th>
           </tr>
         </thead>
         <tbody>
