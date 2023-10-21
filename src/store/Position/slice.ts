@@ -11,7 +11,8 @@ const initialState: PositionStateType = {};
 const PositionSlice = createSlice({
   name: "Position",
   initialState,
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPostionListThunk.fulfilled, (state, { payload }) => {

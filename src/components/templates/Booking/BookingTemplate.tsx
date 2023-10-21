@@ -1,18 +1,34 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "components";
 import { useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
+import { BookingSchemas, BookingSchemasType } from "schemas/BookingSchemas";
 import { RootState, useAppDispatch } from "store";
 import { getRoomDetailThunk } from "store/Room/thunk";
 import { getUserInfoLocal } from "utils";
+import { newValue } from "utils/toBookingData";
 
 const BookingTemplate = () => {
   const dispatch = useAppDispatch()
   const { roomId } = useParams()
   const { currentRoom } = useSelector((state: RootState) => state.RoomReducer)
   const data = getUserInfoLocal()
-  console.log(data.id);
-  
-  
+console.log(roomId);
+
+
+  const { register, handleSubmit, formState: { errors } } = useForm<BookingSchemasType>({
+    mode: "onSubmit",
+    resolver: zodResolver(BookingSchemas)
+  })
+  const onSubmit: SubmitHandler<BookingSchemasType> = (value) => {
+    const newvalue = newValue(value)
+    console.log(value);
+    
+    console.log(newvalue);
+    
+  }
 
   useEffect(() => {
     dispatch(getRoomDetailThunk(roomId))
@@ -39,24 +55,67 @@ const BookingTemplate = () => {
           </div>
           <div className="booking-info">
             <h2>Lựa chọn đặt phòng</h2>
-            <form action="">
-              <div className="booking-input">
-                <label htmlFor="">Ngày đến</label>
-                <input type="date" id="ngayDen" name="ngayDen" />
-              </div>
-              <div className="booking-input">
-                <label htmlFor="">Ngày đi</label>
-                <input type="date" id="ngayDi" name="ngayDi" />
-              </div>
-              <div className="booking-input">
-                <label htmlFor="">Số lượng người ở</label>
-                <input type="number" id="person" name="person" />
-              </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                id="ngayDen"
+                name="ngayDen"
+                type="date"
+                register={register}
+                // error={errors?.ngayDen?.message}
+                label="Ngày đến"
+              ></Input>
+              <Input
+                id="ngayDi"
+                name="ngayDi"
+                type="date"
+                register={register}
+                // error={errors?.ngayDi.message}
+                label="Ngày đi"
+              ></Input>
+              <Input
+                id="soLuongKhach"
+                name="soLuongKhach"
+                type="number"
+                register={register}
+                error={errors?.soLuongKhach?.message}
+                label="Số lượng khách"
+              ></Input>
+              <Input
+                id="id"
+                name="id"
+                type="number"
+                register={register}
+                error={errors?.id?.message}
+                label="id"
+                className="none"
+                value="0"
+              ></Input>
+              <Input
+                id="maNguoiDung"
+                name="maNguoiDung"
+                type="text"
+                register={register}
+                // error={errors?.soLuongKhach.message}
+                label="Mã người dùng"
+                className="none"
+                value={data?.id}
+              ></Input>
+              <Input
+                id="maPhong"
+                name="maPhong"
+                type="number"
+                register={register}
+                // error={errors?.soLuongKhach.message}
+                label="Mã phòng"
+                className="none"
+                value={`${roomId}`}
+              ></Input>
+              <button type="submit">đặt</button>
             </form>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
