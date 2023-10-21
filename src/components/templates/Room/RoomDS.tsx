@@ -8,7 +8,6 @@ import { EditRoom } from ".";
 export const RoomDS = () => {
   const dispatch = useAppDispatch();
   const { roomList } = useSelector((state: RootState) => state.RoomReducer);
-  console.log(roomList);
 
   useEffect(() => {
     dispatch(getRoomThunk());

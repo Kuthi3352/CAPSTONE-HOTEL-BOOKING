@@ -29,6 +29,14 @@ export const router: RouteObject[] = [
         path: PATH.booking,
         element: <Booking></Booking>,
       },
+      {
+        path: PATH.ManagerAdmin,
+        element: <ManagerAdmin />,
+      },
+      {
+        path: PATH.binhLuan,
+        element: <Binhluan></Binhluan>,
+      },
     ],
   },
   {
@@ -44,17 +52,5 @@ export const router: RouteObject[] = [
       },
     ],
   },
-  {
-    path: "/",
-    children: [
-      {
-        path: PATH.ManagerAdmin,
-        element: <ManagerAdmin />,
-      },
-      {
-        path: PATH.binhLuan,
-        element: <Binhluan></Binhluan>,
-      },
-    ],
-  },
+  
 ];

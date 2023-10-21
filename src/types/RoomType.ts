@@ -27,3 +27,14 @@ export type RoomPosition = {
   quocGia?: string;
   hinhAnh?: string;
 };
+
+
+
+export type BookingRoom ={
+  id?: number,
+  maPhong?: number,
+  ngayDen?: string,
+  ngayDi?:string,
+  soLuongKhach?:number,
+  maNguoiDung?:number
+}

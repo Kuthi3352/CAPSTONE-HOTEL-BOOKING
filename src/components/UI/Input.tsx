@@ -12,13 +12,13 @@ type InputProps = {
   placeholder?: string;
   className?: string;
   name?: string;
-  value?: string;
+  value?: string|number;
   onChange?: any;
 };
 
 export const Input = ({
   label,
-  id,
+  id = "0",
   register,
   type = "text",
   error,
@@ -26,6 +26,7 @@ export const Input = ({
   className = "",
   name,
   onChange,
+  value
 }: InputProps) => {
   return (
     <div className={className}>
@@ -41,6 +42,7 @@ export const Input = ({
         onChange={onChange}
         className="p-10 mt-8 w-full text-black rounded-6 bg-[#d1d0d0]"
         {...register?.(name)}
+        value={value}
       />
       {!!error && <p className="text-red-500 text-14">{error}</p>}
     </div>

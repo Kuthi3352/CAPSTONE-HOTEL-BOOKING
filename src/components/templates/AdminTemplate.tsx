@@ -7,7 +7,7 @@ import { AddRoom, RoomDS } from "./Room";
 
 export const AdminTemplate = () => {
   return (
-    <Account>
+    <Account className="no-header">
       <Tabs
         className="pt-20 "
         tabPosition="left"

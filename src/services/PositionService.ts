@@ -18,8 +18,9 @@ export const PositionService = {
   AddLocation: (payload: AddLocationSchemaType) => {
     return api.post<ApiResponse<AddLocationSchemaType>>("/vi-tri", payload);
   },
-  UploadLocation: (query: string) =>
+  UploadLocation: (query: string, formData: FormData) =>
     api.post<ApiResponse<PositionType>>(
-      `/vi-tri/upload-hinh-vitri?maViTri=${query}`
+      `/vi-tri/upload-hinh-vitri?maViTri=${query}`,
+      formData
     ),
 };

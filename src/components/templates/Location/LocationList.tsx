@@ -1,5 +1,5 @@
 import { Button } from "components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
 import {
@@ -9,31 +9,21 @@ import {
 } from "store/Position/thunks";
 import { EditLocation } from "./EditLocation";
 import { PositionService } from "services";
-import { handleError } from "utils";
-import { error } from "console";
 
 export const LocationList = () => {
   const dispatch = useAppDispatch();
   const { PositionList } = useSelector(
     (state: RootState) => state.PositionReducer
   );
-  // const [upload, setUpload] = useState([]);
-  // const handleFileUpload = async (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-  //     formData.append("fileName", file.name);
-  //     console.log(formData.get("fileName"));
-  //     try {
-  //       await PositionService.UploadLocation("").then((response) => {
-  //         console.log("response", response);
-  //       });
-  //     } catch (err) {
-  //       return handleError(error);
-  //     }
-  //   }
-  // };
+  const [photoUpload, setPhotoUpload] = useState<File>()
+
+  const handleUpload = (maViTri:string) => {
+    const formData = new FormData()
+    formData.append('formFile', photoUpload)
+    PositionService.UploadLocation(maViTri, formData)
+  }
+
+
 
   useEffect(() => {
     dispatch(getPostionListThunk());
@@ -44,11 +34,11 @@ export const LocationList = () => {
       <table className="w-full ml-auto">
         <thead>
           <tr className="bg-red-500 text-white">
-            <th className="!p-[15px] border-[1px] w-[10%]">Tỉnh Thành</th>
-            <th className="border-[1px] w-[10%]">Địa bàn</th>
-            <th className="border-[1px] w-[10%]">Địa điểm</th>
-            <th className="border-[1px] w-[10%]">Hình ảnh</th>
-            <th className="!p-[15px] border-[1px] w-[10%]">Action</th>
+            <th className="!p-[15px] border-[1px] w-[10%] text-center">Tỉnh Thành</th>
+            <th className="border-[1px] w-[10%] text-center">Địa bàn</th>
+            <th className="border-[1px] w-[10%] text-center">Địa điểm</th>
+            <th className="border-[1px] w-[10%] text-center">Hình ảnh</th>
+            <th className="!p-[15px] border-[1px] w-[10%] text-center">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -60,16 +50,20 @@ export const LocationList = () => {
                 </td>
                 <td className="text-center border-[1px]">{item.tenViTri}</td>
                 <td className="text-center border-[1px]">{item.quocGia}</td>
-                <td className="text-center border-[1px]">
-                  <form>
-                    {/* onSubmit={handleFileUpload} */}
+                <td className="text-center border-[1px] ">
+                  <form className="flex flex-col" id="photoUpload">
                     <img
                       src={item.hinhAnh}
                       alt=""
-                      className="w-[50%]"
-                      // onChange={handleFileUpload}
+                      className="w-[50%] m-auto"
                     />
-                    <button type="submit">them</button>
+                    <input type="file" onChange={(ev) => {
+                      console.log(ev.target.files[0])
+                      setPhotoUpload(ev.target.files[0])
+                    }} />
+                    <button className="edit-btn" type="button" onClick={() => {
+                      handleUpload(`${item.id}`)
+                    }}>Thêm</button>
                   </form>
                 </td>
                 <td className="text-center border-[1px]">

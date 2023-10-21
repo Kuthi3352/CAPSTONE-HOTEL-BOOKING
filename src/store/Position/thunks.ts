@@ -34,3 +34,11 @@ export const DeleteLocationThunk = createAsyncThunk(
     return data.data.content;
   }
 );
+// export const UploadPhotoThunk = createAsyncThunk(
+//   "QuanLyViTri/uploadHinh",
+//   async (maViTri: string, formData: FormData) => {
+//     console.log(data.data.content);
+//   }
+// );
+
+
