@@ -6,3 +6,11 @@ export type BinhLuanType = {
   noiDung: string;
   saoBinhLuan: number;
 };
+export type getBinhLuanType = {
+  id: number;
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
+  tenNguoiBinhLuan: string;
+  avatar: string;
+};

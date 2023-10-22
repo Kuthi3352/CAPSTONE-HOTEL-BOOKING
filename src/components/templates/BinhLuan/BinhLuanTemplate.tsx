@@ -1,16 +1,11 @@
 import { Button, Input } from "components";
-import { useAuth } from "hooks";
-// import { useEffect } from "react";
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "store";
 import { BinhLuanThunk } from "store/BinhLuan";
 import { BinhLuanType } from "types";
 
 export const BinhLuanTemplate = () => {
-  const { token } = useAuth();
-  console.log(token);
-
+  
   const dispatch = useAppDispatch();
   const { handleSubmit, register } = useForm<BinhLuanType>({
     mode: "onChange",
@@ -20,8 +15,7 @@ export const BinhLuanTemplate = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="font-600 text-30 text-white">Đăng nhập</h2>
+    <form onSubmit={handleSubmit(onSubmit)} className="AddForm">
       <Input
         className="mt-16"
         label="mã phòng"
@@ -58,12 +52,12 @@ export const BinhLuanTemplate = () => {
         register={register}
       />
       <Button
-        className="!w-full !h-[48px] !mt-20"
+        className="!w-full !h-[48px] !mt-20 !font-600"
         htmlType="submit"
         type="primary"
         danger
       >
-        Đăng nhập
+        Bình Luận
       </Button>
     </form>
   );
