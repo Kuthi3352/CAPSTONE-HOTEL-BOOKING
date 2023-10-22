@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { BookingSchemas, BookingSchemasType } from "schemas/BookingSchemas";
 import { RootState, useAppDispatch } from "store";
-import { getRoomDetailThunk } from "store/Room/thunk";
+import { BookingThunk, getRoomDetailThunk } from "store/Room/thunk";
 import { getUserInfoLocal } from "utils";
 import { newValue } from "utils/toBookingData";
 
@@ -15,7 +15,6 @@ const BookingTemplate = () => {
   const { roomId } = useParams()
   const { currentRoom } = useSelector((state: RootState) => state.RoomReducer)
   const data = getUserInfoLocal()
-  console.log(roomId);
 
 
   const { register, handleSubmit, formState: { errors } } = useForm<BookingSchemasType>({
@@ -24,8 +23,7 @@ const BookingTemplate = () => {
   })
   const onSubmit: SubmitHandler<BookingSchemasType> = (value) => {
     const newvalue = newValue(value)
-    console.log(newvalue);
-
+    dispatch(BookingThunk(newvalue))
   }
 
   useEffect(() => {

@@ -16,7 +16,7 @@ const Header = () => {
         <div className="header-bar">
             <div className="container flex justify-between header-content">
                 <div className="logo">
-                    <h1>CYBER HOTEL</h1>
+                    <h1>airbnb</h1>
                 </div>
                 <div className="auth">
                     {isLogin ?
