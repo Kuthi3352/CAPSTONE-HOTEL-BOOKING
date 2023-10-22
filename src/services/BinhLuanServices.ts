@@ -1,5 +1,5 @@
 import { apiInstance } from "constant";
-import { BinhLuanType } from "types";
+import { BinhLuanType, getBinhLuanType } from "types";
 
 const api = apiInstance({
   baseURL: import.meta.env.VITE_BINH_LUAN_API,
@@ -7,5 +7,10 @@ const api = apiInstance({
 
 export const BinhLuanServices = {
   danhGia: () => api.get<ApiResponse<BinhLuanType[]>>(""),
-  binhLuan: (data: BinhLuanType) => api.post<ApiResponse<BinhLuanType>>("", data),
+  binhLuan: (data: BinhLuanType) =>
+    api.post<ApiResponse<BinhLuanType>>("", data),
+  DeleteBinhLuan: (path: number) =>
+    api.delete<ApiResponse<BinhLuanType>>(`/${path}`),
+  getBinhLuan: (path: string) =>
+    api.get<ApiResponse<getBinhLuanType[]>>(`lay-binh-luan-theo-phong/${path}`),
 };
