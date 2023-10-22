@@ -87,7 +87,7 @@ export const DanhGiaTemplate = () => {
       </div>
       {danhGia?.map((item) => {
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-[100px] gap-y-4 sm:w-4/5 mt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-[100px] gap-y-4 sm:w-4/5 mt-5" key={item?.id}>
             <div className="mb-2">
               <div className="flex items-center">
                 <div>

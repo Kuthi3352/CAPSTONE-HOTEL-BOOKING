@@ -14,6 +14,8 @@ type InputProps = {
   name?: string;
   value?: string|number;
   onChange?: any;
+  min?:string;
+  max?:string
 };
 
 export const Input = ({

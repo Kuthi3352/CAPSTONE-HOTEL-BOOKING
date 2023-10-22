@@ -27,7 +27,7 @@ const RoomListTemplate = () => {
   }, [dispatch, path]);
 
   return (
-    <div className="container">
+    <div className="container no-header">
       <h1>Tìm phòng theo vị trí</h1>
       <div className="room-list mt-20">
         <div className="grid grid-cols-2 gap-5">

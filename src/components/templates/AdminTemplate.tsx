@@ -6,45 +6,45 @@ import { LocationList, AddLocation } from "./Location";
 import { AddRoom, RoomDS } from "./Room";
 
 export const AdminTemplate = () => {
-  return (
-    <Account className="no-header">
-      <Tabs
-        className="pt-20 "
-        tabPosition="left"
-        items={[
-          {
-            key: "listUsers",
-            label: "Danh sách tài khoản",
-            children: <ListUser />,
-          },
-          {
-            key: "AddlistUsers",
-            label: "Tạo tài khoản",
-            children: <Admin />,
-          },
-          {
-            key: "Location",
-            label: "Danh Sách Địa Điểm",
-            children: <LocationList />,
-          },
-          {
-            key: "AddLocation",
-            label: "Thêm địa điểm",
-            children: <AddLocation />,
-          },
-          {
-            key: "Room",
-            label: "RoomList",
-            children: <RoomDS />,
-          },
-          {
-            key: "AddRoom",
-            label: "Thêm Phòng",
-            children: <AddRoom />,
-          },
-        ]}
-      />
-    </Account>
+  return (    
+      <Account className="no-header">
+        <Tabs
+          className="pt-20 "
+          tabPosition="left"
+          items={[
+            {
+              key: "listUsers",
+              label: "Danh sách tài khoản",
+              children: <ListUser />,
+            },
+            {
+              key: "AddlistUsers",
+              label: "Tạo tài khoản",
+              children: <Admin />,
+            },
+            {
+              key: "Location",
+              label: "Danh Sách Địa Điểm",
+              children: <LocationList />,
+            },
+            {
+              key: "AddLocation",
+              label: "Thêm địa điểm",
+              children: <AddLocation />,
+            },
+            {
+              key: "Room",
+              label: "RoomList",
+              children: <RoomDS />,
+            },
+            {
+              key: "AddRoom",
+              label: "Thêm Phòng",
+              children: <AddRoom />,
+            },
+          ]}
+        />
+      </Account>
   );
 };
 const Account = styled.div`
