@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import { BinhLuanServices } from "services";
 import { BinhLuanType } from "types";
 
 export const DanhGiaThunk = createAsyncThunk("DanhGia", async () => {
   const data = await BinhLuanServices.danhGia();
-  console.log(data);
 
   return data.data.content;
 });
@@ -14,6 +14,24 @@ export const BinhLuanThunk = createAsyncThunk(
   async (payload: BinhLuanType) => {
     const data = await BinhLuanServices.binhLuan(payload);
     console.log(data.data.content);
+    return data.data.content;
+  }
+);
+
+export const DeleteBinhLuanThunk = createAsyncThunk(
+  "BinhLuan/Delete",
+  async (path: number, { dispatch }) => {
+    const data = await BinhLuanServices.DeleteBinhLuan(path);
+
+    dispatch(DanhGiaThunk());
+    return data.data.content;
+  }
+);
+
+export const GetBinhLuanThunk = createAsyncThunk(
+  "BinhLuan/getBinhLuan",
+  async (path: string) => {
+    const data = await BinhLuanServices.getBinhLuan(path);
     return data.data.content;
   }
 );

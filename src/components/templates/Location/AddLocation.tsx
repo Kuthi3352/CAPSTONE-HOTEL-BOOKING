@@ -11,7 +11,7 @@ import { useAppDispatch } from "store";
 // import { PositionType } from "types/PositinonType";
 export const AddLocation = () => {
   const dispatch = useAppDispatch();
- 
+
   const {
     handleSubmit,
     register,
@@ -33,7 +33,7 @@ export const AddLocation = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="AddLocation">
+    <form onSubmit={handleSubmit(onSubmit)} className="AddForm">
       <h2 className="flex justify-center text-red-600 text-30 font-500">
         Thêm địa điểm
       </h2>

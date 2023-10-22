@@ -1,4 +1,4 @@
-import { Tabs } from "components";
+import { BinhLuanList, Tabs } from "components";
 import { ListUser } from "./Account/ListUser";
 import { Admin } from "./Account/TaoTK";
 import styled from "styled-components";
@@ -41,6 +41,11 @@ export const AdminTemplate = () => {
             key: "AddRoom",
             label: "Thêm Phòng",
             children: <AddRoom />,
+          },
+          {
+            key: "BinhLuan",
+            label: "Danh sách những người bình luận",
+            children: <BinhLuanList />,
           },
         ]}
       />

@@ -28,7 +28,7 @@ export const AddRoom = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="AddLocation">
+    <form onSubmit={handleSubmit(onSubmit)} className="AddForm">
       <h2 className="flex justify-center text-red-600 text-30 font-500">
         Thêm Phòng
       </h2>

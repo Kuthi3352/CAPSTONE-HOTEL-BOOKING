@@ -41,7 +41,7 @@ export const RoomDS = () => {
                 </td>
                 <td className="text-center border-[1px]">
                   <Button
-                    className="mr-[15px] !bg-yellow-400 !text-white !font-500"
+                    className="mr-[15px] !bg-slate-500 !text-white !font-500 "
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal2"
                     onClick={() => {
@@ -53,7 +53,7 @@ export const RoomDS = () => {
                   <EditRoom />
 
                   <Button
-                    className="mr-[15px] !bg-sky-600 !text-white !font-500 "
+                    className="mr-[15px] !bg-red-600 !text-white !font-500 "
                     onClick={() => {
                       dispatch(DeleteRoomThunk(item.id));
                     }}
