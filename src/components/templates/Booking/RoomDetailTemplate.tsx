@@ -25,12 +25,8 @@ const RoomDetailTemplate = () => {
     resolver: zodResolver(BookingSchemas)
   })
   const onSubmit: SubmitHandler<BookingSchemasType> = (value) => {
-    console.log(value);
-
     const newvalue = newValue(value)
-    console.log(newvalue);
-
-    // dispatch(BookingThunk(newvalue))
+    dispatch(BookingThunk(newvalue))
   }
 
   useEffect(() => {
