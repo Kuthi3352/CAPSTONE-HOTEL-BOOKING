@@ -1,16 +1,20 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
-import { DanhGiaThunk } from "store/BinhLuan";
+import { GetBinhLuanThunk } from "store/BinhLuan";
 import styled from "styled-components";
 
 export const DanhGiaTemplate = () => {
   const dispacth = useAppDispatch();
-  const { danhGia } = useSelector((state: RootState) => state.BinhLuanReducer);
+  const { getBinhLuan } = useSelector(
+    (state: RootState) => state.BinhLuanReducer
+  );
+  const params = useParams();
 
   useEffect(() => {
-    dispacth(DanhGiaThunk());
-  }, [dispacth]);
+    dispacth(GetBinhLuanThunk(params.roomId));
+  }, [dispacth, params.roomId]);
   return (
     <Container>
       <h2 className="pt-20 mt-20 border-t-[1px]">
@@ -85,21 +89,24 @@ export const DanhGiaTemplate = () => {
           </div>
         </div>
       </div>
-      {danhGia?.map((item) => {
+      {getBinhLuan?.map((item) => {
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-[100px] gap-y-4 sm:w-4/5 mt-5" key={item?.id}>
+          <div
+            key={item.id}
+            className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-[100px] gap-y-4 sm:w-4/5 mt-5"
+          >
             <div className="mb-2">
               <div className="flex items-center">
                 <div>
                   <img
-                    src="/images/nv1.jpg"
+                    src={item.avatar}
                     alt="avatar"
                     className="w-[45px] h-[45px] rounded-full overflow-hidden shadow-lg"
                   />
                 </div>
                 <div className="ml-3">
                   <h4 className="font-semibold text-base tracking-wide text-gray-900">
-                    Ẩn danh
+                    {item.tenNguoiBinhLuan}
                   </h4>
                   <span className="font-normal text-sm text-gray-500">
                     {item.ngayBinhLuan}
@@ -119,14 +126,14 @@ export const DanhGiaTemplate = () => {
                 </div>
                 <div className="ml-3">
                   <h4 className="font-semibold text-base tracking-wide text-gray-900">
-                    Ẩn danh
+                    {item.tenNguoiBinhLuan}
                   </h4>
                   <span className="font-normal text-sm text-gray-500">
                     {item.ngayBinhLuan}
                   </span>
                 </div>
               </div>
-              <div className="mt-10">Trên cả đỉnh</div>
+              <div className="mt-10">{item.noiDung}</div>
             </div>
           </div>
         );
