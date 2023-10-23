@@ -17,15 +17,15 @@ export const RoomDS = () => {
       <h1 className="text-3xl text-center mb-20 font-bold">
         Quản lý danh sách phòng
       </h1>
-      <table className="w-full ml-auto">
+      <table className="w-full ml-auto mt-4">
         <thead>
           <tr className="bg-red-500 text-white">
-            <th className="!p-[15px] border-[1px] w-[10%]">Mã Phòng</th>
-            <th className="border-[1px] w-[10%]">Tên Phòng</th>
-            <th className="border-[1px] w-[10%]">Giá </th>
-            <th className="border-[1px] w-[10%]">Số người tối đa</th>
-            <th className="border-[1px] w-[15%]">Hình ảnh</th>
-            <th className="!p-[15px] border-[1px] w-[10%]">Action</th>
+            <th className="!p-[15px] border-[1px] w-[10%] text-center">Mã Phòng</th>
+            <th className="border-[1px] w-[10%] text-center">Tên Phòng</th>
+            <th className="border-[1px] w-[10%] text-center">Giá </th>
+            <th className="border-[1px] w-[10%] text-center">Số người tối đa</th>
+            <th className="border-[1px] w-[15%] text-center">Hình ảnh</th>
+            <th className="!p-[15px] border-[1px] w-[10%] text-center">Action</th>
           </tr>
         </thead>
         <tbody>

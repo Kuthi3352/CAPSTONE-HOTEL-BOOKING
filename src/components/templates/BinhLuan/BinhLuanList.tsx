@@ -12,7 +12,7 @@ export const BinhLuanList = () => {
   }, [dispatch]);
   return (
     <div className="TableForm">
-      <h1 className="text-3xl text-center mb-20 font-bold">Quản lý vị trí</h1>
+      <h1 className="text-3xl text-center mb-3 font-bold">Quản lý vị trí</h1>
       <table className="w-full ml-auto">
         <thead>
           <tr className="bg-red-500 text-white">

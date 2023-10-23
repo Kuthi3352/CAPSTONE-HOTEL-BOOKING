@@ -2,11 +2,9 @@ import { RouteObject } from "react-router-dom";
 import { PATH } from "constant";
 import { AuthLayout, MainLayout } from "components";
 import { Login, ManagerAdmin, Register } from "pages";
-
 import Home from "pages/Home";
 import RoomDetail from "pages/RoomDetail";
 import RoomList from "pages/RoomList";
-import Booking from "pages/Booking";
 import { Binhluan } from "pages/Binhluan";
 export const router: RouteObject[] = [
   {
@@ -24,10 +22,6 @@ export const router: RouteObject[] = [
       {
         path: PATH.roomList,
         element: <RoomList></RoomList>,
-      },
-      {
-        path: PATH.booking,
-        element: <Booking></Booking>,
       },
       {
         path: PATH.ManagerAdmin,

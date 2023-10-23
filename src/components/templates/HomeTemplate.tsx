@@ -23,7 +23,6 @@ const HomeTemplate = () => {
   const { PositionList } = useSelector(
     (state: RootState) => state.PositionReducer
   );
-  console.log(roomList);
 
 
 

@@ -1,12 +1,11 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { Input, Button } from "components";
 
 import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import styled from "styled-components";
+import { Input, Button } from "components";
 import { AdminSchemas, AdminSchemasType } from "schemas";
 import { ListUserServices } from "services";
-import styled from "styled-components";
 import { handleError } from "utils";
 
 export const Admin = () => {
@@ -30,10 +29,10 @@ export const Admin = () => {
   };
   return (
     <AdminContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="flex justify-center text-red-600 text-30 font-500">
-          TẠO TÀI KHOẢN ADMIN
-        </h2>
+      <h1 className="text-3xl text-center mb-20 font-bold">
+        TẠO TÀI KHOẢN ADMIN
+      </h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
         <div className="flex">
           <div>
             <Input
@@ -126,9 +125,12 @@ export const Admin = () => {
 };
 const AdminContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  input {
+  input,select {
     padding: 10px 270px 10px 10px !important;
+    background-color: #a3a2a21b;
   }
 `;
