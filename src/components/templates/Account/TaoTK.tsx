@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input, Button } from "components";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AdminSchemas, AdminSchemasType } from "schemas";
@@ -18,6 +19,8 @@ export const Admin = () => {
     resolver: zodResolver(AdminSchemas),
   });
   const onSubmit: SubmitHandler<AdminSchemasType> = async (valuee) => {
+    console.log("valuee", valuee);
+
     try {
       await ListUserServices.Admin(valuee);
       toast.success("Đăng kí thành công");
@@ -76,15 +79,26 @@ export const Admin = () => {
               error={errors?.birthday?.message}
               register={register}
             />
-
             <Input
               className="mt-16"
-              label="Role"
+              label="role"
               id="role"
               name="role"
               error={errors?.role?.message}
               register={register}
             />
+
+            {/* <div className="mt-16">
+              <label>Chức vụ</label>
+              <select
+                className="p-10 mt-8 w-full text-black rounded-6  bg-[#d1d0d0]"
+                id="role"
+                name="role"
+              >
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+              </select>
+            </div> */}
             <div className="mt-16">
               <label>Giới Tính</label>
               <select
