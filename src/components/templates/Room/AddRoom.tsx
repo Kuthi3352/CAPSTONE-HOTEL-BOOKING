@@ -29,28 +29,31 @@ export const AddRoom = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="AddForm">
-      <h2 className="flex justify-center text-red-600 text-30 font-500">
+      <h1 className="text-3xl text-center mb-3 font-bold">
         Thêm Phòng
-      </h2>
-      <p className="font-bold text-orange-500  flex justify-start">Tên Phòng</p>
+      </h1>
       <Input
         id="tenPhong"
         name="tenPhong"
+        className="add-position-input"
         register={register}
+        label="Tên phòng"
         // error={errors?.tinhThanh?.message}
       />
-      <p className="font-bold text-orange-500  flex justify-start">Giá</p>
       <Input
-        id="giaTien"
+        id="giaTien" mt-2
         name="giaTien"
+        className="add-position-input mt-2"
         register={register}
+        label="Giá tiền"
         // error={errors?.tenViTri?.message}
       />
-      <p className="font-bold text-orange-500  flex justify-start">Số người</p>
       <Input
         id="khach"
         name="khach"
+        className="add-position-input mt-2"
         register={register}
+        label="Số lượng người"
         // error={errors?.quocGia?.message}
       />
       <Button

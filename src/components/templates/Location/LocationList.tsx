@@ -29,7 +29,7 @@ export const LocationList = () => {
   return (
     <div className="TableForm">
       <h1 className="text-3xl text-center mb-20 font-bold">Quản lý vị trí</h1>
-      <table className="w-full ml-auto">
+      <table className="w-full ml-auto mt-4">
         <thead>
           <tr className="bg-red-500 text-white">
             <th className="!p-[15px] border-[1px] w-[10%] text-center">
