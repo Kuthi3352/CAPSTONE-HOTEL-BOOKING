@@ -6,4 +6,11 @@ export const PATH = {
   roomList: "/room-list/:listId",
   booking: "/booking/:roomId",
   binhLuan: "/binhLuan",
+  listUser: "/Admin/danhSachThanhVien",
+  addUser: "/Admin/taoTaiKhoan",
+  locationList: "/Admin/danhSachVitri",
+  addLocation: "/Admin/themVitri",
+  roomDs: "/Admin/danhSachPhong",
+  addRoom: "/Admin/themPhong",
+  commentList: "/Admin/danhSachBinhLuan",
 };

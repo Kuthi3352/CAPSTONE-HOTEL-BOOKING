@@ -8,7 +8,7 @@ import { AdminSchemas, AdminSchemasType } from "schemas";
 import { ListUserServices } from "services";
 import { handleError } from "utils";
 
-export const Admin = () => {
+export const AddUser = () => {
   const {
     handleSubmit,
     register,
