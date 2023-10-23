@@ -1,5 +1,4 @@
 import { Button, Input } from "components";
-
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -9,9 +8,10 @@ import {
   ListUserThunk,
 } from "store/DanhSachThanhVien";
 import { RootState, useAppDispatch } from "store";
-
 import styled from "styled-components";
 import { ChinhSuaUser } from "./ChinhSuaUser";
+
+
 
 export const ListUser = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export const ListUser = () => {
         <h1 className="text-3xl text-center mb-20 font-bold">
           Quản lý Thông Tin Người Dùng
         </h1>
-        <div className="flex !justify-end mb-2">
+        <div className="flex !justify-end mb-2 search-input">
           <Input
             className=""
             placeholder="Tìm kiếm tên người dùng"
@@ -112,13 +112,26 @@ const ListUsers = styled.div`
   border-radius: 6px;
   margin-bottom: 6px;
   margin: 0 auto;
-  Input {
-    padding: 7px;
-    background-color: white;
-    border: 1px solid red;
-    border-radius: 0px;
-  }
-  Buton:focus-visible {
-    border: none !important;
+  .search-input{
+    margin-top: 20px;
+    Input {
+      padding: 7px;
+      background-color: white;
+      border-radius: 6px 0 0 6px;
+      width: 400px;
+      transition: 0.5s!important;
+      border: 1px solid #3e3d3d60;
+      border-right: transparent;
+      &:focus{
+      border: 1px solid #da0f0fb4;
+
+      }
+    }
+    Button{
+  border-radius: 0 6px 6px 0!important;
+    }
+    Button:focus-visible {
+      border:none !important;
+    }
   }
 `;

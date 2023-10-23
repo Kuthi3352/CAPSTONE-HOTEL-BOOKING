@@ -26,11 +26,12 @@ h3 {
   width: 70px;
   border: 1px solid rgba(0, 0, 0, 0.27);
 }
-
 input {
   outline: none;
 }
-
+.add-position-input input{
+  background-color: #a3a2a21b;
+}
 /* ---------------------- */
 /* ELEMENTS CONFIG */
 /* CARD */
@@ -125,6 +126,10 @@ h1 {
     }
   }
 }
+
+
+
+/* -------ADMIN FORM------ */
 .TableForm {
   width: 80%;
   border-radius: 6px;
@@ -171,6 +176,18 @@ h1 {
   }
 }
 
+/* .ant-tabs-tab{
+  transition: 0.5s!important;
+}
+
+.ant-tabs-tab:hover{
+  background-color: #4096ff!important;
+  /* color: white!important; */
+
+
+
+
+
 /* ----------------------- */
 /* CSS ANIMATION */
 .hover {
@@ -180,3 +197,7 @@ h1 {
     transform: scale(1.07);
   }
 }
+
+
+
+
