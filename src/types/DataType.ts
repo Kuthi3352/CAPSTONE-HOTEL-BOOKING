@@ -1,5 +1,5 @@
 export type DataType = {
-  key?: number;
+  key?: string;
   avatar?: string;
   birthday?: string;
   email?: string;

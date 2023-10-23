@@ -1,15 +1,22 @@
+import { useEffect, useState } from "react";
 import { PATH } from "constant";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { AuthLoginActions } from "store/Auth";
+import { getUserInfoLocal } from "utils";
+import {  LocalUser } from "types/AuthType";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLogin, AuthLogin } = useSelector(
-    (state: RootState) => state.AuthLogin
-  );
+  const [user, setUser] = useState<LocalUser>();
+  const { isLogin } = useSelector((state: RootState) => state.AuthLogin);
+
+  useEffect(() => {
+    const user = getUserInfoLocal();
+    setUser(user);
+  }, [setUser]);
 
   return (
     <div className="header-bar">
@@ -42,7 +49,7 @@ const Header = () => {
         <div className="auth">
           {isLogin ? (
             <div>
-              <button className="authBtn">Hello {AuthLogin?.user.name} </button>
+              <button className="authBtn">Hello {user?.userName} </button>
               <button
                 onClick={() => {
                   dispatch(AuthLoginActions.logOut());

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AuthLoginThunk } from ".";
 import { AuthType } from "types/AuthType";
-import { getAccessToken } from "utils";
+import { getAccessToken, getUserInfoLocal } from "utils";
 
 type AuthLoginInitialState = {
   token?: string;
@@ -16,6 +16,13 @@ const AuthLoginSlice = createSlice({
   name: "AuthLogin",
   initialState,
   reducers: {
+    getLogin: (state)=>{
+      const accessToken = getAccessToken()
+      if(accessToken){
+        state.isLogin = true
+        state.AuthLogin = getUserInfoLocal()
+      }
+    },
     logOut: (state) => {
       state.token = undefined;
       state.AuthLogin = undefined;

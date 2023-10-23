@@ -20,6 +20,7 @@ export const AddUser = () => {
   const onSubmit: SubmitHandler<AdminSchemasType> = async (valuee) => {
     console.log("valuee", valuee);
 
+
     try {
       await ListUserServices.Admin(valuee);
       toast.success("Đăng kí thành công");
@@ -104,6 +105,7 @@ export const AddUser = () => {
                 className="p-10 mt-8 w-full text-black rounded-6  bg-[#d1d0d0]"
                 id="gender"
                 name="gender"
+                
               >
                 <option value="true">Nam</option>
                 <option value="false">Nữ</option>

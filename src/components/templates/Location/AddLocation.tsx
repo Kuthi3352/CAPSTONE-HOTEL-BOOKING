@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // import { zodResolver } from "@hookform/resolvers/zod";
 // import { PositionType } from "types/PositinonType";
 
-
 export const AddLocation = () => {
   const dispatch = useAppDispatch();
   const {
@@ -18,10 +17,12 @@ export const AddLocation = () => {
     register,
     formState: { errors },
   } = useForm<AddLocationSchemaType>({
-    mode: "onChange",
+    mode: "onSubmit",
     resolver: zodResolver(AddLocationSchema),
   });
   const onSubmit: SubmitHandler<AddLocationSchemaType> = async (value) => {
+    console.log(value);
+
     try {
       await PositionService.AddLocation(value);
       toast.success("Thêm địa điểm thành công");
@@ -33,9 +34,7 @@ export const AddLocation = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="AddForm">
-      <h1 className="text-3xl text-center mb-3 font-bold">
-        Thêm địa điểm
-      </h1>
+      <h1 className="text-3xl text-center mb-3 font-bold">Thêm địa điểm</h1>
       <Input
         id="tinhThanh"
         name="tinhThanh"
@@ -43,6 +42,22 @@ export const AddLocation = () => {
         register={register}
         error={errors?.tinhThanh?.message}
         label="Tên tỉnh thành"
+      />
+      <Input
+        id="id"
+        name="id"
+        className="add-position-input none"
+        register={register}
+        value={"0"}
+        label="Tên tỉnh thành"
+      />
+      <Input
+        id="hinhAnh"
+        name="hinhAnh"
+        className="add-position-input"
+        register={register}
+        type="text"
+        label="Link ảnh"
       />
       <Input
         id="tenViTri"

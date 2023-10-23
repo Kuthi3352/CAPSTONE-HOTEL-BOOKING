@@ -8,6 +8,7 @@ export type UserType = {
     avatar: ""
     gender: boolean
     role: 'user' | 'admin'
+    userName:string
     
 }
 export type AuthType = {

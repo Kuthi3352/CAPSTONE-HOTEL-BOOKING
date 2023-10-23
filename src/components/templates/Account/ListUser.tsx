@@ -140,20 +140,17 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
 import { Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { ListUserThunk } from "store/DanhSachThanhVien";
-import { Button } from "components";
+import {
+  DeleteUserThunk,
+  EditUserThunk,
+  ListUserThunk,
+} from "store/DanhSachThanhVien";
+import { Button, ChinhSuaUser } from "components";
+import { DataType } from "types";
 export const ListUser = () => {
   const { listUser } = useSelector((state: RootState) => state.ListReducer);
 
   // Table
-  type DataType = {
-    key?: number;
-    avatar?: string;
-    birthday?: string;
-    email?: string;
-    name?: string;
-    role?: string;
-  };
 
   const columns: ColumnsType<DataType> = [
     {
@@ -186,16 +183,29 @@ export const ListUser = () => {
       key: "role",
       render: (text) => <p>{text}</p>,
     },
-
     {
       title: "Chức năng",
       key: "action",
-      render: () => (
+
+      render: (_, record: DataType) => (
         <Space size="middle">
-          <Button className="mr-[15px] !bg-slate-500 !text-white !font-500 ">
+          <Button
+            className="mr-[15px] !bg-slate-500 !text-white !font-500 "
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            onClick={() => {
+              dispatch(EditUserThunk(record.key));
+            }}
+          >
             Edit
           </Button>
-          <Button className="mr-[15px] !bg-red-600 !text-white !font-500 ">
+          <ChinhSuaUser />
+          <Button
+            className="mr-[15px] !bg-red-600 !text-white !font-500 "
+            onClick={() => {
+              dispatch(DeleteUserThunk(record.key));
+            }}
+          >
             Delete
           </Button>
         </Space>
@@ -214,7 +224,6 @@ export const ListUser = () => {
     };
   });
 
-  
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(ListUserThunk());
