@@ -1,7 +1,7 @@
 import { AccountSchemaType } from "schemas";
 
 export type ListUserType = {
-  id?: string;
+  id?: number;
   name?: string;
   email?: string;
   password?: string;

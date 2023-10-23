@@ -5,3 +5,5 @@ export * from "./Account";
 export * from "./Booking";
 export * from "./BinhLuan";
 export * from "./AdminTemplate";
+export * from "./Location";
+export * from "./Room";

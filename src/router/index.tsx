@@ -1,11 +1,22 @@
 import { RouteObject } from "react-router-dom";
 import { PATH } from "constant";
-import { AuthLayout, MainLayout } from "components";
+import {
+  AddLocation,
+  AddUser,
+  AuthLayout,
+  BinhLuanList,
+  ListUser,
+  MainLayout,
+  AddRoom,
+  RoomDS,
+} from "components";
 import { Login, ManagerAdmin, Register } from "pages";
 import Home from "pages/Home";
 import RoomDetail from "pages/RoomDetail";
 import RoomList from "pages/RoomList";
 import { Binhluan } from "pages/Binhluan";
+import { LocationList } from "components";
+
 export const router: RouteObject[] = [
   {
     path: "/",
@@ -22,10 +33,6 @@ export const router: RouteObject[] = [
       {
         path: PATH.roomList,
         element: <RoomList></RoomList>,
-      },
-      {
-        path: PATH.ManagerAdmin,
-        element: <ManagerAdmin />,
       },
       {
         path: PATH.binhLuan,
@@ -46,5 +53,38 @@ export const router: RouteObject[] = [
       },
     ],
   },
-  
+  {
+    element: <ManagerAdmin />,
+    path: PATH.ManagerAdmin,
+    children: [
+      {
+        element: <ListUser />,
+        path: PATH.listUser,
+      },
+      {
+        element: <AddUser />,
+        path: PATH.addUser,
+      },
+      {
+        element: <LocationList />,
+        path: PATH.locationList,
+      },
+      {
+        element: <AddLocation />,
+        path: PATH.addLocation,
+      },
+      {
+        element: <RoomDS />,
+        path: PATH.roomDs,
+      },
+      {
+        element: <AddRoom />,
+        path: PATH.addRoom,
+      },
+      {
+        element: <BinhLuanList />,
+        path: PATH.commentList,
+      },
+    ],
+  },
 ];
