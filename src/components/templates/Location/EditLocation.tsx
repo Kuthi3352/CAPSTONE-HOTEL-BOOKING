@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { PositionType } from "types/PositinonType";
 import { useEffect } from "react";
 import { UpdateLocationThunk } from "store/Position/thunks";
+import { toast } from "react-toastify";
+import { handleError } from "utils";
 
 export const EditLocation = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +20,11 @@ export const EditLocation = () => {
   const onSubmit: SubmitHandler<PositionType> = (value: PositionType) => {
     console.log(value);
     dispatch(UpdateLocationThunk({ path: EditLocation.id, payload: value }));
+    try {
+      toast.success("Cập nhật phòng thành công");
+    } catch (err) {
+      handleError(err);
+    }
   };
   useEffect(() => {
     reset(EditLocation);
@@ -72,6 +79,7 @@ export const EditLocation = () => {
             <Button
               className="!bg-red-500 !text-white !font-500"
               htmlType="submit"
+              data-bs-dismiss="modal"
             >
               Cập Nhật
             </Button>

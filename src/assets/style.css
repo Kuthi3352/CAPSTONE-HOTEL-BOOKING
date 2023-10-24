@@ -137,12 +137,149 @@ h1 {
   margin: 0 auto;
 }
 .AddForm{
-  width: 30%;
+  width: 40%;
   border-radius: 6px;
   margin-bottom: 6px;
   margin: 0 auto;
+  @media(max-width:1025px){
+    width: 50% !important;
+  }
+  @media(max-width:641px){
+    width: 70% !important;
+  }
+  @media(max-width:453px){
+    width: 100% !important;
+  }
 }
-
+.nd{
+  color: #ff385c;
+  margin-bottom: 20px!important;
+  @media(max-width:1281px){
+    font-size: 26px!important;
+  }
+  @media(max-width:641px){
+    font-size: 16px!important;
+  }
+ 
+}
+.ndA{
+  @media(max-width:1025px){
+    font-size: 28px!important;
+  }
+  @media(max-width:641px){
+    font-size: 20px!important;
+  }
+}
+.ant-menu-submenu-title{
+  height: 70px !important;
+  line-height: 70px !important;
+  font-size: 20px !important;
+  font-weight: 600;
+  color: #ff385c;
+  @media(max-width:1281px){
+    font-size: 16px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+  }
+}
+.ant-menu-item {
+font-size: 15px !important;
+font-weight: 600;
+}
+.ant-table-cell{
+  width: 0%;
+  @media(max-width:1140px){
+    padding: 10px  !important;
+  };
+  @media(max-width:1025px){
+    font-size: 12px !important;
+  };
+  @media(max-width:769px){
+    padding: 1px  !important;
+  }
+  @media(max-width:641px){
+    font-size: 10px !important;
+  }
+  @media(max-width:574px){
+    font-size: 8px !important;
+    padding: 1px  !important;
+  }
+  @media(max-width:460px){
+    font-size: 6px !important;
+    
+  }
+}
+.ant-space {
+  @media(max-width:1140px){
+    column-gap: 6px !important;
+  }
+  @media(max-width:769px){
+    column-gap: 1px !important;
+  }
+}
+.ant-btn{
+  @media(max-width:1140px){
+    
+    height: 28px !important;
+    padding: 0px 7px !important;
+    border-radius: 4px !important;
+    margin-right: 0px !important;
+  }
+  @media(max-width:641px){
+    height: 20px !important;
+    padding: 0px 4px !important;
+    border-radius: 4px !important;
+    margin-right: 0px !important;
+    font-size: 10px !important;
+  }
+  @media(max-width:460px){
+    font-size: 6px !important;
+    height: 12px !important;
+    padding: 0px 4px !important;
+    border-radius: 0px !important;
+  }
+}
+.ant-pagination-item {
+  @media(max-width:769px){
+    font-size: 12px !important;
+  } 
+ 
+  @media(max-width:641px){
+    min-width: 20px !important;
+  } 
+  @media(max-width:574px){
+    font-size: 8px !important;
+    min-width: 14px !important;
+    height: 26px !important;
+    line-height: 25px !important;
+  }
+  @media(max-width:453px){
+    font-size: 6px !important;
+    
+   
+  }
+}
+.ant-pagination-prev{
+  @media(max-width:480px){
+    min-width: 0px !important;
+    line-height: 27px !important;
+    font-size: 8px !important;
+  } 
+ 
+}
+.ant-pagination-item-link{
+  @media(max-width:480px){
+    min-width: 0px !important;
+    line-height: 27px !important;
+    font-size: 8px !important;
+  } 
+ 
+}
+.ant-layout-content {
+  @media(max-width:453px){
+    padding: 5px !important;
+  }  
+}
 /* FORM BOOKING */
 .booking {
   text-align: center;
@@ -176,19 +313,8 @@ h1 {
   }
 }
 
-/* .ant-tabs-tab{
-  transition: 0.5s!important;
-}
-
-.ant-tabs-tab:hover{
-  background-color: #4096ff!important;
-  /* color: white!important; */
 
 
-
-
-
-/* ----------------------- */
 /* CSS ANIMATION */
 .hover {
   transition: 0.5s;
@@ -197,6 +323,8 @@ h1 {
     transform: scale(1.07);
   }
 }
+
+
 
 
 

@@ -18,7 +18,7 @@ export const BinhLuanThunk = createAsyncThunk(
 
 export const DeleteBinhLuanThunk = createAsyncThunk(
   "BinhLuan/Delete",
-  async (path: number, { dispatch }) => {
+  async (path: string, { dispatch }) => {
     const data = await BinhLuanServices.DeleteBinhLuan(path);
 
     dispatch(DanhGiaThunk());

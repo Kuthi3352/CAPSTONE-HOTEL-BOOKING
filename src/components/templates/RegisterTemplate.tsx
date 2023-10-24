@@ -27,7 +27,6 @@ export const RegisterTemplate = () => {
       toast.success("Đăng kí thành công");
       navigate(PATH.login);
     } catch (err) {
-      console.log(err);
       handleError(err);
     }
   };

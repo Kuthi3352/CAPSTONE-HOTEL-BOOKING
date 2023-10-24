@@ -40,14 +40,14 @@ export const getRoomListByPositionThunk = createAsyncThunk(
 );
 export const EditRoomThunk = createAsyncThunk(
   "QuanLyPhong/EditRoom",
-  async (path: number) => {
+  async (path: string) => {
     const data = await RoomListService.EditRoom(path);
     return data.data.content;
   }
 );
 export const UpdateRoomThunk = createAsyncThunk(
   "QuanLyPhong/UpdateRoom",
-  async (result: { path: number; payload: RoomType }, { dispatch }) => {
+  async (result: { path: string; payload: RoomType }, { dispatch }) => {
     const path = result.path;
     const payload = result.payload;
     const data = await RoomListService.UpdateRoom(path, payload);
@@ -57,7 +57,7 @@ export const UpdateRoomThunk = createAsyncThunk(
 );
 export const DeleteRoomThunk = createAsyncThunk(
   "QuanLyPhong/DeleteRoom",
-  async (path: number, { dispatch }) => {
+  async (path: string, { dispatch }) => {
     const data = await RoomListService.DeleteRoom(path);
     dispatch(getRoomThunk());
     return data.data.content;

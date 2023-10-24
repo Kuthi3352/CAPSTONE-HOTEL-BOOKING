@@ -1,65 +1,87 @@
-import { Button } from "antd";
+import { Button, Space, Table } from "antd";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { RootState, useAppDispatch } from "store";
 import { DanhGiaThunk, DeleteBinhLuanThunk } from "store/BinhLuan";
+import type { ColumnsType } from "antd/es/table";
+import { BinhLuanDataType } from "types";
 
 export const BinhLuanList = () => {
   const dispatch = useAppDispatch();
   const { danhGia } = useSelector((state: RootState) => state.BinhLuanReducer);
+  const columns: ColumnsType<BinhLuanDataType> = [
+    {
+      title: "ID",
+      dataIndex: "key",
+      key: "key",
+      render: (text) => <p>{text}</p>,
+    },
+    {
+      title: "Mã phòng",
+      dataIndex: "maPhong",
+      key: "maPhong",
+      render: (text) => <p>{text}</p>,
+    },
+    {
+      title: "Mã người bình luận",
+      dataIndex: "maNguoiBinhLuan",
+      key: "maNguoiBinhLuan",
+      render: (text) => <p>{text}</p>,
+    },
+    {
+      title: "Ngày bình luận",
+      dataIndex: "ngayBinhLuan",
+      key: "ngayBinhLuan",
+      render: (text) => <p>{text}</p>,
+    },
+    {
+      title: "Nội dung bình luận",
+      dataIndex: "noiDung",
+      key: "noiDung",
+      render: (text) => <p>{text}</p>,
+    },
+    {
+      title: "Số sao",
+      dataIndex: "saoBinhLuan",
+      key: "saoBinhLuan",
+      render: (text) => <p>{text}</p>,
+    },
+    {
+      title: "Chức năng",
+      key: "action",
+      render: (_, record: BinhLuanDataType) => (
+        <Space size="middle">
+          <Button
+            className="mr-[15px] !bg-red-600 !text-white !font-500 "
+            onClick={() => {
+              dispatch(DeleteBinhLuanThunk(record.key));
+              toast.success("Xóa bình luận thành công");
+            }}
+          >
+            Delete
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+  const data: BinhLuanDataType[] = danhGia?.map((item) => {
+    return {
+      key: item.id,
+      maPhong: item.maPhong,
+      maNguoiBinhLuan: item.maNguoiBinhLuan,
+      ngayBinhLuan: item.ngayBinhLuan,
+      noiDung: item.noiDung,
+      saoBinhLuan: item.saoBinhLuan,
+    };
+  });
   useEffect(() => {
     dispatch(DanhGiaThunk());
   }, [dispatch]);
   return (
-    <div className="TableForm">
-      <h1 className="text-3xl text-center mb-3 font-bold">Quản lý vị trí</h1>
-      <table className="w-full ml-auto">
-        <thead>
-          <tr className="bg-red-500 text-white">
-            <th className="!p-[15px] border-[1px]  text-center">ID</th>
-            <th className="border-[1px]  text-center">Mã người bình luận</th>
-            <th className="border-[1px]  text-center">Mã phòng</th>
-            <th className="border-[1px]  text-center">Ngày bình luận</th>
-            <th className="!p-[15px] border-[1px]  text-center">
-              Nội dung bình luận
-            </th>
-            <th className="!p-[15px] border-[1px]  text-center">
-              Sao đánh giá
-            </th>
-            <th className="border-[1px]  text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {danhGia?.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td className="text-center border-[1px] py-16">{item.id}</td>
-                <td className="text-center border-[1px]">
-                  {item.maNguoiBinhLuan}
-                </td>
-                <td className="text-center border-[1px]">{item.maPhong}</td>
-                <td className="text-center border-[1px] ">
-                  {item.ngayBinhLuan}
-                </td>
-                <td className="text-center border-[1px] ">{item.noiDung}</td>
-                <td className="text-center border-[1px] ">
-                  {item.saoBinhLuan}
-                </td>
-                <td className="text-center border-[1px]">
-                  <Button
-                    className="mr-[15px] !bg-red-600 !text-white !font-500 "
-                    onClick={() => {
-                      dispatch(DeleteBinhLuanThunk(item.id));
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div>
+      <h1 className="nd">Danh sách những người bình luận</h1>
+      <Table columns={columns} dataSource={data} />
     </div>
   );
 };

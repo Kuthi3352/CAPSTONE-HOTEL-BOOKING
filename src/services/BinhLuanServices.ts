@@ -9,7 +9,7 @@ export const BinhLuanServices = {
   danhGia: () => api.get<ApiResponse<BinhLuanType[]>>(""),
   binhLuan: (data: BinhLuanType) =>
     api.post<ApiResponse<BinhLuanType>>("", data),
-  DeleteBinhLuan: (path: number) =>
+  DeleteBinhLuan: (path: string) =>
     api.delete<ApiResponse<BinhLuanType>>(`/${path}`),
   getBinhLuan: (path: string) =>
     api.get<ApiResponse<getBinhLuanType[]>>(`lay-binh-luan-theo-phong/${path}`),

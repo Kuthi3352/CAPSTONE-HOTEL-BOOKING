@@ -34,7 +34,7 @@ export const AddLocation = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="AddForm">
-      <h1 className="text-3xl text-center mb-3 font-bold">Thêm địa điểm</h1>
+      <h1 className="text-3xl text-center mb-3 font-bold ndA">Thêm vị trí</h1>
       <Input
         id="tinhThanh"
         name="tinhThanh"
@@ -51,14 +51,7 @@ export const AddLocation = () => {
         value={"0"}
         label="Tên tỉnh thành"
       />
-      <Input
-        id="hinhAnh"
-        name="hinhAnh"
-        className="add-position-input"
-        register={register}
-        type="text"
-        label="Link ảnh"
-      />
+
       <Input
         id="tenViTri"
         name="tenViTri"
@@ -75,10 +68,18 @@ export const AddLocation = () => {
         error={errors?.quocGia?.message}
         label="Tên quốc gia"
       />
+      <Input
+        id="hinhAnh"
+        name="hinhAnh"
+        className="add-position-input"
+        register={register}
+        type="text"
+        label="Link ảnh"
+      />
       <Button
         danger
         htmlType="submit"
-        className="w-full !p-3 !bg-red-500 !text-white !mt-[25px] !rounded-10  !h-[48px] !font-bold"
+        className="w-full !p-3 !bg-red-500 !text-white !mt-[25px] !rounded-10  !h-[48px] !font-bold !text-[18px]"
       >
         Thêm địa điểm
       </Button>

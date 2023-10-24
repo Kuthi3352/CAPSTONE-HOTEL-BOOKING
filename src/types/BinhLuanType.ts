@@ -1,5 +1,5 @@
 export type BinhLuanType = {
-  id: number;
+  id: string;
   maPhong: number;
   maNguoiBinhLuan: number;
   ngayBinhLuan: string;
@@ -13,4 +13,12 @@ export type getBinhLuanType = {
   saoBinhLuan: number;
   tenNguoiBinhLuan: string;
   avatar: string;
+};
+export type BinhLuanDataType = {
+  key: string;
+  maPhong: number;
+  maNguoiBinhLuan: number;
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
 };

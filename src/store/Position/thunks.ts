@@ -11,14 +11,14 @@ export const getPostionListThunk = createAsyncThunk(
 );
 export const EditLocationThunk = createAsyncThunk(
   "QuanLyViTri/EditLocation",
-  async (path: number) => {
+  async (path: string) => {
     const data = await PositionService.EditLocation(path);
     return data.data.content;
   }
 );
 export const UpdateLocationThunk = createAsyncThunk(
   "QuanLyViTri/UpdateLocation",
-  async (result: { path: number; payload: PositionType }, { dispatch }) => {
+  async (result: { path: string; payload: PositionType }, { dispatch }) => {
     const path = result.path;
     const payload = result.payload;
     const data = await PositionService.UpdateLocation(path, payload);
@@ -28,7 +28,7 @@ export const UpdateLocationThunk = createAsyncThunk(
 );
 export const DeleteLocationThunk = createAsyncThunk(
   "QuanLyViTri/DeleteLocation",
-  async (path: number, { dispatch }) => {
+  async (path: string, { dispatch }) => {
     const data = await PositionService.DeleteLocation(path);
     dispatch(getPostionListThunk());
     return data.data.content;
