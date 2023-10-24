@@ -8,12 +8,12 @@ const api = apiInstance({
 
 export const PositionService = {
   getPosition: () => api.get<ApiResponse<PositionType[]>>("/vi-tri"),
-  EditLocation: (path: number) =>
+  EditLocation: (path: string) =>
     api.get<ApiResponse<PositionType>>(`/vi-tri/${path}`),
-  UpdateLocation: (path: number, payload: PositionType) => {
+  UpdateLocation: (path: string, payload: PositionType) => {
     return api.put<ApiResponse<PositionType>>(`/vi-tri/${path}`, payload);
   },
-  DeleteLocation: (path: number) =>
+  DeleteLocation: (path: string) =>
     api.delete<ApiResponse<PositionType>>(`/vi-tri/${path}`),
   AddLocation: (payload: AddLocationSchemaType) => {
     return api.post<ApiResponse<AddLocationSchemaType>>("/vi-tri", payload);

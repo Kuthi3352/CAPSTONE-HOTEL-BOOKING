@@ -5,6 +5,7 @@ import { RoomType } from "types/RoomType";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
 import { UpdateRoomThunk } from "store/Room/thunk";
+import { toast } from "react-toastify";
 
 export const EditRoom = () => {
   const dispatch = useAppDispatch();
@@ -13,8 +14,8 @@ export const EditRoom = () => {
     mode: "onChange",
   });
   const onSubmit: SubmitHandler<RoomType> = (value: RoomType) => {
-    console.log(value);
     dispatch(UpdateRoomThunk({ path: EditRoom.id, payload: value }));
+    toast.success("Cập nhật phòng thành công");
   };
   useEffect(() => {
     reset(EditRoom);
@@ -67,6 +68,7 @@ export const EditRoom = () => {
             <Button
               className="!bg-red-500 !text-white !font-500"
               htmlType="submit"
+              data-bs-dismiss="modal"
             >
               Cập Nhật
             </Button>

@@ -7,6 +7,7 @@ import { RootState, useAppDispatch } from "store";
 import { useEffect } from "react";
 import { ListUserType } from "types/ListUserType";
 import { UpdateUserThunk } from "store/DanhSachThanhVien";
+import { toast } from "react-toastify";
 export const ChinhSuaUser = () => {
   const dispatch = useAppDispatch();
   const { EditUser } = useSelector((state: RootState) => state.ListReducer);
@@ -20,6 +21,7 @@ export const ChinhSuaUser = () => {
   });
   const onSubmit: SubmitHandler<ListUserType> = (value: ListUserType) => {
     dispatch(UpdateUserThunk({ path: EditUser?.id, payload: value }));
+    toast.success("Cập nhật thành công");
   };
   useEffect(() => {
     reset(EditUser);
@@ -76,6 +78,7 @@ export const ChinhSuaUser = () => {
             <Button
               className="!bg-red-500 !text-white !font-500"
               htmlType="submit"
+              data-bs-dismiss="modal"
             >
               Cập Nhật
             </Button>

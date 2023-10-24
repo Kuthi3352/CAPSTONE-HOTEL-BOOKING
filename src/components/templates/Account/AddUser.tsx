@@ -1,4 +1,3 @@
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
@@ -20,7 +19,6 @@ export const AddUser = () => {
   const onSubmit: SubmitHandler<AdminSchemasType> = async (valuee) => {
     console.log("valuee", valuee);
 
-
     try {
       await ListUserServices.Admin(valuee);
       toast.success("Đăng kí thành công");
@@ -30,11 +28,11 @@ export const AddUser = () => {
   };
   return (
     <AdminContainer>
-      <h1 className="text-3xl text-center mb-20 font-bold">
+      <h1 className="text-3xl text-center mb-20 font-bold ndA">
         TẠO TÀI KHOẢN ADMIN
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
-        <div className="flex">
+        <div className="flex userA">
           <div>
             <Input
               className="mt-16"
@@ -70,7 +68,7 @@ export const AddUser = () => {
               register={register}
             />
           </div>
-          <div className="ml-5">
+          <div className="ml-5 smM:!ml-0">
             <Input
               className="mt-16"
               label="Ngày Sinh"
@@ -105,7 +103,6 @@ export const AddUser = () => {
                 className="p-10 mt-8 w-full text-black rounded-6  bg-[#d1d0d0]"
                 id="gender"
                 name="gender"
-                
               >
                 <option value="true">Nam</option>
                 <option value="false">Nữ</option>
@@ -117,7 +114,7 @@ export const AddUser = () => {
         <Button
           danger
           htmlType="submit"
-          className="w-full !p-3 !bg-red-500 !text-white !mt-[25px] !rounded-10  !h-[48px] !font-bold"
+          className="w-full !p-3 !bg-red-500 !text-white !mt-[25px] !rounded-10  !h-[48px] !font-bold !text-[18px]"
         >
           Đăng Ký
         </Button>
@@ -131,8 +128,24 @@ const AdminContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  input,select {
+  input,
+  select {
     padding: 10px 270px 10px 10px !important;
     background-color: #a3a2a21b;
+  }
+  @media (max-width: 769px) {
+    input,
+    select {
+      padding: 10px 110px 10px 10px !important;
+    }
+  }
+  @media (max-width: 641px) {
+    .userA {
+      display: block !important;
+    }
+    input,
+    select {
+      padding: 10px 10px 10px 10px !important;
+    }
   }
 `;

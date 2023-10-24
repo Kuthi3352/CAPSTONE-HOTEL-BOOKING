@@ -1,5 +1,12 @@
 export type PositionType = {
-  id?: number;
+  id?: string;
+  tenViTri?: string;
+  tinhThanh?: string;
+  quocGia?: string;
+  hinhAnh?: string;
+};
+export type PositionDataType = {
+  key?: string;
   tenViTri?: string;
   tinhThanh?: string;
   quocGia?: string;

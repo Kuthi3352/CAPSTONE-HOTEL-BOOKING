@@ -9,11 +9,11 @@ export const RoomListService = {
   getRoomDetail: (path: string) => api.get<ApiResponse<RoomType>>(`/${path}`),
   getRoomListByPosition: (path: string) =>
     api.get<ApiResponse<RoomType[]>>(`/lay-phong-theo-vi-tri${path}`),
-  EditRoom: (path: number) => api.get<ApiResponse<RoomType>>(`/${path}`),
-  UpdateRoom: (path: number, payload: RoomType) => {
+  EditRoom: (path: string) => api.get<ApiResponse<RoomType>>(`/${path}`),
+  UpdateRoom: (path: string, payload: RoomType) => {
     return api.put<ApiResponse<RoomType>>(`/${path}`, payload);
   },
-  DeleteRoom: (path: number) => api.delete<ApiResponse<RoomType>>(`/${path}`),
+  DeleteRoom: (path: string) => api.delete<ApiResponse<RoomType>>(`/${path}`),
   AddRoom: (payload: RoomType) => {
     return api.post<ApiResponse<RoomType>>(``, payload);
   },

@@ -147,10 +147,10 @@ import {
 } from "store/DanhSachThanhVien";
 import { Button, ChinhSuaUser } from "components";
 import { DataType } from "types";
+import { toast } from "react-toastify";
+
 export const ListUser = () => {
   const { listUser } = useSelector((state: RootState) => state.ListReducer);
-
-  // Table
 
   const columns: ColumnsType<DataType> = [
     {
@@ -204,6 +204,7 @@ export const ListUser = () => {
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
               dispatch(DeleteUserThunk(record.key));
+              toast.success("Xóa thành công");
             }}
           >
             Delete
@@ -230,6 +231,7 @@ export const ListUser = () => {
   }, [dispatch]);
   return (
     <div>
+      <h1 className="nd">Danh sách thành viên</h1>
       <Table columns={columns} dataSource={data} />
     </div>
   );

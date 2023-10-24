@@ -44,6 +44,20 @@ export default {
         10: '10px',
         16: '16px',
     },
+    screens: {
+      
+      'xsM': {'max': '453px'},
+      'sM': {'max': '574px'},
+      'smM': {'max': '641px'},
+      'mdM': {'max': '769px'},
+      'lgM': {'max': '1025px'},
+      '1xlM': {'max': '1140px'},
+      '2xlM': {'max': '1281px'},
+      '3xlM': {'max': '1537px'},
+      
+
+    }
+    
     },
   },
   plugins: [],

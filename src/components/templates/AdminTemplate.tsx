@@ -87,6 +87,7 @@ export const AdminTemplate = () => {
                 height: 64,
                 color: "#eee",
               }}
+              className="xsM:!text-[12px]"
             />
             Quản Trị Viên
           </Header>
