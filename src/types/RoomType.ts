@@ -21,7 +21,7 @@ export type RoomType = {
 };
 
 export type RoomPosition = {
-  id?: number;
+  id?: string;
   tenViTri?: string;
   tinhThanh?: string;
   quocGia?: string;

@@ -16,6 +16,7 @@ import RoomDetail from "pages/RoomDetail";
 import RoomList from "pages/RoomList";
 import { Binhluan } from "pages/Binhluan";
 import { LocationList } from "components";
+import AccountUser from "pages/AccountUser";
 
 export const router: RouteObject[] = [
   {
@@ -38,6 +39,10 @@ export const router: RouteObject[] = [
         path: PATH.binhLuan,
         element: <Binhluan></Binhluan>,
       },
+      {
+        path: PATH.userInfo,
+        element: <AccountUser></AccountUser>,
+      }
     ],
   },
   {
