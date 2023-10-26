@@ -7,6 +7,7 @@ import {
   UserOutlined,
   HomeOutlined,
   EnvironmentOutlined,
+  FileSyncOutlined,
 } from "@ant-design/icons";
 import { Menu, theme, Layout, ConfigProvider } from "antd";
 import { Button } from "components";
@@ -42,6 +43,13 @@ const items: MenuItem[] = [
   ]),
   getItem("Quản lý bình luận", "sub4", <AuditOutlined />, [
     getItem(<NavLink to={PATH.commentList}>Danh sách bình luận</NavLink>, "7"),
+  ]),
+  getItem("Quản lý đặt phòng", "sub5", <FileSyncOutlined />, [
+    getItem(<NavLink to={PATH.datPhongList}>Danh sách đặt phòng</NavLink>, "8"),
+    getItem(
+      <NavLink to={PATH.addDatPhong}>Thêm chi tiết đặt phòng</NavLink>,
+      "9"
+    ),
   ]),
 ];
 export const AdminTemplate = () => {

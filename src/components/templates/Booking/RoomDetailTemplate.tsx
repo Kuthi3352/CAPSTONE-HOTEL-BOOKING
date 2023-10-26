@@ -120,7 +120,7 @@ const RoomDetailTemplate = () => {
           <h3 className="font-600 text-2xl mt-10 sM:!text-[18px]">
             Nơi này có những gì cho bạn
           </h3>
-          <div className="grid grid-cols-2 sM:!text-[14px]">
+          <div className="grid grid-cols-2 sM:!text-[13px]">
             <div>
               <p
                 className={cn({
@@ -257,7 +257,7 @@ const RoomDetailTemplate = () => {
             <div className="booking">
               <button
                 type="submit"
-                className="booking-btn hover  sM:!text-[18px]"
+                className="booking-btn hover  sM:!text-[18px] smM:!p-[10px] smM:!text-[16px]"
               >
                 Đặt phòng
               </button>

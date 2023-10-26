@@ -166,12 +166,21 @@ h1 {
     color: #ff385c;
     font-size: 26px;
     margin-bottom: 20px;
+    @media(max-width:1025px){
+      font-size: 24px !important;
+    }
+    @media(max-width:769px){
+      font-size: 18px !important;
+    }
+    @media(max-width:574px){
+      font-size: 14px!important;
+    }
 }
 .comments-container{
-  background-color: #dedede;
-    height: 30rem;
-    overflow-y: scroll;
-    padding: 10px;
+ 
+  height: 30rem;
+  overflow-y: scroll;
+  padding: 10px;
 }
 .comments-container::-webkit-scrollbar {
   width: 0.2em;
@@ -199,12 +208,10 @@ h1 {
   padding: 20px;
   transition: all .25s ease;
 }
-.comment_section-Item{
-  background-color: #dedede;
-}
+
 .comment-control{
   background-clip: padding-box;
-    background-color: #fff;
+    background-color: #e5e5e5;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     color: #495057;
@@ -217,6 +224,50 @@ h1 {
     
     width: 100%;
 }
+/* --------------------------------------------------------- */
+/* AccountUserPages */
+.account__bg{
+  background: url('/images/bg.jpg') no-repeat;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+.account__container{
+  display: flex;
+  background-color: #ebebeb;
+  margin: auto;
+  padding: 3rem 2rem;
+  @media(max-width:641px){
+    padding: 0 2rem;
+  }
+}
+.account__avatar{
+  padding: 75px 20px;
+  @media(max-width:769px){
+    padding: 75px 5px;
+  }
+  @media(max-width:641px){
+    padding: 5px !important;
+  }
+}
+.account__input{
+  font-size: 15px !important;
+  font-weight: 500!important;
+  letter-spacing: 1px;
+
+}
+
+
+
+
+
+
 
 /* -------ADMIN FORM------ */
 .TableForm {
@@ -401,7 +452,11 @@ font-weight: 600;
     border-top: 1px solid #33333331;
   }
 }
-
+  /* ---------------------------------------------- */
+  /* RoomList */
+.ant-card-body{
+  display: none;
+}
 
 
 /* CSS ANIMATION */

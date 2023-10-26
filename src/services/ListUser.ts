@@ -1,5 +1,5 @@
 import { apiInstance } from "constant";
-import {  AdminSchemasType } from "schemas";
+import { AdminSchemasType } from "schemas";
 import { ListUserType } from "types/ListUserType";
 
 const api = apiInstance({

@@ -5,7 +5,6 @@ import { RootState, useAppDispatch } from "store";
 import { GetBinhLuanThunk } from "store/BinhLuan";
 import styled from "styled-components";
 import { Rate } from "antd";
-import { Button } from "components";
 
 export const DanhGiaTemplate = () => {
   const dispacth = useAppDispatch();
@@ -96,30 +95,34 @@ export const DanhGiaTemplate = () => {
       <div className="bg-white container">
         <div className="py-5">
           <div>
-            <h2 className="comments">COMMENTS</h2>
+            <h2 className="comments  xsM:!text-[16px] smM:text-[18px] ">
+              COMMENTS
+            </h2>
           </div>
           <div className="comments-container">
             {getBinhLuan?.map((item) => {
               return (
                 <div className="mb-2" key={item.id}>
                   <div className="comment-content ">
-                    <div className="w-[15%]">
+                    <div className="w-[15%] xsM:!w-[35%] mdM:w-[30%]">
                       <img
                         src={item.avatar}
                         alt="avatar"
                         className="w-[80%] overflow-hidden shadow-lg rounded-full"
                       />
                     </div>
-                    <div className="w-[85%] ">
-                      <div className="comments-name">
+                    <div className="w-[85%]  mdM:w-[70%] ">
+                      <div className="comments-name text-[18px] xsM:!text-[14px] smM:text-[16px]">
                         {item.tenNguoiBinhLuan}
                       </div>
-                      <div className="font-normal text-sm text-gray-500">
+                      <div className="font-normal text-[14px] text-gray-500 xsM:!text-[11px]">
                         {" "}
                         {item.ngayBinhLuan}
                       </div>
-                      <div className="!my-20 !text-[18px]">{item.noiDung}</div>
-                      <div className="text-yellow-400">
+                      <div className="!my-20 text-[18px]  smM:text-[14px]">
+                        {item.noiDung}
+                      </div>
+                      <div className="text-yellow-400 text-[16px] sM:!text-[12px]">
                         Đánh giá: {item.saoBinhLuan} sao
                       </div>
                     </div>
@@ -129,7 +132,7 @@ export const DanhGiaTemplate = () => {
             })}
           </div>
           <div>
-            <h2 className="comments-name text-right mt-4">
+            <h2 className="comments-name text-right mt-4 xsM:!text-[14px] smM:text-[16px] ">
               -Bình luận dưới tên-
             </h2>
             <div className="comment_section-Item p-2">
@@ -142,11 +145,19 @@ export const DanhGiaTemplate = () => {
                   ></textarea>
                 </div>
                 <div className="mt-2 text-right">
-                  <span className="mr-10 text-[20px]">Đánh giá:</span>
-                  <Rate allowHalf defaultValue={2.5} />
+                  <span className="mr-10 text-[20px] mt-4 xsM:!text-[14px] smM:text-[16px] ">
+                    Đánh giá:
+                  </span>
+                  <Rate
+                    allowHalf
+                    defaultValue={2.5}
+                    className="mt-4 xsM:!text-[14px] smM:text-[16px] "
+                  />
                 </div>
                 <div className="text-right">
-                  <Button>Bình luận</Button>
+                  <button className="!bg-red-400 !text-white !text-[18px] xsM:!text-[12px] smM:text-[14px] !p-[3px] rounded">
+                    Bình luận
+                  </button>
                 </div>
               </form>
             </div>

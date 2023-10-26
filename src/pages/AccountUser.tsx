@@ -1,9 +1,7 @@
-import AccountUserTemplate from "components/templates/Account/AccountUserTemplate"
+import AccountUserTemplate from "components/templates/Accounts/AccountUserTemplate";
 
 const AccountUser = () => {
-  return (
-   <AccountUserTemplate></AccountUserTemplate>
-  )
-}
+  return <AccountUserTemplate />;
+};
 
-export default AccountUser
+export default AccountUser;

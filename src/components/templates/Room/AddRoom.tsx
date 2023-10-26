@@ -19,7 +19,7 @@ export const AddRoom = () => {
     resolver: zodResolver(AddRoomSchema),
   });
   const onSubmit: SubmitHandler<AddRoomSchemaType> = async (value) => {
-    console.log(value);
+    
 
     try {
       await RoomListService.AddRoom(value);
