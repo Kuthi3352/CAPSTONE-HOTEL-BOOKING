@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
 import { ListUserServices } from "services";
 import { ListUserType } from "types/ListUserType";
 
@@ -33,11 +32,10 @@ export const UpdateUserThunk = createAsyncThunk(
   async (data2: { path: string; payload: ListUserType }, { dispatch }) => {
     const path = data2.path;
     const payload = data2.payload;
-
     const result = await ListUserServices.UpdateUser(path, payload);
     dispatch(ListUserThunk());
-
     // return data.data.content;
     return result.data.content;
   }
 );
+

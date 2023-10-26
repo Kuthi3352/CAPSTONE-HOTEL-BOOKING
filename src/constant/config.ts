@@ -14,4 +14,6 @@ export const PATH = {
   roomDs: "/Admin/danhSachPhong",
   addRoom: "/Admin/themPhong",
   commentList: "/Admin/danhSachBinhLuan",
+  datPhongList: "/Admin/datPhong",
+  addDatPhong: "/Admin/addDatPhong",
 };

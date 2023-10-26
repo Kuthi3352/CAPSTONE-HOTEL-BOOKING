@@ -1,5 +1,3 @@
-import { AccountSchemaType } from "schemas";
-
 export type ListUserType = {
   id?: string;
   name?: string;
@@ -10,9 +8,4 @@ export type ListUserType = {
   avatar?: string;
   gender?: boolean;
   role?: string;
-};
-
-export type updatePayload = {
-  path: string;
-  data: AccountSchemaType;
 };

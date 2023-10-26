@@ -131,7 +131,7 @@ export const RoomDS = () => {
             data-bs-toggle="modal"
             data-bs-target="#exampleModal2"
             onClick={() => {
-              console.log(record.key);
+              
               dispatch(EditRoomThunk(record.key));
             }}
           >

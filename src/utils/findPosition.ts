@@ -1,6 +1,6 @@
 import { RoomPosition } from "types/RoomType";
 
-export const findPosition = (array?: RoomPosition[], id?: number) => {
+export const findPosition = (array?: RoomPosition[], id?: string) => {
   const matched = array.find((item) => {
     return item.id === id;
   });

@@ -9,6 +9,8 @@ import {
   MainLayout,
   AddRoom,
   RoomDS,
+  DatPhongList,
+  AddDatPhong,
 } from "components";
 import { Login, ManagerAdmin, Register } from "pages";
 import Home from "pages/Home";
@@ -39,10 +41,6 @@ export const router: RouteObject[] = [
         path: PATH.binhLuan,
         element: <Binhluan></Binhluan>,
       },
-      {
-        path: PATH.userInfo,
-        element: <AccountUser></AccountUser>,
-      }
     ],
   },
   {
@@ -90,6 +88,18 @@ export const router: RouteObject[] = [
         element: <BinhLuanList />,
         path: PATH.commentList,
       },
+      {
+        element: <DatPhongList />,
+        path: PATH.datPhongList,
+      },
+      {
+        element: <AddDatPhong />,
+        path: PATH.addDatPhong,
+      },
     ],
+  },
+  {
+    path: PATH.userInfo,
+    element: <AccountUser></AccountUser>,
   },
 ];

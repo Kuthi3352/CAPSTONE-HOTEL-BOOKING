@@ -94,7 +94,7 @@ const HomeTemplate = () => {
                   offset={[35, 0]}
                   count={
                     roomPosition
-                      ? findPosition(roomPosition, Number(item.id))
+                      ? findPosition(roomPosition, item.id)
                       : undefined
                   }
                   size="default"
