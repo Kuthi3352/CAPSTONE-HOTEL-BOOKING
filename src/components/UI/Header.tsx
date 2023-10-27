@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { AuthLoginActions } from "store/Auth";
 import { getUserInfoLocal } from "utils";
-import {  LocalUser } from "types/AuthType";
+import { LocalUser } from "types/AuthType";
+import { Avatar, Button, Popover } from ".";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Header = () => {
             </div>
           </a>
         </div>
-        <div className="auth">
+        {/* <div className="auth">
           {isLogin ? (
             <div>
               <button className="authBtn">Hello {user?.userName} </button>
@@ -79,7 +80,37 @@ const Header = () => {
               </button>
             </div>
           )}
-        </div>
+        </div> */}
+        <Popover
+          content={
+            <div className="pb-[10px] px-[20px] w-full h-full">
+              <p className="my-16" />
+              <p
+                className="text-[18px] cursor-pointer tracking-[2px]"
+                onClick={() => {
+                  navigate(`${PATH.login}`);
+                }}
+              >
+                Đăng nhập
+              </p>
+              <p className="my-16" />
+              <p
+                className="text-[18px] cursor-pointer tracking-[2px]"
+                onClick={() => {
+                  navigate(`${PATH.register}`);
+                }}
+              >
+                Đăng kí
+              </p>
+            </div>
+          }
+          trigger="click"
+          arrow={false}
+        >
+          <Avatar size="large" className="!ml-24 !bg-pink-500">
+            <i className="fa-regular fa-user text-20"></i>
+          </Avatar>
+        </Popover>
       </div>
     </div>
   );

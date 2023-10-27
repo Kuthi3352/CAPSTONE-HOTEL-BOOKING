@@ -131,11 +131,10 @@ export const RoomDS = () => {
             data-bs-toggle="modal"
             data-bs-target="#exampleModal2"
             onClick={() => {
-              
               dispatch(EditRoomThunk(record.key));
             }}
           >
-            Edit
+            <i className="fa-regular fa-pen-to-square"></i>
           </Button>
           <EditRoom />
           <Button
@@ -149,7 +148,7 @@ export const RoomDS = () => {
               }
             }}
           >
-            Delete
+            <i className="fa-solid fa-trash"></i>
           </Button>
         </Space>
       ),

@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { BookingSchemas, BookingSchemasType } from "schemas/BookingSchemas";
 import { BookingThunk, getRoomDetailThunk } from "store/Room/thunk";
 import { getUserInfoLocal } from "utils";
-import { newValue } from "utils/toBookingData";
+import { newValue } from "utils";
 import cn from "classnames";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "components";
@@ -29,6 +29,7 @@ const RoomDetailTemplate = () => {
   const onSubmit: SubmitHandler<BookingSchemasType> = (value) => {
     const newvalue = newValue(value);
     dispatch(BookingThunk(newvalue));
+    console.log("text", value);
   };
 
   useEffect(() => {

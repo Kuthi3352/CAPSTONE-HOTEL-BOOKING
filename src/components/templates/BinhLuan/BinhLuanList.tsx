@@ -59,7 +59,7 @@ export const BinhLuanList = () => {
               toast.success("Xóa bình luận thành công");
             }}
           >
-            Delete
+            <i className="fa-solid fa-trash"></i>
           </Button>
         </Space>
       ),
