@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { GetBinhLuanThunk } from "store/BinhLuan";
 import styled from "styled-components";
-import { Rate } from "antd";
+import { BinhLuanTemplate } from ".";
+import { getUserInfoLocal } from "utils";
 
 export const DanhGiaTemplate = () => {
   const dispacth = useAppDispatch();
@@ -12,6 +13,7 @@ export const DanhGiaTemplate = () => {
     (state: RootState) => state.BinhLuanReducer
   );
   const params = useParams();
+  const data = getUserInfoLocal();
 
   useEffect(() => {
     dispacth(GetBinhLuanThunk(params.roomId));
@@ -133,33 +135,10 @@ export const DanhGiaTemplate = () => {
           </div>
           <div>
             <h2 className="comments-name text-right mt-4 xsM:!text-[14px] smM:text-[16px] ">
-              -Bình luận dưới tên-
+              -Đánh giá dưới tên {data?.userName}-
             </h2>
             <div className="comment_section-Item p-2">
-              <form>
-                <div>
-                  <textarea
-                    className="comment-control"
-                    rows={6}
-                    placeholder="Viết bình luận của bạn..."
-                  ></textarea>
-                </div>
-                <div className="mt-2 text-right">
-                  <span className="mr-10 text-[20px] mt-4 xsM:!text-[14px] smM:text-[16px] ">
-                    Đánh giá:
-                  </span>
-                  <Rate
-                    allowHalf
-                    defaultValue={2.5}
-                    className="mt-4 xsM:!text-[14px] smM:text-[16px] "
-                  />
-                </div>
-                <div className="text-right">
-                  <button className="!bg-red-400 !text-white !text-[18px] xsM:!text-[12px] smM:text-[14px] !p-[3px] rounded">
-                    Bình luận
-                  </button>
-                </div>
-              </form>
+              <BinhLuanTemplate />
             </div>
           </div>
         </div>

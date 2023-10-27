@@ -34,7 +34,7 @@ const RoomListTemplate = () => {
           <div>
             {roomListByPosition?.map((item) => {
               return (
-                <div>
+                <div key={item.id}>
                   <div className="text-center my-20 tracking-[3px] text-[20px] smM:!text-[13px] lgM:text-[16px] ">
                     {item.tenPhong}
                   </div>

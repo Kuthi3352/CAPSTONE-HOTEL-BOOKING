@@ -22,7 +22,7 @@ export const RegisterTemplate = () => {
 
   const onSubmit: SubmitHandler<RegisterSchemasType> = async (values) => {
     try {
-      console.log({ values });
+      
       await AuthServices.register(values);
       toast.success("Đăng kí thành công");
       navigate(PATH.login);

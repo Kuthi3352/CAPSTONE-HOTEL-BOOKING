@@ -12,6 +12,7 @@ export const BinhLuanThunk = createAsyncThunk(
   "BinhLuan",
   async (payload: BinhLuanType) => {
     const data = await BinhLuanServices.binhLuan(payload);
+
     return data.data.content;
   }
 );
@@ -21,7 +22,7 @@ export const DeleteBinhLuanThunk = createAsyncThunk(
   async (path: string, { dispatch }) => {
     const data = await BinhLuanServices.DeleteBinhLuan(path);
 
-    dispatch(DanhGiaThunk());
+    dispatch(GetBinhLuanThunk(path));
     return data.data.content;
   }
 );

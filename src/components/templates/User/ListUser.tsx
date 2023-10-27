@@ -135,7 +135,7 @@
 //   }
 // `;
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
 import { Space, Table } from "antd";
@@ -144,13 +144,17 @@ import {
   DeleteUserThunk,
   EditUserThunk,
   ListUserThunk,
+  ListUserActions,
 } from "store/DanhSachThanhVien";
-import { Button, ChinhSuaUser } from "components";
+import { Button, ChinhSuaUser, Input } from "components";
 import { DataType } from "types";
 import { toast } from "react-toastify";
 
 export const ListUser = () => {
-  const { listUser } = useSelector((state: RootState) => state.ListReducer);
+  const { listUser, searchUser } = useSelector(
+    (state: RootState) => state.ListReducer
+  );
+  const [nameValue, setnameValue] = useState<string>("");
 
   const columns: ColumnsType<DataType> = [
     {
@@ -197,7 +201,7 @@ export const ListUser = () => {
               dispatch(EditUserThunk(record.key));
             }}
           >
-            Edit
+            <i className="fa-regular fa-pen-to-square"></i>
           </Button>
           <ChinhSuaUser />
           <Button
@@ -207,14 +211,14 @@ export const ListUser = () => {
               toast.success("Xóa thành công");
             }}
           >
-            Delete
+            <i className="fa-solid fa-trash"></i>
           </Button>
         </Space>
       ),
     },
   ];
 
-  const data: DataType[] = listUser?.map((user) => {
+  const data: DataType[] = (searchUser ? searchUser : listUser)?.map((user) => {
     return {
       key: user.id,
       avatar: user.avatar,
@@ -232,6 +236,37 @@ export const ListUser = () => {
   return (
     <div>
       <h1 className="nd">Danh sách thành viên</h1>
+
+      <div className="flex !justify-start  search-input ">
+        <div className="w-full ">
+          <Input
+            className=""
+            placeholder="Tìm kiếm tên người dùng"
+            value={nameValue || ""}
+            onChange={(ev) => {
+              const value = ev.target.value;
+              setnameValue(value);
+            }}
+          />
+        </div>
+
+        <Button
+          htmlType="submit"
+          className=" mt-[8px] !border-red-500 !bg-red-500 !px-[10px] !h-[37px] !w-[50px]  mdM:!w-[30px] mdM:!h-[26px] "
+          onClick={() => {
+            if (nameValue !== "") {
+              const searchName = listUser?.filter((item) =>
+                item.name.includes(nameValue)
+              );
+              dispatch(ListUserActions.searchName(searchName));
+            } else {
+              dispatch(ListUserActions.searchName(undefined));
+            }
+          }}
+        >
+          <i className="fa-solid fa-magnifying-glass text-white"></i>
+        </Button>
+      </div>
       <Table columns={columns} dataSource={data} />
     </div>
   );
