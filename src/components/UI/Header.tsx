@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { AuthLoginActions } from "store/Auth";
 import { getUserInfoLocal } from "utils";
-import {  LocalUser } from "types/AuthType";
+import { LocalUser } from "types/AuthType";
 
 const Header = () => {
   const navigate = useNavigate();
