@@ -7,20 +7,22 @@ type AuthLoginInitialState = {
   token?: string;
   AuthLogin?: AuthType;
   isLogin?: boolean;
+  isFetchingLogin?: boolean;
 };
 const initialState: AuthLoginInitialState = {
   token: getAccessToken(),
-  isLogin:false
+  isLogin: false,
+  isFetchingLogin: false,
 };
 const AuthLoginSlice = createSlice({
   name: "AuthLogin",
   initialState,
   reducers: {
-    getLogin: (state)=>{
-      const accessToken = getAccessToken()
-      if(accessToken){
-        state.isLogin = true
-        state.AuthLogin = getUserInfoLocal()
+    getLogin: (state) => {
+      const Token = getAccessToken();
+      if (Token) {
+        state.isLogin = true;
+        state.AuthLogin = getUserInfoLocal();
       }
     },
     logOut: (state) => {
@@ -43,6 +45,7 @@ const AuthLoginSlice = createSlice({
       localStorage.setItem("ACCESSTOKEN", payload.token);
       state.AuthLogin = payload;
       state.isLogin = true;
+      state.isFetchingLogin = false;
     });
   },
 });

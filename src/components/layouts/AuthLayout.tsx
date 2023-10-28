@@ -1,6 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { getAccessToken } from "utils";
 
 export const AuthLayout = () => {
+  const token = getAccessToken();
+  if (token) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="AuthLayout h-full">
       <div className="h-screen w-screen relative ">

@@ -113,7 +113,19 @@ h1 {
   margin-bottom: 26px;
 
 }
-
+.popover-user{
+  padding: 5px 43px;
+  background-color: white !important;
+  border-radius: 20px;
+ letter-spacing: 3px;
+ font-size: 18px;
+ color: black!important;
+ transition: 0.5s !important;
+ &:hover{
+  background-color: #f43f5e !important;
+  color: white !important;
+ }
+}
 
 /* ---------- */
 /* HEADER BAR */
