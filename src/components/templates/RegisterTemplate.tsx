@@ -22,7 +22,6 @@ export const RegisterTemplate = () => {
 
   const onSubmit: SubmitHandler<RegisterSchemasType> = async (values) => {
     try {
-      
       await AuthServices.register(values);
       toast.success("Đăng kí thành công");
       navigate(PATH.login);
@@ -33,28 +32,25 @@ export const RegisterTemplate = () => {
 
   return (
     <form className="text-white" onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="font-600 text-30">Đăng ký</h2>
+      <h2 className="font-600 text-30 text-center">Đăng ký</h2>
+      <p className="text-[16px] text-white">Tên người dùng</p>
       <Input
-        className="mt-16"
-        label="Tên người dùng"
         placeholder="Tên người dùng"
         id="name"
         name="name"
         error={errors?.name?.message}
         register={register}
       />
+      <p className="text-[16px] text-white">Email</p>
       <Input
-        className="mt-16"
-        label="Email"
         placeholder="abcxyz@gmail.com"
         id="email"
         name="email"
         error={errors?.email?.message}
         register={register}
       />
+      <p className="text-[16px] text-white">Password</p>
       <Input
-        className="mt-16"
-        label="Mật Khẩu"
         placeholder="Nhập Mật Khẩu"
         id="password"
         name="password"
@@ -62,26 +58,25 @@ export const RegisterTemplate = () => {
         error={errors?.password?.message}
         register={register}
       />
+      <p className="text-[16px] text-white">Số điện thoại</p>
       <Input
-        className="mt-16"
-        label="Số Điện Thoại"
         placeholder="Nhập Số Điện Thoại"
         id="phone"
         name="phone"
         error={errors?.phone?.message}
         register={register}
       />
+      <p className="text-[16px] text-white">Ngày sinh</p>
       <Input
-        className="mt-16"
-        label="Ngày Sinh"
         id="birthday"
         name="birthday"
         type="date"
         error={errors?.birthday?.message}
         register={register}
       />
-      <div className="mt-16">
-        <label>Giới Tính</label>
+
+      <div>
+        <p className="text-[16px] text-white">Giới tính</p>
         <select
           className="p-10 mt-8 w-full text-white rounded-6 bg-[#333]"
           id="gender"
