@@ -34,19 +34,26 @@ const AuthLoginSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(AuthLoginThunk.fulfilled, (state, { payload }) => {
-      localStorage.setItem(
-        "USER",
-        JSON.stringify({
-          id: payload.user.id,
-          userName: payload.user.name,
-        })
-      );
-      localStorage.setItem("ACCESSTOKEN", payload.token);
-      state.AuthLogin = payload;
-      state.isLogin = true;
-      state.isFetchingLogin = false;
-    });
+    builder
+      .addCase(AuthLoginThunk.pending, (state) => {
+        state.isFetchingLogin = true;
+      })
+      .addCase(AuthLoginThunk.fulfilled, (state, { payload }) => {
+        localStorage.setItem(
+          "USER",
+          JSON.stringify({
+            id: payload.user.id,
+            userName: payload.user.name,
+          })
+        );
+        localStorage.setItem("ACCESSTOKEN", payload.token);
+        state.AuthLogin = payload;
+        state.isLogin = true;
+        state.isFetchingLogin = false;
+      })
+      .addCase(AuthLoginThunk.rejected, (state) => {
+        state.isFetchingLogin = false;
+      });
   },
 });
 export const { actions: AuthLoginActions, reducer: AuthLoginReducer } =
