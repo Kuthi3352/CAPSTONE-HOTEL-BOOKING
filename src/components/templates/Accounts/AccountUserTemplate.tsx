@@ -1,15 +1,11 @@
-// import { toast } from "react-toastify";
-// import { Input, Button } from "components";
-// import { ListUserServices } from "services";
-
-import { AccountInfo, BookingHistory, Tabs } from "components";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ListUserServices } from "services";
-import { UploadOutlined } from "@ant-design/icons";
 import { RootState, useAppDispatch } from "store";
 import { EditUserThunk } from "store/DanhSachThanhVien";
+import { ListUserServices } from "services";
 import { getUserInfoLocal } from "utils";
+import { AccountInfo, BookingHistory, Tabs } from "components";
+import { UploadOutlined } from "@ant-design/icons";
 
 const AccountUserTemplate = () => {
   const localUser = getUserInfoLocal();

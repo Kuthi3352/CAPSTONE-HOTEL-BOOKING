@@ -441,7 +441,7 @@ font-weight: 600;
   padding: 30px;
   border: 1px solid #33333343;
   border-radius: 10px;
-  height: auto;
+  height: 550px;
   transition: 0.5s;
   #ngayDen,
   #ngayDi,

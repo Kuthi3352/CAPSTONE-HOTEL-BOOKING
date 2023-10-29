@@ -20,5 +20,5 @@ export type BinhLuanDataType = {
   maNguoiBinhLuan: number;
   ngayBinhLuan: string;
   noiDung: string;
-  saoBinhLuan: number;
+  saoBinhLuan:number ;
 };

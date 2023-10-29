@@ -1,5 +1,4 @@
-import { BinhLuanTemplate } from "components";
-
+import { DanhGiaTemplate } from "components/templates/DanhGiaTemplate";
 export const Binhluan = () => {
-  return <BinhLuanTemplate />;
+  return <DanhGiaTemplate />;
 };

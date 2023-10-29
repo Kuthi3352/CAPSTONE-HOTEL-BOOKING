@@ -10,8 +10,6 @@ export const AdminSchemas = z.object({
   password: z.string().nonempty("Vui lòng nhập mật khẩu"),
   phone: z.string().nonempty("Vui lòng nhập số điện thoại"),
   birthday: z.string().nonempty("Vui lòng chọn ngày sinh"),
-  gender: z.enum(["true", "false"]),
-  role: z.string().default("ADMIN"),
 });
 
 export type AdminSchemasType = z.infer<typeof AdminSchemas>;

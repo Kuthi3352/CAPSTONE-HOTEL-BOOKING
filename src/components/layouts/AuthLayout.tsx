@@ -1,9 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getAccessToken } from "utils";
+import { getAccessToken, wait } from "utils";
 
 export const AuthLayout = () => {
   const token = getAccessToken();
   if (token) {
+    async () =>
+      await wait()
     return <Navigate to="/" />;
   }
   return (
