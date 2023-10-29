@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RoomPosition, RoomType } from "types/RoomType";
+import { BookingRoom, RoomPosition, RoomType } from "types/RoomType";
 import {
-  BookingThunk,
+  BookingHistoryThunk,
   EditRoomThunk,
   getRoomDetailThunk,
   getRoomListByPositionThunk,
@@ -15,6 +15,7 @@ type initialStateType = {
   currentRoom?: RoomType;
   roomListByPosition?: RoomType[];
   EditRoom?: RoomType;
+  bookingHistory?: BookingRoom[];
 };
 
 const initialState: initialStateType = {};
@@ -40,9 +41,12 @@ const RoomSlice = createSlice({
       .addCase(EditRoomThunk.fulfilled, (state, { payload }) => {
         state.EditRoom = payload;
       })
-      .addCase(BookingThunk.fulfilled,()=>{
-        console.log('dat phong thanh cong');
-        
+      // .addCase(BookingThunk.fulfilled,()=>{
+      //   console.log('dat phong thanh cong');
+
+      // });
+      .addCase(BookingHistoryThunk.fulfilled, (state, { payload }) => {
+        state.bookingHistory = payload;
       });
   },
 });

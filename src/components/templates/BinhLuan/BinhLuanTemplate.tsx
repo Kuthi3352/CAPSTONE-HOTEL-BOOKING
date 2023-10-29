@@ -9,10 +9,13 @@ import { useParams } from "react-router-dom";
 import { getUserInfoLocal } from "utils";
 import { Textarea } from "components";
 import { commentValue } from "utils";
+import { useEffect } from "react";
+import { GetBinhLuanThunk } from "store/BinhLuan";
 
 export const BinhLuanTemplate = () => {
   const dispatch = useAppDispatch();
-
+  const params = useParams();
+  const dispacth = useAppDispatch();
   const { roomId } = useParams();
   const data = getUserInfoLocal();
   const { handleSubmit, register } = useForm<BinhLuanType>({
@@ -23,7 +26,9 @@ export const BinhLuanTemplate = () => {
     dispatch(BinhLuanThunk(valueBL));
     toast.success("Đánh giá thành công");
   };
-
+  useEffect(() => {
+    dispacth(GetBinhLuanThunk(params.roomId));
+  }, [dispacth, params.roomId]);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input

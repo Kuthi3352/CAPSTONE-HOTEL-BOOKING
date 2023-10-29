@@ -3,24 +3,24 @@ import { AddLocationSchemaType } from "schemas";
 import { PositionType } from "types/PositinonType";
 
 const api = apiInstance({
-  baseURL: "https://airbnbnew.cybersoft.edu.vn/api",
+  baseURL: import.meta.env.VITE_POSITION_API,
 });
 
 export const PositionService = {
-  getPosition: () => api.get<ApiResponse<PositionType[]>>("/vi-tri"),
+  getPosition: () => api.get<ApiResponse<PositionType[]>>(""),
   EditLocation: (path: string) =>
-    api.get<ApiResponse<PositionType>>(`/vi-tri/${path}`),
+    api.get<ApiResponse<PositionType>>(`/${path}`),
   UpdateLocation: (path: string, payload: PositionType) => {
-    return api.put<ApiResponse<PositionType>>(`/vi-tri/${path}`, payload);
+    return api.put<ApiResponse<PositionType>>(`/${path}`, payload);
   },
   DeleteLocation: (path: string) =>
-    api.delete<ApiResponse<PositionType>>(`/vi-tri/${path}`),
+    api.delete<ApiResponse<PositionType>>(`/${path}`),
   AddLocation: (payload: AddLocationSchemaType) => {
-    return api.post<ApiResponse<AddLocationSchemaType>>("/vi-tri", payload);
+    return api.post<ApiResponse<AddLocationSchemaType>>("", payload);
   },
   UploadLocation: (query: string, formData: FormData) =>
     api.post<ApiResponse<PositionType>>(
-      `/vi-tri/upload-hinh-vitri?maViTri=${query}`,
+      `/upload-hinh-vitri?maViTri=${query}`,
       formData
     ),
 };

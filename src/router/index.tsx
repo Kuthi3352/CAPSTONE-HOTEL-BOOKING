@@ -41,6 +41,10 @@ export const router: RouteObject[] = [
         path: PATH.binhLuan,
         element: <Binhluan></Binhluan>,
       },
+      {
+        path: PATH.userInfo,
+        element: <AccountUser></AccountUser>,
+      },
     ],
   },
   {
@@ -97,9 +101,5 @@ export const router: RouteObject[] = [
         path: PATH.addDatPhong,
       },
     ],
-  },
-  {
-    path: PATH.userInfo,
-    element: <AccountUser></AccountUser>,
   },
 ];

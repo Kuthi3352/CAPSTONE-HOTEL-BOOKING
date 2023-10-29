@@ -11,6 +11,6 @@ export const AccountSchema = z.object({
   phone: z.string().nonempty("Vui lòng nhập số điện thoại"),
   birthday: z.string().nonempty("Vui lòng chọn ngày sinh"),
   gender: z.boolean().default(true),
-  role: z.string().default("USER"),
+  role: z.string().nonempty("Vui lòng chọn nhập quyền hạn"),
 });
 export type AccountSchemaType = z.infer<typeof AccountSchema>;

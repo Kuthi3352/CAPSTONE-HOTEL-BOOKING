@@ -10,9 +10,9 @@ export const DanhGiaThunk = createAsyncThunk("DanhGia", async () => {
 
 export const BinhLuanThunk = createAsyncThunk(
   "BinhLuan",
-  async (payload: BinhLuanType) => {
+  async (payload: BinhLuanType, { dispatch }) => {
     const data = await BinhLuanServices.binhLuan(payload);
-
+    dispatch(DanhGiaThunk());
     return data.data.content;
   }
 );
@@ -22,7 +22,7 @@ export const DeleteBinhLuanThunk = createAsyncThunk(
   async (path: string, { dispatch }) => {
     const data = await BinhLuanServices.DeleteBinhLuan(path);
 
-    dispatch(GetBinhLuanThunk(path));
+    dispatch(DanhGiaThunk());
     return data.data.content;
   }
 );
@@ -31,6 +31,7 @@ export const GetBinhLuanThunk = createAsyncThunk(
   "BinhLuan/getBinhLuan",
   async (path: string) => {
     const data = await BinhLuanServices.getBinhLuan(path);
+
     return data.data.content;
   }
 );

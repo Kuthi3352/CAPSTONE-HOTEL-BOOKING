@@ -36,6 +36,14 @@ export type BookingRoom = {
   soLuongKhach?: number;
   maNguoiDung?: number;
 };
+export type BookingDataRoom = {
+  key?: number;
+  maPhong?: number;
+  ngayDen?: string;
+  ngayDi?: string;
+  soLuongKhach?: number;
+  maNguoiDung?: number;
+};
 export type RoomDSType = {
   key?: string;
   tenPhong?: string;
