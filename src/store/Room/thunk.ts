@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { RoomListService, RoomService } from "services";
+import { toast } from "react-toastify";
+import { RoomListService } from "services";
 import { BookingRoom, RoomType } from "types/RoomType";
 import { handleError } from "utils";
 
@@ -15,7 +16,7 @@ export const getRoomThunk = createAsyncThunk(
 export const getRoomPositionThunk = createAsyncThunk(
   "QuanLyPhong/vitri",
   async () => {
-    const data = await RoomService.getPosition();
+    const data = await RoomListService.getPosition();
     // console.log(data.data.content);
     return data.data.content;
   }
@@ -66,11 +67,18 @@ export const DeleteRoomThunk = createAsyncThunk(
 export const BookingThunk = createAsyncThunk(
   "QuanLyPhong/booking",
   async (payload: BookingRoom) => {
-    await RoomService.Booking(payload);
+    await RoomListService.Booking(payload);
     try {
-      alert("Đặt phòng thành công");
+      toast.success("Đặt phòng thành công");
     } catch (error) {
       return handleError(error);
     }
+  }
+);
+export const BookingHistoryThunk = createAsyncThunk(
+  "QuanLyPhong/bookingHistory",
+  async (path: string) => {
+    const data = await RoomListService.BookingHistory(path);
+    return data.data.content;
   }
 );

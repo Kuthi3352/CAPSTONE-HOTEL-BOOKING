@@ -29,7 +29,6 @@ const RoomDetailTemplate = () => {
   const onSubmit: SubmitHandler<BookingSchemasType> = (value) => {
     const newvalue = newValue(value);
     dispatch(BookingThunk(newvalue));
-    console.log("text", value);
   };
 
   useEffect(() => {

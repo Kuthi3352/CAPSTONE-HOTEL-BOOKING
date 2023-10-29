@@ -64,7 +64,7 @@ const Header = () => {
                   <p
                     className="cursor-pointer popover-user "
                     onClick={() => {
-                      navigate(`${PATH.ManagerAdmin}`);
+                      navigate(`${PATH.listUser}`);
                     }}
                   >
                     ADMIN PAGE

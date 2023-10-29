@@ -21,10 +21,10 @@ h3 {
 .edit-btn {
   padding: 2px 5px;
   outline: none;
-  border-radius: 6px;
+  border-radius: 3px;
   margin: 4px auto;
-  width: 70px;
-  border: 1px solid rgba(0, 0, 0, 0.27);
+  width: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.61);
 }
 input {
   outline: none;

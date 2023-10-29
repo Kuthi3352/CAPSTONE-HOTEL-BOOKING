@@ -71,7 +71,7 @@ export const AdminTemplate = () => {
         <Sider
           trigger={null}
           collapsible
-          collapsed={collapsed}
+          collapsed={!collapsed}
           width="250px"
           theme="light"
         >

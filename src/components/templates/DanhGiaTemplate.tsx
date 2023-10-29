@@ -4,17 +4,33 @@ import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { GetBinhLuanThunk } from "store/BinhLuan";
 import styled from "styled-components";
-import { BinhLuanTemplate } from ".";
 import { getUserInfoLocal } from "utils";
+import { Input } from "components";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { BinhLuanThunk } from "store/BinhLuan";
+import { BinhLuanType } from "types";
+import { Rate } from "antd";
+import { toast } from "react-toastify";
+import { Textarea } from "components";
+import { commentValue } from "utils";
 
 export const DanhGiaTemplate = () => {
   const dispacth = useAppDispatch();
+  const { roomId } = useParams();
   const { getBinhLuan } = useSelector(
     (state: RootState) => state.BinhLuanReducer
   );
   const params = useParams();
   const data = getUserInfoLocal();
-
+  const { handleSubmit, register } = useForm<BinhLuanType>({
+    mode: "onSubmit",
+  });
+  const onSubmit: SubmitHandler<BinhLuanType> = (value) => {
+    const valueBL = commentValue(value);
+    dispacth(BinhLuanThunk(valueBL));
+    toast.success("Cảm ơn bạn đã đánh giá");
+    dispacth(GetBinhLuanThunk(params.roomId));
+  };
   useEffect(() => {
     dispacth(GetBinhLuanThunk(params.roomId));
   }, [dispacth, params.roomId]);
@@ -106,11 +122,11 @@ export const DanhGiaTemplate = () => {
               return (
                 <div className="mb-2" key={item.id}>
                   <div className="comment-content ">
-                    <div className="w-[15%] xsM:!w-[35%] mdM:w-[30%]">
+                    <div className="w-[15%] xsM:!w-[35%] mdM:w-[30%] mr-[20px]">
                       <img
                         src={item.avatar}
                         alt="avatar"
-                        className="w-[80%] overflow-hidden shadow-lg rounded-full"
+                        className="w-[100px] h-[100px] overflow-hidden shadow-lg rounded-[50%]"
                       />
                     </div>
                     <div className="w-[85%]  mdM:w-[70%] ">
@@ -138,7 +154,63 @@ export const DanhGiaTemplate = () => {
               -Đánh giá dưới tên {data?.userName}-
             </h2>
             <div className="comment_section-Item p-2">
-              <BinhLuanTemplate />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Input
+                  className="mt-16 none"
+                  label="mã phòng"
+                  id="maPhong"
+                  name="maPhong"
+                  register={register}
+                  value={roomId}
+                />
+                <Input
+                  className="mt-16 none"
+                  label="mã người bình luận"
+                  id="maNguoiBinhLuan"
+                  name="maNguoiBinhLuan"
+                  register={register}
+                  value={data?.id}
+                />
+                <Input
+                  className="mt-16 none"
+                  label="ngày bình luận"
+                  id="ngayBinhLuan"
+                  name="ngayBinhLuan"
+                  register={register}
+                />
+                <Input
+                  className="mt-16 none"
+                  label="ngày bình luận"
+                  id="saoBinhLuan"
+                  name="saoBinhLuan"
+                  register={register}
+                />
+
+                <div>
+                  <Textarea
+                    className="comment-control !w-full !h-[250px]"
+                    register={register}
+                    id="noiDung"
+                    name="noiDung"
+                    placeholder="Viết đánh giá của bạn..."
+                  ></Textarea>
+                </div>
+                <div className="mt-2 text-right">
+                  <span className="mr-10 text-[20px] mt-4 xsM:!text-[14px] smM:text-[16px] ">
+                    Đánh giá:
+                  </span>
+                  <Rate
+                    allowHalf
+                    defaultValue={4}
+                    className="mt-4 xsM:!text-[14px] smM:text-[16px] "
+                  />
+                </div>
+                <div className="text-right">
+                  <button className="!bg-red-400 !text-white !text-[18px] xsM:!text-[12px] smM:text-[14px] !p-[3px] rounded">
+                    Đánh giá
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
