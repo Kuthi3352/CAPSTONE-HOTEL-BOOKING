@@ -1,11 +1,11 @@
-import Table, { ColumnsType } from "antd/es/table";
-
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
 import { BookingHistoryThunk } from "store/Room/thunk";
 import { BookingDataRoom } from "types/RoomType";
 import { getUserInfoLocal } from "utils";
+import Table, { ColumnsType } from "antd/es/table";
+
 
 export const BookingHistory = () => {
   const localUser = getUserInfoLocal();
@@ -15,28 +15,32 @@ export const BookingHistory = () => {
   );
   const columns: ColumnsType<BookingDataRoom> = [
     {
-      title: "Mã phòng",
+      title: <p className="text-center">Mã phòng</p>,
       dataIndex: "maPhong",
       key: "maPhong",
-      render: (text) => <p>{text}</p>,
+      render: (text) => <p className="text-center">{text}</p>,
     },
     {
       title: "Ngày đến",
       dataIndex: "ngayDen",
       key: "ngayDen",
-      render: (text) => <p>{text}</p>,
+      render: (text) => <p style={{
+        width: "80px"
+      }}>{text.slice(0, 10)}</p>,
     },
     {
       title: "Ngày đi",
       dataIndex: "ngayDi",
       key: "ngayDi",
-      render: (text) => <p>{text}</p>,
+      render: (text) => <p style={{
+        width: "80px"
+      }}>{text.slice(0, 10)}</p>,
     },
     {
-      title: "Số khách",
+      title: <p className="text-center">Số khách</p>,
       dataIndex: "soLuongKhach",
       key: "soLuongKhach",
-      render: (text) => <p>{text}</p>,
+      render: (text) => <p className="text-center">{text}</p>,
     },
   ];
   const data: BookingDataRoom[] = bookingHistory?.map((item) => {

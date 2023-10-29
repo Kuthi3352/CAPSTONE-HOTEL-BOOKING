@@ -1,21 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { GetBinhLuanThunk } from "store/BinhLuan";
 import styled from "styled-components";
 import { getUserInfoLocal } from "utils";
-import { Input } from "components";
+import { Input, Rating } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BinhLuanThunk } from "store/BinhLuan";
 import { BinhLuanType } from "types";
-import { Rate } from "antd";
 import { toast } from "react-toastify";
 import { Textarea } from "components";
 import { commentValue } from "utils";
 
 export const DanhGiaTemplate = () => {
-  const dispacth = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const [rating, setRating] = useState<number>()
   const { roomId } = useParams();
   const { getBinhLuan } = useSelector(
     (state: RootState) => state.BinhLuanReducer
@@ -26,14 +26,14 @@ export const DanhGiaTemplate = () => {
     mode: "onSubmit",
   });
   const onSubmit: SubmitHandler<BinhLuanType> = (value) => {
-    const valueBL = commentValue(value);
-    dispacth(BinhLuanThunk(valueBL));
+    const valueBL = commentValue(value, rating);
+    dispatch(BinhLuanThunk(valueBL));
     toast.success("Cảm ơn bạn đã đánh giá");
-    dispacth(GetBinhLuanThunk(params.roomId));
+    dispatch(GetBinhLuanThunk(params.roomId));
   };
   useEffect(() => {
-    dispacth(GetBinhLuanThunk(params.roomId));
-  }, [dispacth, params.roomId]);
+    dispatch(GetBinhLuanThunk(params.roomId));
+  }, [dispatch, params.roomId]);
   return (
     <Container>
       <h2 className="pt-20 mt-20 border-t-[1px]">
@@ -135,7 +135,7 @@ export const DanhGiaTemplate = () => {
                       </div>
                       <div className="font-normal text-[14px] text-gray-500 xsM:!text-[11px]">
                         {" "}
-                        {item.ngayBinhLuan}
+                        {item.ngayBinhLuan.slice(0, 10)}
                       </div>
                       <div className="!my-20 text-[18px]  smM:text-[14px]">
                         {item.noiDung}
@@ -179,13 +179,13 @@ export const DanhGiaTemplate = () => {
                   register={register}
                 />
                 <Input
-                  className="mt-16 none"
-                  label="ngày bình luận"
-                  id="saoBinhLuan"
+
                   name="saoBinhLuan"
+                  id="saoBinhLuan"
+                  type="number"
+                  className="mt-4 xsM:!text-[14px] smM:text-[16px] none"
                   register={register}
                 />
-
                 <div>
                   <Textarea
                     className="comment-control !w-full !h-[250px]"
@@ -199,10 +199,10 @@ export const DanhGiaTemplate = () => {
                   <span className="mr-10 text-[20px] mt-4 xsM:!text-[14px] smM:text-[16px] ">
                     Đánh giá:
                   </span>
-                  <Rate
-                    allowHalf
-                    defaultValue={4}
-                    className="mt-4 xsM:!text-[14px] smM:text-[16px] "
+                  <Rating
+                    onChange={value => {
+                      setRating(value)
+                    }}
                   />
                 </div>
                 <div className="text-right">

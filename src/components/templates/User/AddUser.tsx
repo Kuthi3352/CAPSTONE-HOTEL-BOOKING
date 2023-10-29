@@ -6,8 +6,12 @@ import { Input, Button } from "components";
 import { AdminSchemas, AdminSchemasType } from "schemas";
 import { ListUserServices } from "services";
 import { handleError } from "utils";
+import { submitAdminForm } from "utils/submitAdminForm";
+import { useState } from "react";
 
 export const AddUser = () => {
+  const [gender, setGender] = useState<string>()
+  const [role, setRole] = useState<string>()
   const {
     handleSubmit,
     register,
@@ -16,11 +20,10 @@ export const AddUser = () => {
     mode: "onChange",
     resolver: zodResolver(AdminSchemas),
   });
-  const onSubmit: SubmitHandler<AdminSchemasType> = async (valuee) => {
-    console.log("valuee", valuee);
-
+  const onSubmit: SubmitHandler<AdminSchemasType> = async (value) => {
+    const newFormAdmin = submitAdminForm(value, role, gender)
     try {
-      await ListUserServices.Admin(valuee);
+      await ListUserServices.Admin(newFormAdmin);
       toast.success("Đăng kí thành công");
     } catch (err) {
       handleError(err);
@@ -77,37 +80,17 @@ export const AddUser = () => {
               error={errors?.birthday?.message}
               register={register}
             />
-            <Input
-              className="mt-16"
-              label="role"
-              id="role"
-              name="role"
-              error={errors?.role?.message}
-              register={register}
-            />
-
-            {/* <div className="mt-16">
-              <label>Chức vụ</label>
-              <select
-                className="p-10 mt-8 w-full text-black rounded-6  bg-[#d1d0d0]"
-                id="role"
-                name="role"
-              >
+            <div className="ml-5 smM:!ml-0">
+              <p> Chức vụ</p>
+              <select className="mt-16" onChange={(event) => { setRole(event.target.value) }}>
                 <option value="ADMIN">ADMIN</option>
                 <option value="USER">USER</option>
               </select>
-            </div> */}
-            <div className="mt-16">
-              <label>Giới Tính</label>
-              <select
-                className="p-10 mt-8 w-full text-black rounded-6  bg-[#d1d0d0]"
-                id="gender"
-                name="gender"
-              >
-                <option value="true">Nam</option>
-                <option value="false">Nữ</option>
-              </select>
             </div>
+            <select className="mt-16" onChange={(event) => { setGender(event.target.value) }}>
+              <option value="true">Nam</option>
+              <option value="false">Nữ</option>
+            </select>
           </div>
         </div>
 

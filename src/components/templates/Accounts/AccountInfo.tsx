@@ -17,8 +17,6 @@ export const AccountInfo = () => {
   const onSubmit: SubmitHandler<AccountSchemaType> = async (
     value: AccountSchemaType
   ) => {
-    console.log(value);
-
     dispatch(UpdateUserThunk({ path: EditUser?.id, payload: value }));
     toast.success("Cập nhật thành công");
   };
@@ -54,7 +52,14 @@ export const AccountInfo = () => {
           <div>
             <p className="account__input">Quyền hạn</p>
 
-            <Input id="role" name="role" register={register} />
+            <select
+              className="p-10 mt-8 w-full text-black rounded-6  bg-[#d1d0d0]"
+              id="role"
+              name="role"
+            >
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
           </div>
         </div>
       </div>

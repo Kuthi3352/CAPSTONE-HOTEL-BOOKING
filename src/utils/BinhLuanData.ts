@@ -1,13 +1,15 @@
 import { BinhLuanType } from "types";
 
-export const commentValue = (value: BinhLuanType) => {
+export const commentValue = (value: BinhLuanType, newDanhGia:number) => {
+  const date = new Date()
   const commentValue: BinhLuanType = {
     id: value.id,
     maPhong: Number(value.maPhong),
     maNguoiBinhLuan: Number(value.maNguoiBinhLuan),
-    ngayBinhLuan: value.ngayBinhLuan,
+    ngayBinhLuan: date.toDateString(),
     noiDung: value.noiDung,
-    saoBinhLuan: Number(value.saoBinhLuan),
+    saoBinhLuan: newDanhGia,
+    
   };
   return commentValue;
 };
