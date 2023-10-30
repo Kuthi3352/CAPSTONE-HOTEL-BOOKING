@@ -453,6 +453,7 @@ font-weight: 600;
     transform: translateY(-2px);
   }
   .booking-btn {
+    
     padding: 20px 20px;
     margin-top: 15px;
     border-radius: 6px;
@@ -467,6 +468,7 @@ font-weight: 600;
 }
 
 .Pbooking{
+  text-align: center;
   letter-spacing: 2px;
   @media(max-width:1679px){
     font-size: 14px;
