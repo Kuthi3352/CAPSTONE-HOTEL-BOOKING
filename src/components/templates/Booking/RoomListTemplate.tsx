@@ -42,12 +42,10 @@ const RoomListTemplate = () => {
             {roomListByPosition?.map((item) => {
               return (
                 <div key={item.id}>
-                  <div className="text-center my-20 tracking-[3px] text-[20px] smM:!text-[13px] lgM:text-[16px] ">
-                    {item.tenPhong}
-                  </div>
+                
                   <Card
                     key={item.id}
-                    className="card"
+                    className="card !mb-9"
                     hoverable
                     cover={
                       <img
@@ -55,6 +53,7 @@ const RoomListTemplate = () => {
                         src={item.hinhAnh}
                         className="!rounded-[8px] !h-[170px]"
                       />
+                      
                     }
                     onClick={async () => {
                       const path = generatePath(PATH.roomDetail, {
@@ -63,7 +62,11 @@ const RoomListTemplate = () => {
                       await wait(1000);
                       navigate(path);
                     }}
-                  ></Card>
+                  >
+                      <div className="text-center my-20 tracking-[3px] text-[20px] smM:!text-[13px] lgM:text-[16px] ">
+                    {item.tenPhong}
+                  </div>
+                  </Card>
                 </div>
               );
             })}

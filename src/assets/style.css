@@ -45,6 +45,11 @@ input {
 }
 .ant-card-body {
   padding: 10px !important;
+  height: 150px!important;
+
+}
+.ant-card{
+  min-height: 250px!important;
 }
 .card h3 {
   font-weight: 34px;

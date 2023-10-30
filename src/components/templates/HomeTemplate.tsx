@@ -85,7 +85,7 @@ const HomeTemplate = () => {
       <div className="room-list">
         <h1 className="text-center theme ">Our Room</h1>
         <div className="Our"></div>
-        <div className="grid grid-cols-4 gap-4 xsM:!grid-cols-1 smM:!grid-cols-2 lgM:grid-cols-3">
+        <div className="grid grid-cols-4 !min-h-[400px] gap-4 xsM:!grid-cols-1 smM:!grid-cols-2 lgM:grid-cols-3">
           {roomList?.map((item) => {
             return (
               <Card
