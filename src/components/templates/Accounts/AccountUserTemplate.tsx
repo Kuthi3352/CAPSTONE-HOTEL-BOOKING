@@ -13,11 +13,13 @@ const AccountUserTemplate = () => {
   const { EditUser } = useSelector((state: RootState) => state.ListReducer);
   const [photoUpload, setPhotoUpload] = useState<File>();
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     const formData = new FormData();
     formData.append("formFile", photoUpload);
-    ListUserServices.UploadUser(formData);
+    await ListUserServices.UploadUser(formData);
+    dispatch(EditUserThunk(localUser?.id));
   };
+
   useEffect(() => {
     dispatch(EditUserThunk(localUser?.id));
   }, [dispatch, localUser.id]);
@@ -47,7 +49,6 @@ const AccountUserTemplate = () => {
                   type="button"
                   onClick={() => {
                     handleUpload();
-                    dispatch(EditUserThunk(localUser?.id));
                   }}
                 >
                   <UploadOutlined />

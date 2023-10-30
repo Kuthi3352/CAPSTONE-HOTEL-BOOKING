@@ -1,6 +1,5 @@
-// import { AccountSchema, AccountSchemaType } from "schemas";
 import { useForm, SubmitHandler } from "react-hook-form";
-
+import { useState } from "react";
 import { Button, Input } from "components";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
@@ -8,8 +7,12 @@ import { useEffect } from "react";
 import { ListUserType } from "types/ListUserType";
 import { UpdateUserThunk } from "store/DanhSachThanhVien";
 import { toast } from "react-toastify";
+import { submitAdminForm } from "utils/submitAdminForm";
+
 export const ChinhSuaUser = () => {
   const dispatch = useAppDispatch();
+  const [gender, setGender] = useState<string>();
+  const [role, setRole] = useState<string>();
   const { EditUser } = useSelector((state: RootState) => state.ListReducer);
   const {
     reset,
@@ -19,8 +22,10 @@ export const ChinhSuaUser = () => {
   } = useForm<ListUserType>({
     mode: "onChange",
   });
-  const onSubmit: SubmitHandler<ListUserType> = (value: ListUserType) => {
-    dispatch(UpdateUserThunk({ path: EditUser?.id, payload: value }));
+
+  const onSubmit: SubmitHandler<ListUserType> = async (value) => {
+    const newForm = submitAdminForm(value, role, gender);
+    dispatch(UpdateUserThunk({ path: EditUser?.id, payload: newForm }));
     toast.success("Cập nhật thành công");
   };
   useEffect(() => {
@@ -53,7 +58,7 @@ export const ChinhSuaUser = () => {
             <p className="font-bold text-orange-500 flex justify-start">
               Mã khách hàng
             </p>
-            <Input id="id" name="id" register={register} />
+            <Input id="id" name="id" register={register} disabled />
 
             <p className="font-bold text-orange-500  flex justify-start">
               Tên Người Dùng
@@ -66,7 +71,27 @@ export const ChinhSuaUser = () => {
             <p className="font-bold text-orange-500  flex justify-start">
               Role
             </p>
-            <Input id="role" name="role" register={register} />
+            <select
+              className="p-10 mt-8 w-full text-black rounded-6 bg-[#d1d0d0]"
+              onChange={(event) => {
+                setRole(event.target.value);
+              }}
+            >
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+            <p className="font-bold text-orange-500  flex justify-start none">
+              Giới tính
+            </p>
+            <select
+              className="p-10 mt-8 w-full text-black rounded-6 bg-[#d1d0d0] none"
+              onChange={(event) => {
+                setGender(event.target.value);
+              }}
+            >
+              <option value="true">Nam</option>
+              <option value="false">Nữ</option>
+            </select>
           </div>
           <div className="modal-footer">
             <Button

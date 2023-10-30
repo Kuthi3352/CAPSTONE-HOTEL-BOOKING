@@ -18,7 +18,6 @@ export const EditLocation = () => {
     mode: "onChange",
   });
   const onSubmit: SubmitHandler<PositionType> = (value: PositionType) => {
-    console.log(value);
     dispatch(UpdateLocationThunk({ path: EditLocation.id, payload: value }));
     try {
       toast.success("Cập nhật phòng thành công");
@@ -54,7 +53,7 @@ export const EditLocation = () => {
 
           <div className="modal-body">
             <p className="font-bold text-orange-500 flex justify-start">ID</p>
-            <Input id="id" name="id" register={register} />
+            <Input id="id" name="id" register={register} disabled />
 
             <p className="font-bold text-orange-500  flex justify-start">
               Tên Tỉnh Thành

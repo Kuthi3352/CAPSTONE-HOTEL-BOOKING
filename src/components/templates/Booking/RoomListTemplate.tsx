@@ -1,4 +1,4 @@
-import { Card } from "components";
+import { Card, Skeleton } from "components";
 import { PATH } from "constant";
 import QueryString from "qs";
 import { useEffect } from "react";
@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { generatePath, useNavigate, useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { getRoomListByPositionThunk } from "store/Room/thunk";
+import styled from "styled-components";
 import { wait } from "utils";
 
 const RoomListTemplate = () => {
@@ -18,16 +19,22 @@ const RoomListTemplate = () => {
     },
     { addQueryPrefix: true }
   );
-  const { roomListByPosition } = useSelector(
+  const { roomListByPosition, isFetchingRoom } = useSelector(
     (state: RootState) => state.RoomReducer
   );
 
   useEffect(() => {
     dispatch(getRoomListByPositionThunk(path));
   }, [dispatch, path]);
-
+  if (isFetchingRoom) {
+    return (
+      <ContainerRoom className="no-header">
+        <Skeleton active className="mt-[10px]"></Skeleton>
+      </ContainerRoom>
+    );
+  }
   return (
-    <div className="container no-header  ">
+    <ContainerRoom className="container no-header  ">
       <h1 className="comments">Tìm phòng theo vị trí</h1>
       <div className="room-list mt-20">
         <div className="grid grid-cols-2 gap-5 mdM:!grid-cols-1 ">
@@ -73,8 +80,8 @@ const RoomListTemplate = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ContainerRoom>
   );
 };
-
+const ContainerRoom = styled.div``;
 export default RoomListTemplate;

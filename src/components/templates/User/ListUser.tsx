@@ -9,14 +9,13 @@ import {
   ListUserThunk,
   ListUserActions,
 } from "store/DanhSachThanhVien";
-import { Button, ChinhSuaUser, Input } from "components";
+import { Button, ChinhSuaUser, Input, Skeleton } from "components";
 import { DataType } from "types";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 export const ListUser = () => {
-  const navigate = useNavigate();
-  const { listUser, searchUser } = useSelector(
+  const { listUser, searchUser, isFetchingUser } = useSelector(
     (state: RootState) => state.ListReducer
   );
   const [nameValue, setnameValue] = useState<string>("");
@@ -98,16 +97,15 @@ export const ListUser = () => {
   useEffect(() => {
     dispatch(ListUserThunk());
   }, [dispatch]);
+  if (isFetchingUser) {
+    return (
+      <ContainerUser className="no-header">
+        <Skeleton active className="mt-[10px]"></Skeleton>
+      </ContainerUser>
+    );
+  }
   return (
-    <div>
-      <Button
-        className="tracking-wider !border-[#ff385c] !text-[#ff385c] !font-600"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Quay về home
-      </Button>
+    <ContainerUser>
       <h1 className="nd">Danh sách thành viên</h1>
 
       <div className="flex !justify-start  search-input ">
@@ -141,6 +139,7 @@ export const ListUser = () => {
         </Button>
       </div>
       <Table columns={columns} dataSource={data} />
-    </div>
+    </ContainerUser>
   );
 };
+const ContainerUser = styled.div``;

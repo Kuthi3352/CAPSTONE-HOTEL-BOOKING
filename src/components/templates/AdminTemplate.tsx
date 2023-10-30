@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   MenuFoldOutlined,
@@ -53,6 +53,7 @@ const items: MenuItem[] = [
   ]),
 ];
 export const AdminTemplate = () => {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -97,7 +98,14 @@ export const AdminTemplate = () => {
               }}
               className="xsM:!text-[12px]"
             />
-            Quản Trị Viên
+            <Button
+              className="tracking-wider !border-[#ff385c] !text-[#ff385c] !font-600"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Quay về home
+            </Button>
           </Header>
           <Content
             style={{

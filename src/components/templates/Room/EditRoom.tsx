@@ -45,7 +45,7 @@ export const EditRoom = () => {
 
           <div className="modal-body">
             <p className="font-bold text-orange-500 flex justify-start">ID</p>
-            <Input id="id" name="id" register={register} />
+            <Input id="id" name="id" register={register} disabled />
 
             <p className="font-bold text-orange-500  flex justify-start">
               Tên Phòng

@@ -49,7 +49,7 @@ export const AccountInfo = () => {
               <option value="false">Nữ</option>
             </select>
           </div>
-          <div>
+          <div className="none">
             <p className="account__input">Quyền hạn</p>
 
             <select

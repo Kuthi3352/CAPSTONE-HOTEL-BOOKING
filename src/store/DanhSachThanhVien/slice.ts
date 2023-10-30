@@ -10,6 +10,7 @@ type ListUserInitialState = {
   chinhSuaUser?: ListUserType;
   updateUser?: AccountSchemaType;
   searchUser?: ListUserType[];
+  isFetchingUser?: boolean;
 };
 
 const initialState: ListUserInitialState = { searchUser: undefined };
@@ -25,6 +26,13 @@ const ListUserSlice = createSlice({
     builder
       .addCase(ListUserThunk.fulfilled, (state, { payload }) => {
         state.listUser = payload;
+        state.isFetchingUser = false;
+      })
+      .addCase(ListUserThunk.pending, (state) => {
+        state.isFetchingUser = true;
+      })
+      .addCase(ListUserThunk.rejected, (state) => {
+        state.isFetchingUser = false;
       })
       .addCase(EditUserThunk.fulfilled, (state, { payload }) => {
         state.EditUser = payload;

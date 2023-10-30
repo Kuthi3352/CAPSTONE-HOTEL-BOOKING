@@ -7,8 +7,6 @@ import { PositionService } from "services";
 import { getPostionListThunk } from "store/Position/thunks";
 import { handleError } from "utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { PositionType } from "types/PositinonType";
 
 export const AddLocation = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +19,6 @@ export const AddLocation = () => {
     resolver: zodResolver(AddLocationSchema),
   });
   const onSubmit: SubmitHandler<AddLocationSchemaType> = async (value) => {
-    console.log(value);
-
     try {
       await PositionService.AddLocation(value);
       toast.success("Thêm địa điểm thành công");
@@ -71,7 +67,7 @@ export const AddLocation = () => {
       <Input
         id="hinhAnh"
         name="hinhAnh"
-        className="add-position-input"
+        className="add-position-input none"
         register={register}
         type="text"
         label="Link ảnh"

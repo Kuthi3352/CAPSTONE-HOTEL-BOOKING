@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { GetBinhLuanThunk } from "store/BinhLuan";
 import styled from "styled-components";
-import { getUserInfoLocal } from "utils";
+import { getAccessToken, getUserInfoLocal, handleError } from "utils";
 import { Input, Rating } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BinhLuanThunk } from "store/BinhLuan";
@@ -15,7 +15,8 @@ import { commentValue } from "utils";
 
 export const DanhGiaTemplate = () => {
   const dispatch = useAppDispatch();
-  const [rating, setRating] = useState<number>()
+  const accessToken = getAccessToken();
+  const [rating, setRating] = useState<number>();
   const { roomId } = useParams();
   const { getBinhLuan } = useSelector(
     (state: RootState) => state.BinhLuanReducer
@@ -27,9 +28,15 @@ export const DanhGiaTemplate = () => {
   });
   const onSubmit: SubmitHandler<BinhLuanType> = (value) => {
     const valueBL = commentValue(value, rating);
-    dispatch(BinhLuanThunk(valueBL));
-    toast.success("Cảm ơn bạn đã đánh giá");
-    dispatch(GetBinhLuanThunk(params.roomId));
+    dispatch(BinhLuanThunk(valueBL))
+      .unwrap()
+      .then(() => {
+        dispatch(GetBinhLuanThunk(params.roomId));
+        toast.success("Cảm ơn bạn đã đánh giá");
+      })
+      .catch((err) => {
+        handleError(err);
+      });
   };
   useEffect(() => {
     dispatch(GetBinhLuanThunk(params.roomId));
@@ -149,70 +156,74 @@ export const DanhGiaTemplate = () => {
               );
             })}
           </div>
-          <div>
-            <h2 className="comments-name text-right mt-4 xsM:!text-[14px] smM:text-[16px] ">
-              -Đánh giá dưới tên {data?.userName}-
-            </h2>
-            <div className="comment_section-Item p-2">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Input
-                  className="mt-16 none"
-                  label="mã phòng"
-                  id="maPhong"
-                  name="maPhong"
-                  register={register}
-                  value={roomId}
-                />
-                <Input
-                  className="mt-16 none"
-                  label="mã người bình luận"
-                  id="maNguoiBinhLuan"
-                  name="maNguoiBinhLuan"
-                  register={register}
-                  value={data?.id}
-                />
-                <Input
-                  className="mt-16 none"
-                  label="ngày bình luận"
-                  id="ngayBinhLuan"
-                  name="ngayBinhLuan"
-                  register={register}
-                />
-                <Input
-
-                  name="saoBinhLuan"
-                  id="saoBinhLuan"
-                  type="number"
-                  className="mt-4 xsM:!text-[14px] smM:text-[16px] none"
-                  register={register}
-                />
-                <div>
-                  <Textarea
-                    className="comment-control !w-full !h-[250px]"
+          {accessToken ? (
+            <div>
+              <h2 className="comments-name text-right mt-4 xsM:!text-[14px] smM:text-[16px] ">
+                -Đánh giá dưới tên {data?.userName}-
+              </h2>
+              <div className="comment_section-Item p-2">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Input
+                    className="mt-16 none"
+                    label="mã phòng"
+                    id="maPhong"
+                    name="maPhong"
                     register={register}
-                    id="noiDung"
-                    name="noiDung"
-                    placeholder="Viết đánh giá của bạn..."
-                  ></Textarea>
-                </div>
-                <div className="mt-2 text-right">
-                  <span className="mr-10 text-[20px] mt-4 xsM:!text-[14px] smM:text-[16px] ">
-                    Đánh giá:
-                  </span>
-                  <Rating
-                    onChange={value => {
-                      setRating(value)
-                    }}
+                    value={roomId}
                   />
-                </div>
-                <div className="text-right">
-                  <button className="!bg-red-400 !text-white !text-[18px] xsM:!text-[12px] smM:text-[14px] !p-[3px] rounded">
-                    Đánh giá
-                  </button>
-                </div>
-              </form>
+                  <Input
+                    className="mt-16 none"
+                    label="mã người bình luận"
+                    id="maNguoiBinhLuan"
+                    name="maNguoiBinhLuan"
+                    register={register}
+                    value={data?.id}
+                  />
+                  <Input
+                    className="mt-16 none"
+                    label="ngày bình luận"
+                    id="ngayBinhLuan"
+                    name="ngayBinhLuan"
+                    register={register}
+                  />
+                  <Input
+                    name="saoBinhLuan"
+                    id="saoBinhLuan"
+                    type="number"
+                    className="mt-4 xsM:!text-[14px] smM:text-[16px] none"
+                    register={register}
+                  />
+
+                  <div>
+                    <Textarea
+                      className="comment-control !w-full !h-[250px]"
+                      register={register}
+                      id="noiDung"
+                      name="noiDung"
+                      placeholder="Viết đánh giá của bạn..."
+                    ></Textarea>
+                  </div>
+                  <div className="mt-2 text-right">
+                    <span className="mr-10 text-[20px] mt-4 xsM:!text-[14px] smM:text-[16px] ">
+                      Đánh giá:
+                    </span>
+                    <Rating
+                      onChange={(value) => {
+                        setRating(value);
+                      }}
+                    />
+                  </div>
+                  <div className="text-right">
+                    <button className="!bg-red-400 !text-white !text-[18px] xsM:!text-[12px] smM:text-[14px] !p-[3px] rounded">
+                      Đánh giá
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="none"></div>
+          )}
         </div>
       </div>
     </Container>
