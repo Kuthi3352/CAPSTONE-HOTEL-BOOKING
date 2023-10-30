@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { AuthLoginThunk } from ".";
 import { AuthType } from "types/AuthType";
 import { getAccessToken, getUserInfoLocal } from "utils";
+import { useNavigate } from "react-router-dom";
 
 type AuthLoginInitialState = {
   token?: string;

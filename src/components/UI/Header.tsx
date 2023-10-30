@@ -73,6 +73,7 @@ const Header = () => {
                     className="cursor-pointer popover-user "
                     onClick={() => {
                       dispatch(AuthLoginActions.logOut());
+                      navigate("/")
                     }}
                   >
                     ĐĂNG XUẤT
