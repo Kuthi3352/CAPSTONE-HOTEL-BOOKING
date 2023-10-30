@@ -36,7 +36,7 @@ input {
 /* ELEMENTS CONFIG */
 /* CARD */
 .card {
-  height: 150px;
+  height: 150px!important;
   transition: 0.5s !important;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   &:hover {
