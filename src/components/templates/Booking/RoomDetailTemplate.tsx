@@ -10,15 +10,18 @@ import { getAccessToken, getUserInfoLocal } from "utils";
 import { newValue } from "utils";
 import cn from "classnames";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input } from "components";
+import { Button, Input, Skeleton } from "components";
 import { PATH } from "constant";
+import styled from "styled-components";
 
 const RoomDetailTemplate = () => {
-  const accessToken = getAccessToken()
-  const navigate = useNavigate()
+  const accessToken = getAccessToken();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { roomId } = useParams();
-  const { currentRoom } = useSelector((state: RootState) => state.RoomReducer);
+  const { currentRoom, isFetchingRoom } = useSelector(
+    (state: RootState) => state.RoomReducer
+  );
   const data = getUserInfoLocal();
 
   const {
@@ -37,9 +40,15 @@ const RoomDetailTemplate = () => {
   useEffect(() => {
     dispatch(getRoomDetailThunk(roomId));
   }, [dispatch, roomId]);
-
+  if (isFetchingRoom) {
+    return (
+      <ContainerRoomDetail className="no-header">
+        <Skeleton active className="mt-[10px]"></Skeleton>
+      </ContainerRoomDetail>
+    );
+  }
   return (
-    <div className="container w-[70%] lgM:!w-[90%] 1xlM:w-[80%]   no-header">
+    <ContainerRoomDetail className="container w-[70%] lgM:!w-[90%] 1xlM:w-[80%]   no-header">
       <h1 className="theme !mb-20">Thông tin phòng</h1>
       <div className="Our"></div>
       <div className="flex gap-10 flex-col mt-5">
@@ -187,104 +196,110 @@ const RoomDetailTemplate = () => {
           </div>
         </div>
         <div className="w-[40%] mdM:w-[100%] form-booking">
-          {
-            accessToken ?
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <h3 className="text-center text-xl logo mb-4  sM:!text-[18px]">
-                  Hãy cho chúng tôi biết về chuyến đi của bạn
+          {accessToken ? (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <h3 className="text-center text-xl logo mb-4  sM:!text-[18px]">
+                Hãy cho chúng tôi biết về chuyến đi của bạn
+              </h3>
+              <Input
+                id="ngayDen"
+                name="ngayDen"
+                type="date"
+                register={register}
+                error={errors?.ngayDen?.message}
+                min="2023-10-05"
+                max="2028-01-01"
+                label="Từ ngày"
+              ></Input>
+              <Input
+                id="ngayDi"
+                name="ngayDi"
+                type="date"
+                min="2023-10-05"
+                max="2028-01-01"
+                register={register}
+                error={errors?.ngayDi?.message}
+                label="Đến ngày"
+              ></Input>
+              <Input
+                id="soLuongKhach"
+                name="soLuongKhach"
+                type="number"
+                register={register}
+                error={errors?.soLuongKhach?.message}
+                label="Số lượng khách"
+              ></Input>
+              <Input
+                id="id"
+                name="id"
+                type="number"
+                register={register}
+                error={errors?.id?.message}
+                label="id"
+                className="none"
+                value="0"
+              ></Input>
+              <Input
+                id="maNguoiDung"
+                name="maNguoiDung"
+                type="text"
+                register={register}
+                label="Mã người dùng"
+                className="none"
+                value={data?.id}
+              ></Input>
+              <Input
+                id="maPhong"
+                name="maPhong"
+                type="number"
+                register={register}
+                label="Mã phòng"
+                className="none"
+                value={`${roomId}`}
+              ></Input>
+              <div className="booking-content mt-2">
+                <h3 className="mt-2 text-center theme  sM:!text-[18px]">
+                  Thông tin đặt phòng
                 </h3>
-                <Input
-                  id="ngayDen"
-                  name="ngayDen"
-                  type="date"
-                  register={register}
-                  error={errors?.ngayDen?.message}
-                  min="2023-10-05"
-                  max="2028-01-01"
-                  label="Từ ngày"
-                ></Input>
-                <Input
-                  id="ngayDi"
-                  name="ngayDi"
-                  type="date"
-                  min="2023-10-05"
-                  max="2028-01-01"
-                  register={register}
-                  error={errors?.ngayDi?.message}
-                  label="Đến ngày"
-                ></Input>
-                <Input
-                  id="soLuongKhach"
-                  name="soLuongKhach"
-                  type="number"
-                  register={register}
-                  error={errors?.soLuongKhach?.message}
-                  label="Số lượng khách"
-                ></Input>
-                <Input
-                  id="id"
-                  name="id"
-                  type="number"
-                  register={register}
-                  error={errors?.id?.message}
-                  label="id"
-                  className="none"
-                  value="0"
-                ></Input>
-                <Input
-                  id="maNguoiDung"
-                  name="maNguoiDung"
-                  type="text"
-                  register={register}
-                  label="Mã người dùng"
-                  className="none"
-                  value={data?.id}
-                ></Input>
-                <Input
-                  id="maPhong"
-                  name="maPhong"
-                  type="number"
-                  register={register}
-                  label="Mã phòng"
-                  className="none"
-                  value={`${roomId}`}
-                ></Input>
-                <div className="booking-content mt-2">
-                  <h3 className="mt-2 text-center theme  sM:!text-[18px]">
-                    Thông tin đặt phòng
-                  </h3>
-                  <p>
-                    Giá tiền:{" "}
-                    <span className="strong italic">${currentRoom?.giaTien}</span> /
-                    đêm
-                  </p>
-                </div>
-                <div className="booking">
-                  <button
-                    type="submit"
-                    className="booking-btn hover  sM:!text-[18px] smM:!p-[10px] smM:!text-[16px]"
-                  >
-                    Đặt phòng
-                  </button>
-                </div>
-              </form>
-              :
-              <div>
-                <p>Hãy log in để đặt phòng</p>
-                <Button htmlType="button"
-                  className="booking-btn hover  sM:!text-[18px] smM:!p-[10px] smM:!text-[16px]"
-                  onClick={() => {
-                    navigate(PATH.login)
-                  }}>Login</Button>
+                <p>
+                  Giá tiền:{" "}
+                  <span className="strong italic">${currentRoom?.giaTien}</span>{" "}
+                  / đêm
+                </p>
               </div>
-
-          }
-
+              <div className="booking">
+                <button
+                  type="submit"
+                  className="booking-btn hover  sM:!text-[18px] smM:!p-[10px] smM:!text-[16px]"
+                >
+                  Đặt phòng
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div>
+              <img src={currentRoom?.hinhAnh} />
+              <p className="font-600 mt-20 Pbooking">
+                VUI LÒNG ĐĂNG NHẬP ĐỂ ĐẶT PHÒNG
+              </p>
+              <Button
+                htmlType="button"
+                className="!w-full !h-[48px] !mt-20 !rounded-[6px]"
+                danger
+                type="primary"
+                onClick={() => {
+                  navigate(PATH.login);
+                }}
+              >
+                Đăng nhập
+              </Button>
+            </div>
+          )}
         </div>
       </div>
       <DanhGiaTemplate />
-    </div>
+    </ContainerRoomDetail>
   );
 };
-
+const ContainerRoomDetail = styled.div``;
 export default RoomDetailTemplate;

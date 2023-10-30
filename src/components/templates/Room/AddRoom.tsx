@@ -19,8 +19,6 @@ export const AddRoom = () => {
     resolver: zodResolver(AddRoomSchema),
   });
   const onSubmit: SubmitHandler<AddRoomSchemaType> = async (value) => {
-    
-
     try {
       await RoomListService.AddRoom(value);
       toast.success("Thêm phòng thành công");
@@ -76,7 +74,7 @@ export const AddRoom = () => {
       <Input
         id="hinhAnh"
         name="hinhAnh"
-        className="add-position-input mt-2"
+        className="add-position-input mt-2 none"
         register={register}
         label="Hình ảnh"
         error={errors?.hinhAnh?.message}

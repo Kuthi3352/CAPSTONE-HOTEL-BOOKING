@@ -6,11 +6,10 @@ import { RootState, useAppDispatch } from "store";
 import { DanhGiaThunk, DeleteBinhLuanThunk } from "store/BinhLuan";
 import type { ColumnsType } from "antd/es/table";
 import { BinhLuanDataType } from "types";
-import { useNavigate } from "react-router-dom";
 
 export const BinhLuanList = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
   const { danhGia } = useSelector((state: RootState) => state.BinhLuanReducer);
   const columns: ColumnsType<BinhLuanDataType> = [
     {
@@ -82,14 +81,6 @@ export const BinhLuanList = () => {
   }, [dispatch]);
   return (
     <div>
-      <Button
-        className="tracking-wider !border-[#ff385c] !text-[#ff385c] !font-600"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Quay về home
-      </Button>
       <h1 className="nd">Danh sách những người bình luận</h1>
       <Table columns={columns} dataSource={data} />
     </div>

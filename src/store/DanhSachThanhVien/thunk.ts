@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ListUserServices } from "services";
 import { ListUserType } from "types/ListUserType";
+import { wait } from "utils";
 
 export const ListUserThunk = createAsyncThunk("Users/ListUser", async () => {
   const data = await ListUserServices.listUser();
+  await wait(1000);
   // console.log('data',data.data.content);
   return data.data.content;
 });
@@ -38,4 +40,10 @@ export const UpdateUserThunk = createAsyncThunk(
     return result.data.content;
   }
 );
-
+export const UploadUserThunk = createAsyncThunk(
+  "Users/UploadUser",
+  async () => {
+    const formData = new FormData();
+    await ListUserServices.UploadUser(formData);
+  }
+);

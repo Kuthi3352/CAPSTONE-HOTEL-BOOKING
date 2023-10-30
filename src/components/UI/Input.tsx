@@ -12,10 +12,11 @@ type InputProps = {
   placeholder?: string;
   className?: string;
   name?: string;
-  value?: string|number;
+  value?: string | number;
   onChange?: any;
-  min?:string;
-  max?:string
+  min?: string;
+  max?: string;
+  disabled?: boolean;
 };
 
 export const Input = ({
@@ -28,7 +29,8 @@ export const Input = ({
   className = "",
   name,
   onChange,
-  value
+  value,
+  disabled,
 }: InputProps) => {
   return (
     <div className={className}>
@@ -42,6 +44,7 @@ export const Input = ({
         placeholder={placeholder}
         type={type}
         onChange={onChange}
+        disabled={disabled}
         className="p-10 mt-8 w-full text-black rounded-6 bg-[#d1d0d0]"
         {...register?.(name)}
         value={value}

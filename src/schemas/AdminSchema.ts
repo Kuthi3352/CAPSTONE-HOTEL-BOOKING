@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const AdminSchemas = z.object({
-  id: z.number().default(0),
+  id: z.string().default("0"),
   name: z.string().nonempty("Vui lòng nhập tài khoản"),
   email: z
     .string()

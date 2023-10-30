@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { PositionService } from "services/PositionService";
 import { PositionType } from "types/PositinonType";
+import { wait } from "utils";
 
 export const getPostionListThunk = createAsyncThunk(
   "QuanLyViTri/danhsach",
   async () => {
     const data = await PositionService.getPosition();
+    await wait(1000);
     return data.data.content;
   }
 );

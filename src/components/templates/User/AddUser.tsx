@@ -10,8 +10,8 @@ import { submitAdminForm } from "utils/submitAdminForm";
 import { useState } from "react";
 
 export const AddUser = () => {
-  const [gender, setGender] = useState<string>()
-  const [role, setRole] = useState<string>()
+  const [gender, setGender] = useState<string>();
+  const [role, setRole] = useState<string>();
   const {
     handleSubmit,
     register,
@@ -21,7 +21,7 @@ export const AddUser = () => {
     resolver: zodResolver(AdminSchemas),
   });
   const onSubmit: SubmitHandler<AdminSchemasType> = async (value) => {
-    const newFormAdmin = submitAdminForm(value, role, gender)
+    const newFormAdmin = submitAdminForm(value, role, gender);
     try {
       await ListUserServices.Admin(newFormAdmin);
       toast.success("Đăng kí thành công");
@@ -80,17 +80,31 @@ export const AddUser = () => {
               error={errors?.birthday?.message}
               register={register}
             />
-            <div className="ml-5 smM:!ml-0">
+            <div className="mt-16">
               <p> Chức vụ</p>
-              <select className="mt-16" onChange={(event) => { setRole(event.target.value) }}>
-                <option value="ADMIN">ADMIN</option>
+              <select
+                name="role"
+                className="w-full"
+                onChange={(event) => {
+                  setRole(event.target.value);
+                }}
+              >
                 <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
               </select>
             </div>
-            <select className="mt-16" onChange={(event) => { setGender(event.target.value) }}>
-              <option value="true">Nam</option>
-              <option value="false">Nữ</option>
-            </select>
+            <div className="mt-16">
+              <p>Giới tính</p>
+              <select
+                className="w-full"
+                onChange={(event) => {
+                  setGender(event.target.value);
+                }}
+              >
+                <option value="true">Nam</option>
+                <option value="false">Nữ</option>
+              </select>
+            </div>
           </div>
         </div>
 

@@ -2,12 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { RoomListService } from "services";
 import { BookingRoom, RoomType } from "types/RoomType";
-import { handleError } from "utils";
+import { handleError, wait } from "utils";
 
 export const getRoomThunk = createAsyncThunk(
   "QuanLyPhong/danhsach",
   async () => {
     const data = await RoomListService.getRoom();
+    await wait(1000);
     // console.log(data.data.content);
     return data.data.content;
   }
@@ -17,6 +18,7 @@ export const getRoomPositionThunk = createAsyncThunk(
   "QuanLyPhong/vitri",
   async () => {
     const data = await RoomListService.getPosition();
+    await wait(1000);
     // console.log(data.data.content);
     return data.data.content;
   }
@@ -26,6 +28,7 @@ export const getRoomDetailThunk = createAsyncThunk(
   "QuanLyPhong/chitiet",
   async (query: string) => {
     const data = await RoomListService.getRoomDetail(query);
+    await wait(1000);
     // console.log(data.data.content);
     return data.data.content;
   }
@@ -36,6 +39,7 @@ export const getRoomListByPositionThunk = createAsyncThunk(
   async (query: string) => {
     const data = await RoomListService.getRoomListByPosition(query);
     // console.log(data.data.content);
+    await wait(1000);
     return data.data.content;
   }
 );

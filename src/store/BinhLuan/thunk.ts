@@ -10,9 +10,8 @@ export const DanhGiaThunk = createAsyncThunk("DanhGia", async () => {
 
 export const BinhLuanThunk = createAsyncThunk(
   "BinhLuan",
-  async (payload: BinhLuanType, { dispatch }) => {
+  async (payload: BinhLuanType) => {
     const data = await BinhLuanServices.binhLuan(payload);
-    dispatch(DanhGiaThunk());
     return data.data.content;
   }
 );

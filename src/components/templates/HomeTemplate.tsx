@@ -1,4 +1,4 @@
-import { Badge, Card } from "components";
+import { Badge, Card, Skeleton } from "components";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
@@ -13,10 +13,14 @@ import "swiper/css/pagination";
 import { generatePath, useNavigate } from "react-router-dom";
 import { PATH } from "constant";
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import styled from "styled-components";
 
 const HomeTemplate = () => {
   const dispatch = useAppDispatch();
   const navitage = useNavigate();
+  const { isFetchingRoom } = useSelector(
+    (state: RootState) => state.RoomReducer
+  );
   const { roomList, roomPosition } = useSelector(
     (state: RootState) => state.RoomReducer
   );
@@ -29,8 +33,15 @@ const HomeTemplate = () => {
     dispatch(getRoomPositionThunk());
     dispatch(getPostionListThunk());
   }, [dispatch]);
+  if (isFetchingRoom) {
+    return (
+      <ContainerHome className="no-header">
+        <Skeleton active className="mt-[10px]"></Skeleton>
+      </ContainerHome>
+    );
+  }
   return (
-    <div className="container">
+    <ContainerHome className="container">
       <div className="position-list no-header">
         <h1 className="theme">Địa điểm du lịch</h1>
         <div className="Our !mt-[30px]"></div>
@@ -109,8 +120,8 @@ const HomeTemplate = () => {
           })}
         </div>
       </div>
-    </div>
+    </ContainerHome>
   );
 };
-
+const ContainerHome = styled.div``;
 export default HomeTemplate;

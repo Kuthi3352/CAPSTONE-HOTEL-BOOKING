@@ -12,7 +12,7 @@ type AuthLoginInitialState = {
 const initialState: AuthLoginInitialState = {
   token: getAccessToken(),
   isLogin: false,
-  isFetchingLogin: false,
+  // isFetchingLogin: false,
 };
 const AuthLoginSlice = createSlice({
   name: "AuthLogin",

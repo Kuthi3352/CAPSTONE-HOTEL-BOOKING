@@ -6,6 +6,6 @@ export type ListUserType = {
   phone?: string;
   birthday?: string;
   avatar?: string;
-  gender?: boolean;
+  gender?: string;
   role?: string;
 };

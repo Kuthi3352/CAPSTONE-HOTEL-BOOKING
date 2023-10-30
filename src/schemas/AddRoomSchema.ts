@@ -19,7 +19,7 @@ export const AddRoomSchema = z.object({
   hoBoi: z.boolean().default(true),
   banUi: z.boolean().default(true),
   maViTri: z.string().nonempty("Vui lòng nhập mã vị trí"),
-  hinhAnh: z.string().nonempty("Vui lòng chọn hình ảnh"),
+  hinhAnh: z.string().default("Qua kia mà nhập anh"),
 });
 
 export type AddRoomSchemaType = z.infer<typeof AddRoomSchema>;

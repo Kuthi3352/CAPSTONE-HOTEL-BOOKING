@@ -11,11 +11,10 @@ import {
   getDatPhongThunk,
 } from "store/DatPhong";
 import { EditDatPhong } from "./EditDatPhong";
-import { useNavigate } from "react-router-dom";
 
 export const DatPhongList = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
   const { datPhongList } = useSelector(
     (state: RootState) => state.DatPhongReducer
   );
@@ -102,14 +101,6 @@ export const DatPhongList = () => {
   }, [dispatch]);
   return (
     <div>
-      <Button
-        className="tracking-wider !border-[#ff385c] !text-[#ff385c] !font-600"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Quay về home
-      </Button>
       <h1 className="nd">Danh sách khách đã đặt</h1>
       <Table columns={columns} dataSource={data} />
     </div>
