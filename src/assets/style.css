@@ -478,24 +478,22 @@ font-weight: 600;
     font-weight: 500;
   }
   @media(max-width:1198px){
-    letter-spacing: 1px;
-    
-     
+    letter-spacing: 1px; 
     }
   @media(max-width:839px){
-    font-size: 10px;
-    letter-spacing: 0px;
-    } 
-    @media(max-width:769px){
-      font-size: 16px;
-      letter-spacing: 2px;
-     text-align: center;
-      }
-      @media(max-width:452px){
-        font-size: 12px;
-        letter-spacing: 1px;
-       text-align: center;
-        }        
+  font-size: 10px;
+  letter-spacing: 0px;
+  } 
+  @media(max-width:769px){
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-align: center;
+  }
+  @media(max-width:452px){
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-align: center;
+  }        
 }
 .search-input {
   margin-top: 20px;
