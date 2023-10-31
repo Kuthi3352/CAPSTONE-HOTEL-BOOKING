@@ -1,20 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ListUserServices } from "services";
 import { ListUserType } from "types/ListUserType";
-import { wait } from "utils";
-
+import { toast } from "react-toastify";
+import { handleError } from "utils";
 export const ListUserThunk = createAsyncThunk("Users/ListUser", async () => {
   const data = await ListUserServices.listUser();
-  await wait(1000);
-  // console.log('data',data.data.content);
   return data.data.content;
 });
 export const EditUserThunk = createAsyncThunk(
   "Users/EditUser",
   async (payload: string) => {
     const data = await ListUserServices.EditUser(payload);
-
-    // console.log(data.data.content);
     return data.data.content;
   }
 );
@@ -24,7 +20,11 @@ export const DeleteUserThunk = createAsyncThunk(
   async (payload: string, { dispatch }) => {
     const data = await ListUserServices.DeleteUser(payload);
     dispatch(ListUserThunk());
-
+    try {
+      toast.success("Xóa thành công");
+    } catch (err) {
+      handleError(err);
+    }
     return data.data.content;
   }
 );
@@ -36,7 +36,7 @@ export const UpdateUserThunk = createAsyncThunk(
     const payload = data2.payload;
     const result = await ListUserServices.UpdateUser(path, payload);
     dispatch(ListUserThunk());
-    // return data.data.content;
+
     return result.data.content;
   }
 );

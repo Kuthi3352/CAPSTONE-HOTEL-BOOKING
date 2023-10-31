@@ -6,8 +6,6 @@ import { RootState, useAppDispatch } from "store";
 import { DeleteRoomThunk, EditRoomThunk, getRoomThunk } from "store/Room/thunk";
 import { Space, Table } from "antd";
 import { Button, EditRoom } from "components";
-import { toast } from "react-toastify";
-import { handleError } from "utils";
 import { RoomListService } from "services";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -93,11 +91,6 @@ export const RoomDS = () => {
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
               dispatch(DeleteRoomThunk(record.key));
-              try {
-                toast.success("Xóa thành công");
-              } catch (err) {
-                handleError(err);
-              }
             }}
           >
             <i className="fa-solid fa-trash"></i>

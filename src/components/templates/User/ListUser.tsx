@@ -11,7 +11,6 @@ import {
 } from "store/DanhSachThanhVien";
 import { Button, ChinhSuaUser, Input, Skeleton } from "components";
 import { DataType } from "types";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 
 export const ListUser = () => {
@@ -72,7 +71,7 @@ export const ListUser = () => {
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
               dispatch(DeleteUserThunk(record.key));
-              toast.success("Xóa thành công");
+             
             }}
           >
             <i className="fa-solid fa-trash"></i>

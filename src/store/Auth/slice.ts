@@ -2,18 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { AuthLoginThunk } from ".";
 import { AuthType } from "types/AuthType";
 import { getAccessToken, getUserInfoLocal } from "utils";
-import { useNavigate } from "react-router-dom";
 
 type AuthLoginInitialState = {
   token?: string;
   AuthLogin?: AuthType;
   isLogin?: boolean;
   isFetchingLogin?: boolean;
+  currentPage?: string;
 };
 const initialState: AuthLoginInitialState = {
   token: getAccessToken(),
   isLogin: false,
-  // isFetchingLogin: false,
 };
 const AuthLoginSlice = createSlice({
   name: "AuthLogin",
@@ -32,6 +31,9 @@ const AuthLoginSlice = createSlice({
       state.isLogin = false;
       localStorage.removeItem("ACCESSTOKEN");
       localStorage.removeItem("USER");
+    },
+    takeCurrentPage: (state, { payload }) => {
+      state.currentPage = payload;
     },
   },
   extraReducers(builder) {

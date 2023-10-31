@@ -9,7 +9,6 @@ export const getRoomThunk = createAsyncThunk(
   async () => {
     const data = await RoomListService.getRoom();
     await wait(1000);
-    // console.log(data.data.content);
     return data.data.content;
   }
 );
@@ -19,7 +18,7 @@ export const getRoomPositionThunk = createAsyncThunk(
   async () => {
     const data = await RoomListService.getPosition();
     await wait(1000);
-    // console.log(data.data.content);
+
     return data.data.content;
   }
 );
@@ -29,7 +28,7 @@ export const getRoomDetailThunk = createAsyncThunk(
   async (query: string) => {
     const data = await RoomListService.getRoomDetail(query);
     await wait(1000);
-    // console.log(data.data.content);
+
     return data.data.content;
   }
 );
@@ -38,7 +37,7 @@ export const getRoomListByPositionThunk = createAsyncThunk(
   "QuanLyPhong/phongvitri",
   async (query: string) => {
     const data = await RoomListService.getRoomListByPosition(query);
-    // console.log(data.data.content);
+
     await wait(1000);
     return data.data.content;
   }
@@ -64,6 +63,11 @@ export const DeleteRoomThunk = createAsyncThunk(
   "QuanLyPhong/DeleteRoom",
   async (path: string, { dispatch }) => {
     const data = await RoomListService.DeleteRoom(path);
+    try {
+      toast.success("Xóa thành công");
+    } catch (err) {
+      handleError(err);
+    }
     dispatch(getRoomThunk());
     return data.data.content;
   }
