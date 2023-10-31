@@ -56,6 +56,11 @@ export const UpdateRoomThunk = createAsyncThunk(
     const payload = result.payload;
     const data = await RoomListService.UpdateRoom(path, payload);
     dispatch(getRoomThunk());
+    try {
+      toast.success("Cập nhật thành công");
+    } catch (err) {
+      handleError(err);
+    }
     return data.data.content;
   }
 );

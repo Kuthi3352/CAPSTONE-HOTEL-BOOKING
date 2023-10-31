@@ -36,7 +36,11 @@ export const UpdateUserThunk = createAsyncThunk(
     const payload = data2.payload;
     const result = await ListUserServices.UpdateUser(path, payload);
     dispatch(ListUserThunk());
-
+    try {
+      toast.success("Cập nhật thành công");
+    } catch (err) {
+      handleError(err);
+    }
     return result.data.content;
   }
 );

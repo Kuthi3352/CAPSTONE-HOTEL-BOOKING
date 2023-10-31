@@ -4,8 +4,6 @@ import { RootState, useAppDispatch } from "store";
 import { RoomType } from "types/RoomType";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
-
-import { toast } from "react-toastify";
 import { DatPhongType } from "types/DatPhongType";
 import { UpdateDatPhongThunk } from "store/DatPhong";
 
@@ -19,7 +17,7 @@ export const EditDatPhong = () => {
   });
   const onSubmit: SubmitHandler<DatPhongType> = (value: DatPhongType) => {
     dispatch(UpdateDatPhongThunk({ path: editDatPhong.id, payload: value }));
-    toast.success("Cập nhật thành công");
+   
   };
   useEffect(() => {
     reset(editDatPhong);

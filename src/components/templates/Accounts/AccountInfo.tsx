@@ -1,7 +1,6 @@
 import { AccountSchemaType } from "schemas";
 import { Button, Input } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
@@ -18,7 +17,7 @@ export const AccountInfo = () => {
     value: AccountSchemaType
   ) => {
     dispatch(UpdateUserThunk({ path: EditUser?.id, payload: value }));
-    toast.success("Cập nhật thành công");
+
   };
   useEffect(() => {
     reset(EditUser);

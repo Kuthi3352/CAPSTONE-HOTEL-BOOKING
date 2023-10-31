@@ -24,6 +24,11 @@ export const UpdateDatPhongThunk = createAsyncThunk(
     const payload = result.payload;
     const data = await DatPhongServices.UpdateDatPhong(path, payload);
     dispatch(getDatPhongThunk());
+    try {
+      toast.success("Cập nhật thành công");
+    } catch (err) {
+      handleError(err);
+    }
     return data.data.content;
   }
 );
