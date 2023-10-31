@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { DatPhongServices } from "services/DatPhongServices";
 import { DatPhongType } from "types/DatPhongType";
+import { toast } from "react-toastify";
+import { handleError } from "utils";
 export const getDatPhongThunk = createAsyncThunk(
   "getDatPhongThunk",
   async () => {
@@ -29,6 +31,11 @@ export const DeleteDatPhongThunk = createAsyncThunk(
   "getDatPhongThunk/DeleteDatPhong",
   async (path: string, { dispatch }) => {
     const data = await DatPhongServices.DeleteDatPhong(path);
+    try {
+      toast.success("Xóa thành công");
+    } catch (err) {
+      handleError(err);
+    }
     dispatch(getDatPhongThunk());
     return data.data.content;
   }

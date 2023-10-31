@@ -2,6 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { PositionService } from "services/PositionService";
 import { PositionType } from "types/PositinonType";
 import { wait } from "utils";
+import { toast } from "react-toastify";
+import { handleError } from "utils";
 
 export const getPostionListThunk = createAsyncThunk(
   "QuanLyViTri/danhsach",
@@ -32,6 +34,11 @@ export const DeleteLocationThunk = createAsyncThunk(
   "QuanLyViTri/DeleteLocation",
   async (path: string, { dispatch }) => {
     const data = await PositionService.DeleteLocation(path);
+    try {
+      toast.success("Xóa thành công");
+    } catch (err) {
+      handleError(err);
+    }
     dispatch(getPostionListThunk());
     return data.data.content;
   }

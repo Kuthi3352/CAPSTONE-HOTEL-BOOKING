@@ -6,8 +6,7 @@ import { RootState, useAppDispatch } from "store";
 import { UploadOutlined } from "@ant-design/icons";
 import { Space, Table } from "antd";
 import { Button, EditLocation } from "components";
-import { toast } from "react-toastify";
-import { handleError } from "utils";
+
 import {
   DeleteLocationThunk,
   EditLocationThunk,
@@ -94,25 +93,19 @@ export const LocationList = () => {
             data-bs-toggle="modal"
             data-bs-target="#exampleModal1"
             onClick={() => {
-              console.log(record.key);
               dispatch(EditLocationThunk(record.key));
             }}
           >
-            Edit
+            <i className="fa-regular fa-pen-to-square"></i>
           </Button>
           <EditLocation />
           <Button
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
               dispatch(DeleteLocationThunk(record.key));
-              try {
-                toast.success("Xóa thành công");
-              } catch (err) {
-                handleError(err);
-              }
             }}
           >
-            Delete
+            <i className="fa-solid fa-trash"></i>
           </Button>
         </Space>
       ),

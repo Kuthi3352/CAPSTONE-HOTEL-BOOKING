@@ -26,14 +26,8 @@ const ListUserSlice = createSlice({
     builder
       .addCase(ListUserThunk.fulfilled, (state, { payload }) => {
         state.listUser = payload;
-        state.isFetchingUser = false;
       })
-      .addCase(ListUserThunk.pending, (state) => {
-        state.isFetchingUser = true;
-      })
-      .addCase(ListUserThunk.rejected, (state) => {
-        state.isFetchingUser = false;
-      })
+
       .addCase(EditUserThunk.fulfilled, (state, { payload }) => {
         state.EditUser = payload;
       });

@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 export const LoginTemplate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isFetchingLogin } = useSelector(
+  const { isFetchingLogin, currentPage } = useSelector(
     (state: RootState) => state.AuthLogin
   );
   const {
@@ -28,7 +28,11 @@ export const LoginTemplate = () => {
       .unwrap()
       .then(() => {
         toast.success("Đăng nhập thành công!");
-        navigate("/");
+        if (currentPage) {
+          navigate(currentPage);
+        } else {
+          navigate("/");
+        }
       })
       .catch((err) => {
         handleError(err);

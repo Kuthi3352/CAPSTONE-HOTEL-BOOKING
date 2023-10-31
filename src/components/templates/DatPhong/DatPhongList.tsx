@@ -1,7 +1,6 @@
 import { Button, Space, Table } from "antd";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { RootState, useAppDispatch } from "store";
 import type { ColumnsType } from "antd/es/table";
 import { DatPhongDataType } from "types/DatPhongType";
@@ -77,7 +76,6 @@ export const DatPhongList = () => {
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
               dispatch(DeleteDatPhongThunk(record.key));
-              toast.success("Xóa thành công");
             }}
           >
             <i className="fa-solid fa-trash"></i>

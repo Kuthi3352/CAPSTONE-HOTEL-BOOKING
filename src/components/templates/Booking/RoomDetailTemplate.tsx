@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { generatePath, useNavigate, useParams } from "react-router-dom";
 import { RootState, useAppDispatch } from "store";
 import { DanhGiaTemplate } from "../DanhGiaTemplate";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Skeleton } from "components";
 import { PATH } from "constant";
 import styled from "styled-components";
+import { AuthLoginActions } from "store/Auth";
 
 const RoomDetailTemplate = () => {
   const accessToken = getAccessToken();
@@ -288,7 +289,15 @@ const RoomDetailTemplate = () => {
                 danger
                 type="primary"
                 onClick={() => {
-                  navigate(PATH.login);
+                  const path = generatePath(PATH.roomDetail, {
+                    roomId: currentRoom.id,
+                  });
+                  dispatch(AuthLoginActions.takeCurrentPage(path));
+                  if (accessToken) {
+                    navigate(path);
+                  } else {
+                    navigate(PATH.login);
+                  }
                 }}
               >
                 Đăng nhập
