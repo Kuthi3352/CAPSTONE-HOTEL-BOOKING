@@ -27,6 +27,11 @@ export const UpdateLocationThunk = createAsyncThunk(
     const payload = result.payload;
     const data = await PositionService.UpdateLocation(path, payload);
     dispatch(getPostionListThunk());
+    try {
+      toast.success("Cập nhật phòng thành công");
+    } catch (err) {
+      handleError(err);
+    }
     return data.data.content;
   }
 );

@@ -6,7 +6,6 @@ import { RootState, useAppDispatch } from "store";
 import { useEffect } from "react";
 import { ListUserType } from "types/ListUserType";
 import { UpdateUserThunk } from "store/DanhSachThanhVien";
-import { toast } from "react-toastify";
 import { submitAdminForm } from "utils/submitAdminForm";
 
 export const ChinhSuaUser = () => {
@@ -18,7 +17,7 @@ export const ChinhSuaUser = () => {
     reset,
     register,
     handleSubmit,
-    // formState: { errors },
+    
   } = useForm<ListUserType>({
     mode: "onChange",
   });
@@ -26,7 +25,7 @@ export const ChinhSuaUser = () => {
   const onSubmit: SubmitHandler<ListUserType> = async (value) => {
     const newForm = submitAdminForm(value, role, gender);
     dispatch(UpdateUserThunk({ path: EditUser?.id, payload: newForm }));
-    toast.success("Cập nhật thành công");
+    
   };
   useEffect(() => {
     reset(EditUser);
