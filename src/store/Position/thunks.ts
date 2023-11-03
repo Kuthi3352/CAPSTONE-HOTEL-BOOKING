@@ -2,8 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { PositionService } from "services/PositionService";
 import { PositionType } from "types/PositinonType";
 import { wait } from "utils";
-import { toast } from "react-toastify";
-import { handleError } from "utils";
 
 export const getPostionListThunk = createAsyncThunk(
   "QuanLyViTri/danhsach",
@@ -22,29 +20,30 @@ export const EditLocationThunk = createAsyncThunk(
 );
 export const UpdateLocationThunk = createAsyncThunk(
   "QuanLyViTri/UpdateLocation",
-  async (result: { path: string; payload: PositionType }, { dispatch }) => {
-    const path = result.path;
-    const payload = result.payload;
-    const data = await PositionService.UpdateLocation(path, payload);
-    dispatch(getPostionListThunk());
+  async (
+    result: { path: string; payload: PositionType },
+    { dispatch, rejectWithValue }
+  ) => {
     try {
-      toast.success("Cập nhật phòng thành công");
-    } catch (err) {
-      handleError(err);
+      const path = result.path;
+      const payload = result.payload;
+      const data = await PositionService.UpdateLocation(path, payload);
+      dispatch(getPostionListThunk());
+      return data.data.content;
+    } catch (error) {
+      return rejectWithValue(error);
     }
-    return data.data.content;
   }
 );
 export const DeleteLocationThunk = createAsyncThunk(
   "QuanLyViTri/DeleteLocation",
-  async (path: string, { dispatch }) => {
-    const data = await PositionService.DeleteLocation(path);
+  async (path: string, { dispatch, rejectWithValue }) => {
     try {
-      toast.success("Xóa thành công");
-    } catch (err) {
-      handleError(err);
+      const data = await PositionService.DeleteLocation(path);
+      dispatch(getPostionListThunk());
+      return data.data.content;
+    } catch (error) {
+      return rejectWithValue(error);
     }
-    dispatch(getPostionListThunk());
-    return data.data.content;
   }
 );

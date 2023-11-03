@@ -14,7 +14,8 @@ import {
 } from "store/Position/thunks";
 import { PositionDataType } from "types/PositinonType";
 import { PositionService } from "services";
-
+import { toast } from "react-toastify";
+import { handleError } from "utils";
 export const LocationList = () => {
   const dispatch = useAppDispatch();
 
@@ -102,7 +103,14 @@ export const LocationList = () => {
           <Button
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
-              dispatch(DeleteLocationThunk(record.key));
+              dispatch(DeleteLocationThunk(record.key))
+                .unwrap()
+                .then(() => {
+                  toast.success("Xóa thành công");
+                })
+                .catch((error) => {
+                  handleError(error);
+                });
             }}
           >
             <i className="fa-solid fa-trash"></i>

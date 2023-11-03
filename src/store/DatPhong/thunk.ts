@@ -34,14 +34,13 @@ export const UpdateDatPhongThunk = createAsyncThunk(
 );
 export const DeleteDatPhongThunk = createAsyncThunk(
   "getDatPhongThunk/DeleteDatPhong",
-  async (path: string, { dispatch }) => {
-    const data = await DatPhongServices.DeleteDatPhong(path);
+  async (path: string, { dispatch, rejectWithValue }) => {
     try {
-      toast.success("Xóa thành công");
-    } catch (err) {
-      handleError(err);
+      const data = await DatPhongServices.DeleteDatPhong(path);
+      dispatch(getDatPhongThunk());
+      return data.data.content;
+    } catch (error) {
+      rejectWithValue(error);
     }
-    dispatch(getDatPhongThunk());
-    return data.data.content;
   }
 );

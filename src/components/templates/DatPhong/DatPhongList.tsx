@@ -10,7 +10,8 @@ import {
   getDatPhongThunk,
 } from "store/DatPhong";
 import { EditDatPhong } from "./EditDatPhong";
-
+import { toast } from "react-toastify";
+import { handleError } from "utils";
 export const DatPhongList = () => {
   const dispatch = useAppDispatch();
 
@@ -75,7 +76,15 @@ export const DatPhongList = () => {
           <Button
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
-              dispatch(DeleteDatPhongThunk(record.key));
+              dispatch(DeleteDatPhongThunk(record.key))
+                .unwrap()
+                .then(() => {
+                  try {
+                    toast.success("Xóa thành công");
+                  } catch (error) {
+                    handleError(error);
+                  }
+                });
             }}
           >
             <i className="fa-solid fa-trash"></i>

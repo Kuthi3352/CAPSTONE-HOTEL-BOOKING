@@ -8,7 +8,8 @@ import { Space, Table } from "antd";
 import { Button, EditRoom } from "components";
 import { RoomListService } from "services";
 import { UploadOutlined } from "@ant-design/icons";
-
+import { handleError } from "utils";
+import { toast } from "react-toastify";
 export const RoomDS = () => {
   const { roomList } = useSelector((state: RootState) => state.RoomReducer);
   const dispatch = useAppDispatch();
@@ -90,7 +91,14 @@ export const RoomDS = () => {
           <Button
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
-              dispatch(DeleteRoomThunk(record.key));
+              dispatch(DeleteRoomThunk(record.key))
+                .unwrap()
+                .then(() => {
+                  toast.success("Xóa thành công");
+                })
+                .catch((error) => {
+                  handleError(error);
+                });
             }}
           >
             <i className="fa-solid fa-trash"></i>
