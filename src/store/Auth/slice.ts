@@ -47,6 +47,7 @@ const AuthLoginSlice = createSlice({
           JSON.stringify({
             id: payload.user.id,
             userName: payload.user.name,
+            role: payload.user.role,
           })
         );
         localStorage.setItem("ACCESSTOKEN", payload.token);

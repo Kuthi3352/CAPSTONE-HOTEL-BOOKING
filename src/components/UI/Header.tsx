@@ -6,14 +6,12 @@ import { AuthLoginActions } from "store/Auth";
 import { getUserInfoLocal } from "utils";
 import { LocalUser } from "types/AuthType";
 import { Avatar, Popover } from ".";
-
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<LocalUser>();
-
   const { isLogin } = useSelector((state: RootState) => state.AuthLogin);
 
   useEffect(() => {
@@ -61,19 +59,22 @@ const Header = () => {
                   >
                     Hồ sơ của {user?.userName}
                   </p>
-                  <p
-                    className="cursor-pointer popover-user "
-                    onClick={() => {
-                      navigate(`${PATH.listUser}`);
-                    }}
-                  >
-                    ADMIN PAGE
-                  </p>
+                  {user?.role.match("ADMIN") && (
+                    <p
+                      className="cursor-pointer popover-user "
+                      onClick={() => {
+                        navigate(`${PATH.listUser}`);
+                      }}
+                    >
+                      ADMIN PAGE
+                    </p>
+                  )}
+
                   <p
                     className="cursor-pointer popover-user "
                     onClick={() => {
                       dispatch(AuthLoginActions.logOut());
-                      navigate("/")
+                      navigate("/");
                     }}
                   >
                     ĐĂNG XUẤT

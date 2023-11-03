@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 import { RoomListService } from "services";
 import { BookingRoom, RoomType } from "types/RoomType";
 import { handleError, wait } from "utils";
+import { toast } from "react-toastify";
 
 export const getRoomThunk = createAsyncThunk(
   "QuanLyPhong/danhsach",
@@ -51,30 +51,31 @@ export const EditRoomThunk = createAsyncThunk(
 );
 export const UpdateRoomThunk = createAsyncThunk(
   "QuanLyPhong/UpdateRoom",
-  async (result: { path: string; payload: RoomType }, { dispatch }) => {
-    const path = result.path;
-    const payload = result.payload;
-    const data = await RoomListService.UpdateRoom(path, payload);
-    dispatch(getRoomThunk());
+  async (
+    result: { path: string; payload: RoomType },
+    { dispatch, rejectWithValue }
+  ) => {
     try {
-      toast.success("Cập nhật thành công");
-    } catch (err) {
-      handleError(err);
+      const path = result.path;
+      const payload = result.payload;
+      const data = await RoomListService.UpdateRoom(path, payload);
+      dispatch(getRoomThunk());
+      return data.data.content;
+    } catch (error) {
+      return rejectWithValue(error);
     }
-    return data.data.content;
   }
 );
 export const DeleteRoomThunk = createAsyncThunk(
   "QuanLyPhong/DeleteRoom",
-  async (path: string, { dispatch }) => {
-    const data = await RoomListService.DeleteRoom(path);
+  async (path: string, { dispatch, rejectWithValue }) => {
     try {
-      toast.success("Xóa thành công");
-    } catch (err) {
-      handleError(err);
+      const data = await RoomListService.DeleteRoom(path);
+      dispatch(getRoomThunk());
+      return data.data.content;
+    } catch (error) {
+      return rejectWithValue(error);
     }
-    dispatch(getRoomThunk());
-    return data.data.content;
   }
 );
 export const BookingThunk = createAsyncThunk(
