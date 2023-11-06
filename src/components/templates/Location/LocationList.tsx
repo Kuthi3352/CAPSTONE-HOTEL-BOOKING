@@ -6,7 +6,7 @@ import { RootState, useAppDispatch } from "store";
 import { UploadOutlined } from "@ant-design/icons";
 import { Space, Table } from "antd";
 import { Button, EditLocation } from "components";
-
+import Swal from "sweetalert2";
 import {
   DeleteLocationThunk,
   EditLocationThunk,
@@ -103,14 +103,25 @@ export const LocationList = () => {
           <Button
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
-              dispatch(DeleteLocationThunk(record.key))
-                .unwrap()
-                .then(() => {
-                  toast.success("Xóa thành công");
-                })
-                .catch((error) => {
-                  handleError(error);
-                });
+              Swal.fire({
+                title: "Bạn có muốn xóa không",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  dispatch(DeleteLocationThunk(record.key))
+                    .unwrap()
+                    .then(() => {
+                      toast.success("Xóa thành công");
+                    })
+                    .catch((error) => {
+                      handleError(error);
+                    });
+                }
+              });
             }}
           >
             <i className="fa-solid fa-trash"></i>
