@@ -14,7 +14,7 @@ import { DataType } from "types";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { handleError } from "utils";
-
+import Swal from "sweetalert2";
 export const ListUser = () => {
   const { listUser, searchUser, isFetchingUser } = useSelector(
     (state: RootState) => state.ListReducer
@@ -72,14 +72,25 @@ export const ListUser = () => {
           <Button
             className="mr-[15px] !bg-red-600 !text-white !font-500 "
             onClick={() => {
-              dispatch(DeleteUserThunk(record.key))
-                .unwrap()
-                .then(() => {
-                  toast.success("Xóa thành công");
-                })
-                .catch((error) => {
-                  handleError(error);
-                });
+              Swal.fire({
+                title: "Bạn có muốn xóa không",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  dispatch(DeleteUserThunk(record.key))
+                    .unwrap()
+                    .then(() => {
+                      toast.success("Xóa thành công");
+                    })
+                    .catch((error) => {
+                      handleError(error);
+                    });
+                }
+              });
             }}
           >
             <i className="fa-solid fa-trash"></i>

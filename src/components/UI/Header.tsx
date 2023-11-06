@@ -57,9 +57,9 @@ const Header = () => {
                       navigate(`${PATH.userInfo}`);
                     }}
                   >
-                    Hồ sơ của {user?.userName}
+                    Hồ sơ của tôi
                   </p>
-                  {user?.role.match("ADMIN") && (
+                  {user?.role === "ADMIN" && (
                     <p
                       className="cursor-pointer popover-user "
                       onClick={() => {
