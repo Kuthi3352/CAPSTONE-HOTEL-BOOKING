@@ -3,6 +3,7 @@ import { RoomListService } from "services";
 import { BookingRoom, RoomType } from "types/RoomType";
 import { handleError, wait } from "utils";
 import { toast } from "react-toastify";
+import { AxiosError, AxiosResponse } from "axios";
 
 export const getRoomThunk = createAsyncThunk(
   "QuanLyPhong/danhsach",
@@ -58,8 +59,15 @@ export const UpdateRoomThunk = createAsyncThunk(
     try {
       const path = result.path;
       const payload = result.payload;
-      const data = await RoomListService.UpdateRoom(path, payload);
-      dispatch(getRoomThunk());
+      const data = await RoomListService.UpdateRoom(path, payload)
+        .then((response: AxiosResponse) => {
+          dispatch(getRoomThunk());
+          return response;
+        })
+        .catch((error: AxiosError) => {
+          throw error;
+        });
+
       return data.data.content;
     } catch (error) {
       return rejectWithValue(error);

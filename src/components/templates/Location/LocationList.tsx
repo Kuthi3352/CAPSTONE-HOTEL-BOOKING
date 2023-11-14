@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useSelector } from "react-redux";
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useState } from "react";
@@ -16,6 +17,7 @@ import { PositionDataType } from "types/PositinonType";
 import { PositionService } from "services";
 import { toast } from "react-toastify";
 import { handleError } from "utils";
+
 export const LocationList = () => {
   const dispatch = useAppDispatch();
 
@@ -61,11 +63,10 @@ export const LocationList = () => {
       title: "Hình ảnh",
       dataIndex: "hinhAnh",
       key: "hinhAnh",
-      render: (text, record: PositionDataType) => (
+      render: (text, record: RoomDSType) => (
         <form className="" id="photoUpload">
-          <img src={text} alt="" className="w-[70%]" />
+          <img src={text} alt="" className="w-[70%] lgM:w-[100%]" />
           <input
-            className=""
             type="file"
             onChange={(ev) => {
               setPhotoUpload(ev.target.files[0]);

@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { AxiosError, AxiosResponse } from "axios";
 import { ListUserServices } from "services";
 import { ListUserType } from "types/ListUserType";
 
@@ -36,8 +37,15 @@ export const UpdateUserThunk = createAsyncThunk(
     try {
       const path = data2.path;
       const payload = data2.payload;
-      const result = await ListUserServices.UpdateUser(path, payload);
-      dispatch(ListUserThunk());
+      const result = await ListUserServices.UpdateUser(path, payload)
+        .then((response: AxiosResponse) => {
+          dispatch(ListUserThunk());
+          return response;
+        })
+        .catch((error: AxiosError) => {
+          throw error;
+        });
+
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error);

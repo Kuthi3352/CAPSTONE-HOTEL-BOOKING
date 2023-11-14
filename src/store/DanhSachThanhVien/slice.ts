@@ -21,6 +21,9 @@ const ListUserSlice = createSlice({
     searchName: (state, { payload }) => {
       state.searchUser = payload;
     },
+    uploadImg: (state, { payload }) => {
+      state.EditUser = payload;
+    },
   },
   extraReducers(builder) {
     builder

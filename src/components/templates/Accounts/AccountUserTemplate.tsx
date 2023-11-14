@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
-import { EditUserThunk } from "store/DanhSachThanhVien";
+import { EditUserThunk, ListUserActions } from "store/DanhSachThanhVien";
 import { ListUserServices } from "services";
 import { getUserInfoLocal } from "utils";
-import { AccountInfo, BookingHistory, Tabs } from "components";
-import { UploadOutlined } from "@ant-design/icons";
+import { AccountInfo, BookingHistory, Button, Tabs } from "components";
+import { Upload } from "antd";
 
 const AccountUserTemplate = () => {
   const localUser = getUserInfoLocal();
   const dispatch = useAppDispatch();
   const { EditUser } = useSelector((state: RootState) => state.ListReducer);
-  const [photoUpload, setPhotoUpload] = useState<File>();
 
-  const handleUpload = async () => {
+  const handleUpload = async ({ file }) => {
     const formData = new FormData();
-    formData.append("formFile", photoUpload);
-    await ListUserServices.UploadUser(formData);
-    dispatch(EditUserThunk(localUser?.id));
+    formData.append("formFile", file);
+    const data = await ListUserServices.UploadUser(formData);
+    dispatch(ListUserActions.uploadImg(data.data.content));
   };
 
   useEffect(() => {
@@ -36,23 +36,28 @@ const AccountUserTemplate = () => {
                   alt=""
                   className="rounded-[50%] w-[150px] h-[150px] !text-center mb-16"
                 />
+                <Upload showUploadList={false} customRequest={handleUpload}>
+                  <Button type="link" className=" !font-400 !text-[16px]">
+                    {" "}
+                    Cập nhật ảnh
+                  </Button>
+                </Upload>
 
-                <input
+                {/* <input
                   type="file"
                   className="w-[74px]"
                   onChange={(ev) => {
                     setPhotoUpload(ev.target.files[0]);
                   }}
-                />
-                <button
+                /> */}
+
+                {/* <button
                   className="edit-btn"
                   type="button"
                   onClick={() => {
                     handleUpload();
                   }}
-                >
-                  <UploadOutlined />
-                </button>
+                ></button> */}
               </form>
             </div>
             <div className="comments-name">{EditUser?.name}</div>

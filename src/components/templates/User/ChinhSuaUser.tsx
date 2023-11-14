@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "store";
 import { useEffect } from "react";
 import { ListUserType } from "types/ListUserType";
-import { UpdateUserThunk } from "store/DanhSachThanhVien";
+import { ListUserThunk, UpdateUserThunk } from "store/DanhSachThanhVien";
 import { submitAdminForm } from "utils/submitAdminForm";
 import { toast } from "react-toastify";
 import { handleError } from "utils";
@@ -20,7 +20,8 @@ export const ChinhSuaUser = () => {
 
   const onSubmit: SubmitHandler<ListUserType> = async (value) => {
     const newForm = submitAdminForm(value, role, gender);
-    dispatch(UpdateUserThunk({ path: EditUser?.id, payload: newForm }))
+    dispatch(UpdateUserThunk({ path: EditUser?.id, payload: newForm }));
+    dispatch(ListUserThunk())
       .unwrap()
       .then(() => {
         toast.success("Chỉnh sửa thành công");
