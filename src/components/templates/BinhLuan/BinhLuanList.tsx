@@ -5,7 +5,7 @@ import { RootState, useAppDispatch } from "store";
 import { DanhGiaThunk, DeleteBinhLuanThunk } from "store/BinhLuan";
 import type { ColumnsType } from "antd/es/table";
 import { BinhLuanDataType } from "types";
-
+import Swal from "sweetalert2";
 export const BinhLuanList = () => {
   const dispatch = useAppDispatch();
 
@@ -53,9 +53,20 @@ export const BinhLuanList = () => {
       render: (_, record: BinhLuanDataType) => (
         <Space size="middle">
           <Button
-            className="mr-[15px] !bg-red-600 !text-white !font-500 "
+            className="mr-[15px] !bg-red-600 !text-white !font-500  "
             onClick={() => {
-              dispatch(DeleteBinhLuanThunk(record.key));
+              Swal.fire({
+                title: "Bạn có muốn xóa không",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  dispatch(DeleteBinhLuanThunk(record.key));
+                }
+              });
             }}
           >
             <i className="fa-solid fa-trash"></i>
